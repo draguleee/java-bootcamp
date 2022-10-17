@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Module 1 - Java Fundamentals/Module 1 - Java Fundamentals.iml" filepath="$PROJECT_DIR$/Module 1 - Java Fundamentals/Module 1 - Java Fundamentals.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Module 1 - Java Fundamentals/Section 10 - Loops/Section 10 - Loops.iml" filepath="$PROJECT_DIR$/Module 1 - Java Fundamentals/Section 10 - Loops/Section 10 - Loops.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Module 1 - Java Fundamentals/Section 2 - Getting Started/Section 2 - Getting Started.iml" filepath="$PROJECT_DIR$/Module 1 - Java Fundamentals/Section 2 - Getting Started/Section 2 - Getting Started.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Module 1 - Java Fundamentals/Section 4 - Variables/Section 4 - Variables.iml" filepath="$PROJECT_DIR$/Module 1 - Java Fundamentals/Section 4 - Variables/Section 4 - Variables.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Module 1 - Java Fundamentals/Section 6 - Booleans and Conditionals/Section 6 - Booleans and Conditionals.iml" filepath="$PROJECT_DIR$/Module 1 - Java Fundamentals/Section 6 - Booleans and Conditionals/Section 6 - Booleans and Conditionals.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Module 1 - Java Fundamentals/Section 8 - Functions/Section 8 - Functions.iml" filepath="$PROJECT_DIR$/Module 1 - Java Fundamentals/Section 8 - Functions/Section 8 - Functions.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Workbooks/Workbooks.iml" filepath="$PROJECT_DIR$/Workbooks/Workbooks.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/java-bootcamp.iml" filepath="$PROJECT_DIR$/.idea/java-bootcamp.iml" />
+    </modules>
+  </component>
+</project>
