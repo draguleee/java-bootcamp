@@ -1,0 +1,16 @@
+Common Terminal Errors:
+
+Error 1: Running commands from an old terminal:
+	javac HelloJava.java
+	The term javac is not recognized as...
+
+Error 2: Misspelling the command:
+	javc HelloJava.java
+	The term 'javc' is not recognized as...
+
+Error 3: Not launching the exact folder that contains your file:
+	JAVA BOOTCAMP -> section one -> HelloJava.java
+	Trying to compile the Java file from there will not work.
+	Java Bootcamp % javac HelloJava.java
+	error: file not found: HelloJava.java
+	=> HelloJava.java lives in 'section one' folder, not 'Java Bootcamp' folder.
