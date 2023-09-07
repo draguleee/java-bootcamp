@@ -1,0 +1,8 @@
+---------------------------------------------------------------------------------------------------------------------
+
+Roadmap:
+1. Use conditions to control which parts of your code run (if-else).
+2. Execute code by comparing a value against a list of cases (switch-case).
+3. Gain full control on how your code runs.
+
+---------------------------------------------------------------------------------------------------------------------
