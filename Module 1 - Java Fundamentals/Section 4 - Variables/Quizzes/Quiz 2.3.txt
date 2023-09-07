@@ -1,0 +1,64 @@
+Quiz 2.3
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 1: 
+
+Which line of code presents an error?
+
+int apples = 10;
+int fans = 5000;
+int cellsInHumanBody = 37200000000000;		// 37 trillion
+int usaPopulation = 328200000;			// 328 million
+
+Answer: line 3 (int cellsInHumanBody = 37200000000000;)
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 2:
+
+How do I fix this code?
+
+int apples = 10;
+int fans = 5000;
+int cellsInHumanBody = 37200000000000;		// 37 trillion
+int usaPopulation = 328200000;			// 328 million
+
+Answer: long cellsInHumanBody = 37200000000000L;
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 3:
+
+This code runs fine, but what's wrong with it?
+
+long apples = 10000;
+
+Answer: 
+- You should use an int variable to store 10000.
+- We should use int to store small whol numbers (inside the 2 billion range).
+- We should use long to store big whole numbers (billions and beyond).
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 4: 
+
+Which line of code presents an error?
+
+int salary = 4000;
+int age = 32;
+int weight = 75.7;
+
+Answer: line 3 (int weight = 75.7 should be double weight = 75.7).
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 5:
+
+What will this code print?
+
+int dividend = 20;
+int divisor = 6;
+System.out.println(dividend / divisor)
+
+Answer: >>: 3

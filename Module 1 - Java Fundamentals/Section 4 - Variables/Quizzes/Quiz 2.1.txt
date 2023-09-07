@@ -1,0 +1,62 @@
+Quiz 2.1
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 1:
+
+int sales = 3;
+sales = sales - 5;	// sales = 3 - 5 = -2
+sales = sales - 10;	// sales = -2 - 10 = -12
+sales = sales + 2;	// sales = -12 + 2 = -10
+
+Answer = -10
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 2:
+
+int apples = 50;
+int goneBad = 5;
+int rotten = 20;
+int sold = 20;
+
+apples -= goneBad;	// apples = 50 - 5 = 45
+apples -= rotten;	// apples = 45 - 20 = 25
+apples -= sold;		// apples = 25 - 20 = 5
+
+Answer = 5
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 3:
+
+int score = 0;
+int goal = 1;
+score += goal;		// score = 0 + 1 = 1
+score += goal;		// score = 1 + 1 = 2
+score += goal		// score = 2 + 1 = 3
+score += goal		// score = 3 + 1 = 4
+
+Answer = 4
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 4: What's the difference between goal += 1 and goal = goal + 1?
+Answer: They are the same, but the first notation is easier to read.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 5: What is the command that clears the terminal output?
+Answer: clear (cls too)
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 6: What re the final values of foo and bar?
+
+int foo = 2;
+int bar =  foo - 6;	// bar = 2 - 6 = -4
+foo += bar		// foo = 2 + (-4) = 2 - 4 = -2
+
+Answer = bar = -4, foo = -2
+
+-------------------------------------------------------------------------------------------------------------------
