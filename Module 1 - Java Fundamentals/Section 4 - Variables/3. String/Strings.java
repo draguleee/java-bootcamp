@@ -1,5 +1,5 @@
 /*
- * Process:
+ * String Type
  * 
  * 1. Identify a type that can store text: String
  * 

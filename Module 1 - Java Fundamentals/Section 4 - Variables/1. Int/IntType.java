@@ -1,5 +1,5 @@
 /* 
- * Process:
+ * Int Type
  * 
  * 1. Identify a type that can store bus passengers: int
  * Golden rule: use the smallest amount of memory possible.

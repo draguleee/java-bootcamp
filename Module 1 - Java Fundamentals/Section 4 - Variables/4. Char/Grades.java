@@ -1,5 +1,5 @@
 /*
- * Process:
+ * Char Type
  * 
  * 1. Identify a type that can store single characters: char
  * 

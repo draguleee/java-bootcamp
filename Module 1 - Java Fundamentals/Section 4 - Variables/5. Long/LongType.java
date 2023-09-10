@@ -1,5 +1,5 @@
 /*
- * Process:
+ * Long Type:
  * 
  * 1. Identify a type that can store very large numbers: long
  * 

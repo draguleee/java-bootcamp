@@ -1,5 +1,5 @@
 /*
- * Process:
+ * Double Type
  * 
  * 1. Identify a type that can store decimal numbers: double
  * 
