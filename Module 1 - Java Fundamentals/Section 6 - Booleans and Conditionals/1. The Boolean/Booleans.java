@@ -1,7 +1,11 @@
 /**
  * Booleans
  * 
- * 1. 
+ * 1. Identify a type that can store true or false values: boolean
+ * 
+ * 2. Name the variable using lowerCamelCase: boolean trueOrFalse
+ * 
+ * 3. Set the variable equal to a value: boolean trueOrFalse = true 
  */
 
 public class Booleans {

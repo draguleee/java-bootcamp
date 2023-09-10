@@ -1,0 +1,90 @@
+Quiz 3.4
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 1:
+
+double price = 25.99;
+int quantity = 2;
+if (price >= 30 || quantity > 5) {		// 25.99 >= 30 (false) OR 2 > 5 (false)
+    System.out.println("If code runs");
+} else {
+    System.out.println("Else code runs");
+}
+
+Answer: >>: Else code runs
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 2:
+
+double price = 34.99;
+int quantity = 2;
+if (price >= 30 || quantity > 5) {		// 34.99 >= 30 (true) OR 2 > 5 (false)
+    System.out.println("If code runs");
+} else {
+    System.out.println("Else code runs");
+}
+
+Answer: >>: If code runs
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 3:
+
+double price = 34.99;
+int quantity = 2;
+if (price <= 30 && quantity > 5) {		// 34.99 <= 30 (false) AND 2 > 5 (false)
+    System.out.println("If code runs");
+} else {
+    System.out.println("Else code runs");
+}
+
+
+Answer: >>: Else code runs
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 4:
+
+double price = 29.99;
+int quantity = 2;
+if (price <= 30 && quantity < 5) {		// 29.99 <= 30 (true) AND 2 < 5 (true)
+    System.out.println("If code runs");
+} else {
+    System.out.println("Else code runs");
+}
+
+Answer: >>: If code runs
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 5:
+
+double price = 29.99;
+int quantity = 2;
+String item = "shirt";
+if (price <= 30 && quantity < 5 && !item.equals("shirt") {	// 29.99 <= 30 (true) AND 2 < 5 (true) AND "shirt" NOT equals "shirt" (false)
+    System.out.println("If code runs");
+} else {
+    System.out.println("Else code runs");
+}
+
+Answer: >>: Else code runs
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 6: 
+
+double price = 29.99;
+int quantity = 2;
+String item = "shirt";
+if (price <= 30 && quantity < 5 && !item.equals("shirt") {	// 29.99 <= 30 (true) AND 2 < 5 (true) AND "shirt" equals "shirt" (true)
+    System.out.println("If code runs");
+} else {
+    System.out.println("Else code runs");
+}
+
+Answer: >>: If code runs
+
+-------------------------------------------------------------------------------------------------------------------

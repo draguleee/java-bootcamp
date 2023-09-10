@@ -1,0 +1,91 @@
+Quiz 3.5
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 1:
+
+You learned that the not "!" operator reverses the boolean result.
+
+Example 1:
+1. The first boolean is true: boolean bool1: true;
+2. The "!" operator reverses it to false: boolean bool2 =!bool1;
+
+Example 2:
+String message = "Hello";
+1. The first comparison is true: boolean bool1 = message.equals("Hello");
+2. The "!" operator reverses it to false: boolean bool2 = !bool1; 
+
+Example 3:
+String option = "hit";
+1. The first logical comparison is true: option.equals("hit") || option.equals("stay");
+2. The "!" operator reverses it to false: !(option.equals("hit") || option.equals("stay"));
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 2:
+
+1. Value of comparison?
+String option = "cash";
+boolean comparison = (option.equals("cash") || option.equals("credit"));	// true
+
+2. Value of comparison?
+String option = "cash";
+boolean comparison = !(option.equals("cash") || option.equals("credit"));	// false
+
+3. Value of comparison?
+String option = "neither";
+boolean comparison = (option.equals("cash") || option.equals("credit"));	// false
+
+4. Value of comparison?
+String option = "neither";
+boolean comparison = !(option.equals("cash") || option.equals("credit"));	// true
+
+Answer: 
+1. true
+2. false
+3. false
+4. true
+
+Explanation:
+The trick is to evaluate the comparison by first ignoring the '!' operator. Then, reverse the result if '!' precedes the comparison.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 3:
+
+Which snippet of code can acieve the following outputs?
+
+Would you like to hit or stay?
+hit
+End Turn.
+
+Would you like to hit or stay?
+stay
+End Turn.
+
+Would you like to hit or stay?
+dunno
+Invalid Option.
+
+
+Answer: 
+
+System.out.println("Would you like to hit or stay?");
+String option = scan.nextLine();
+if(!option.equals("hit") && !option.equals("stay")) {
+    System.out.println("\nInvalid Option");
+} else {
+    System.out.println("\nEnd Turn.");
+}
+
+AND
+
+System.out.println("Would you like to hit or stay?");
+String option = scan.nextLine();
+if(!(option.equals("hit") || option.equals("stay"))) {
+    System.out.println("\nInvalid Option");
+} else {
+    System.out.println("\nEnd Turn.");
+}
+
+-------------------------------------------------------------------------------------------------------------------
