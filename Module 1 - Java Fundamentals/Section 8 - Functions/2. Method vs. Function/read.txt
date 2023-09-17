@@ -1,0 +1,9 @@
+---------------------------------------------------------------------------------------------------------------------
+
+Method vs. Function:
+
+I sometimes use the words Method and Function interchangeably.
+
+Method is more commonly said in Java and other Object-Oriented languages. Personally, I am used to saying the word: Function.
+
+Regardless, the distinction is not crucial, and they mean pretty much the same thing.

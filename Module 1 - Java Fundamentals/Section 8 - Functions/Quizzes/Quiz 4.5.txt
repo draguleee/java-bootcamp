@@ -1,0 +1,59 @@
+Quiz 4.5
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 1:
+
+static int	max(int a, int b)
+	   	Returns the greater of two int values.
+
+1. How many parameters does the max function expect?
+2. What does the function return?
+3. What does the function do?
+
+Answer:
+1. Two int parameters
+2. An int value
+3. It returns the greater of two int values
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 2:
+
+static int 	max(int a, int b)
+		Returns the greater of two int values.
+
+Based on the documentation above, what will be the output of this code?
+System.out.println(Math.max(2, 1));
+
+Answer: >>: 2
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 3:
+
+static double 	min(double a, double b)
+		Returns the smaller of two double values.
+
+1. How many parameters does this function expect?
+2. What does the function return?
+3. What does the function do?
+
+Answer: 
+1. Two double parameters
+2. A double value
+3. It returns the smaller of two double values.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 4:
+
+static double	min(double a, double b)
+		Returns the smaller of two double values.
+
+Based on the documentation, what would be the output of this code?
+System.out.println(Mat.min(2.3, 3.3));
+
+Answer: >>: 2.3
+
+-------------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,63 @@
+Quiz 4.1
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 1:
+
+Why does nothing print to the console?
+
+public static void main(String[] args) { }
+
+public static void function() {
+    System.out.println("Hello!");
+}
+
+Answer: To run a function, you need to call it from main().
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 2:
+
+Is there anything wrong with this code?
+
+public static void main(String[] args) {
+    System.out.println("Sentence1");
+    System.out.println("Sentence2");
+    System.out.println("Sentence3");
+    System.out.println("Sentence4");
+
+    System.out.println("Sentence1");
+    System.out.println("Sentence2");
+    System.out.println("Sentence3");
+    System.out.println("Sentence4");
+
+    System.out.println("Sentence1");
+    System.out.println("Sentence2");
+    System.out.println("Sentence3");
+    System.out.println("Sentence4");
+}
+
+Answer:
+Never copy and paste chunks of code.
+Instead, write your task in function. Then, call the function as many times as you need to.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 3:
+
+This runs fine, but what's the issue?
+
+public static void main(String[] args) {
+   PrintParagraph();
+}
+
+public static void PrintParagraph() {
+    System.out.println("Sentence1");
+    System.out.println("Sentence2");
+    System.out.println("Sentence3");
+    System.out.println("Sentence4");
+}
+
+Answer: Function names should be lowerCamelCase (printParagraph).
+
+-------------------------------------------------------------------------------------------------------------------
