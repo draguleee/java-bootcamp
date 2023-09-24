@@ -1,0 +1,20 @@
+---------------------------------------------------------------------------------------------------------------------
+
+Why you should learn Java?
+
+Java is:
+* Scalable
+* Fast
+* Can run on any machine
+
+Java's main selling points: 
+* "Write once, run anywhere": that is because the Java Virtual Machine (JVM), which is responsible for executing compiled Java code, can be installed on any platform.
+* General Purpose: Java powers a wide range of applications.
+* Build applications:
+  - Web application with Spring Boot
+  - Application for Android
+  - Automate tasks using Selenium
+  - Native Cloud Applications with Quarkus
+  - Integrate Microservices with Camel
+
+---------------------------------------------------------------------------------------------------------------------

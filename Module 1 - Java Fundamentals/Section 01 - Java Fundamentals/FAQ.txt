@@ -1,0 +1,40 @@
+-------------------------------------------------------------------------------------------------------------------
+
+Frequently Asked Questions:
+
+If your question isn't here, ask on Discord.
+
+Question 1: How do I access the Workbooks and Challenges?
+Answer: Please see the Workbooks and Challenges video (surprisingly this question comes up a lot :D).
+
+Question 2: Where is the resources folder for a lesson?
+Answer: On the rigth part of the section's title.
+
+Question 3: Why do I get File Not Found when running code?
+Answer: If you encounter the File Not Found error, please see: Common Terminal Errors (for MAc and Windows).
+
+Question 4: How to avoid .\  during autocomplete (Windows)?
+Answer: Try the Command Prompt.
+
+Question 5: Why is clear showing command not found?
+Answer: If you're using the command prompt, enter 'cls' instead.
+
+Question 6: Is the reference a "pointer"?
+Answer: No, Java restricts programmers from interfacing with pointers. Pointers exist behind the scenes and Java uses them to manage references, but you don't have to worry about them.
+
+Question 7: Can I call setters from the constructor to update fields?
+Answer: Yes
+
+Question 8: When can something be null?
+Answer: When it's non-primitive (i.e class type).
+
+Question 9: Why is the main method static?
+Answer: 
+* You will learn in the static and final section that static means: belonging to the class. 
+* When the Java Virtual Machine (JVM) starts your application, it searches for the entry point, which is the main method. 
+* To execute the entry point without creating an object of the class it resides in, the main method is made static. 
+* This way, the JVM can directly call the main method from the class. 
+(This explanation will only make sense once you reach Module 2).
+
+Question 10: The Tic Tac Toe challenge is really hard. How should I proceed?
+Answer: I understand it may be overwhelming, but difficult tasks reflect what you can expect in the real world. Most courses will just show you how to code something, but I want you to practice problem-solving with code. If you find the task to be too hard, my recommendation is to start by looking at the solution, run it, and slowly delete different parts of the code until you can isolate what each thing does. Then, once you have an idea of how it works, start fresh and try to incrementally solve it yourself. Most importantly, take your time!

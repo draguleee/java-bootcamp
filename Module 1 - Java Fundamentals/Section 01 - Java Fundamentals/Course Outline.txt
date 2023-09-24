@@ -1,0 +1,26 @@
+---------------------------------------------------------------------------------------------------------------------
+
+Course Outline:
+
+
+Module 1:
+* Variables
+* Conditionals
+* Functions
+* Loops
+* Arrays
+
+Capstone for Module 1: Hangman
+
+
+Module 2:
+* Objects
+* Exception Handling
+* Inheritance and Polymorphism
+* Collection Types
+* Higher Order Functions
+
+Capstone for Module 2: Account Management
+
+---------------------------------------------------------------------------------------------------------------------
+

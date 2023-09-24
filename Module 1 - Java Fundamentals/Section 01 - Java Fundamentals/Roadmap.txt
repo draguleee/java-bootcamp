@@ -1,0 +1,14 @@
+---------------------------------------------------------------------------------------------------------------------
+
+Java Roadmap:
+
+* Beginner: 
+  - Problem-solving using code
+  - High-quality code though OOP
+
+* Java Developer:
+  - Build real-world applications
+
+* Java Web Developer
+
+---------------------------------------------------------------------------------------------------------------------
