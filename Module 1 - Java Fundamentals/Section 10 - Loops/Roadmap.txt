@@ -1,9 +1,0 @@
----------------------------------------------------------------------------------------------------------------------
-
-Roadmap: Run your code in a loop.
-
-- For Loop: run code a specific number of times.
-- While Loop: run code an unknown number of times.
-- Break and Continue: gain full control over your loops.
-
----------------------------------------------------------------------------------------------------------------------
