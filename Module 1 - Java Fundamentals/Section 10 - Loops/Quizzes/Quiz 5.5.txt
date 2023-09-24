@@ -1,0 +1,112 @@
+Quiz 5.5
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 1:
+
+String message = " ";			// message = " "
+while (message.equals("stay")) {	// " " = "stay" -> false
+   message = scan.nextLine();
+}
+
+Will this while loop ever run?
+
+Answer: No
+
+Explanation: The condition is false.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 2:
+
+String message = " ";			// message = " " 
+while (!message.equals("stay")) {	// " " != "stay" -> true
+   message = scan.nextLine();
+}
+
+Answer: Yes
+
+Explanation: The condition is true, so the while loop will keep running until the user enters "stay".
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 3:
+
+String greet = greeting();
+public static String greeting() {
+   String greeting = " ";		// greeting = " "
+   while (greeting.equals("Hi")) {	// " " = "Hi" -> false
+      greeting = scan.nextLine();	// never runs
+   }
+   return greeting;      		// returns a blank String
+}    
+
+Answer: A blank String.
+
+Explanation: The while loop will never run. So, the function returns a blank String.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 4: 
+
+String greet = greeting();
+public static String greeting() {
+   String greeting = " ";		// greeting = " "
+   while (!greeting.equals("Hi")) {	// " " != "Hi" -> true
+      greeting = scan.nextLine();	// runs!
+   }
+   return greeting;   			// returns "Hi"
+}  
+
+Answer: "Hi"
+
+Explanation: The while loop will not stop running until the user enters "Hi".
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 5:
+
+String greet = greeting();
+public static String greeting() {
+   while (true) {
+      return "hi";
+   }
+   return " ";                               
+}      
+
+1. How many times will the while loop run?
+2. Will line 7 ever get reached?
+3. What is the value of greet?
+
+Answer:
+1. Once
+2. No
+3. hi 
+
+Explanation: 
+1. Return "hi" immediately stops execution of the function
+2. Line7 will never get reached because return "hi" would have already terminated the function
+3. The value returned is "hi"
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 6:
+
+Based on this output, which code will be used to produce it?
+
+User Input: Somepassword
+User Input: Python
+User Input: Javascript
+User Input: Java
+>>: Correct
+
+Answer:
+String password = " ";			// password = " "
+while(!password.equals("Java") {        // " " != "Java" -> true
+   password = scan.nextLine();		// runs!
+}
+Sysem.out.println("Correct");		// prints "Correct" if password variable equals "Java"
+
+Explanation:
+1. The condition is true, so the while loop runs and prompts the user to keep guessing a password.
+2. Once the user writes Java, the while loop breaks and println runs.

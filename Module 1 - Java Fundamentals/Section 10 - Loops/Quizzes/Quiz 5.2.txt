@@ -1,0 +1,68 @@
+Quiz 5.2
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 1:
+
+for (int i=0 ; i<=4 ; i++) {
+   System.out.print(i + " ");
+}
+
+Output: 
+0 1 2 3 4
+
+Explanation: "print()" does not move to a new line.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 2:
+
+System.out.print("Incoming counters: ");
+for (int i=0 ; i<=4 ; i++) {
+   System.out.print(i + " ");
+}
+
+Output:
+Incoming counters: 0 1 2 3 4
+
+Explanation: "print()" does not move to a new line.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 3:
+
+System.out.println("Incoming counters: ");
+for (int i=0 ; i<=4 ; i++) {
+   System.out.print(i + " ");
+}
+
+Output:
+Incoming counters:
+0 1 2 3 4
+
+Explanation: "println()" prints your String and moves to a new line. Then, "print()" keeps printing values on the same line.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 4: 
+
+This one's tricky. Read it carefully.
+
+System.out.println("Incoming counters: ");
+for (int i=0 ; i<=4 ; i++) {
+   System.out.println(i + " ");
+}
+
+Output: 
+Incoming counters: 0
+1
+2
+3
+4
+
+Explanation: 
+1. "print()" prints the String and does NOT move to a new line.
+2. Starting on the same line, "println()" prints the first counter and adds a new line after the messafe gets displayed.
+3. Ensuring println() calls print the counter and add a new line.
+
+-------------------------------------------------------------------------------------------------------------------
