@@ -1,9 +1,0 @@
-1. An "x:" icon will automatically appear. Do not write it yourself.
-
-2. Restart your editor if "Run" doesn't work.
-
-3. Did you install the Extension Pack for Java?
-   - If yes, you are good to go.
-   - If not, in Visual Studio Code, navigate to Extensions tab, search for Extension Pack for Java and install it.
-
-4. 

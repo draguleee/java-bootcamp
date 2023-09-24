@@ -1,9 +1,0 @@
-Visual Studio Code properties:
-- Fast
-- Lightweight
-- Excellent support for Java
-
-Download and install Visual Studio Code:
-- Follow the link: https://code.visualstudio.com/downloadhttps://code.visualstudio.com/download .
-- Unzip the package and open it.
-- After opening Visual Studio Code, go to the Extensions tab and type "Extension Pack for Java".
