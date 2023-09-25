@@ -1,0 +1,19 @@
+---------------------------------------------------------------------------------------------------------------------
+
+Customize your Editor:
+
+1. Color Themes link: https://marketplace.visualstudio.com/search?term=color%20theme&target=vscode&category=Themes&sortBy=Relevance
+
+2. Adjust the color theme:
+    - Go to File -> Preferences -> Theme -> Color Theme
+    - Choose the theme that you like
+
+3. Install a color theme as an extension:
+    - Navigate to Extensions tab
+    - Search for the desired color theme
+
+4. Adjust the font:
+    - Go to File -> Preferences -> Settings
+    - In the Font Size section, change the font size
+
+---------------------------------------------------------------------------------------------------------------------

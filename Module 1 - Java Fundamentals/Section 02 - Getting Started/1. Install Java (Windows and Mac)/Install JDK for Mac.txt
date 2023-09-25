@@ -1,0 +1,23 @@
+---------------------------------------------------------------------------------------------------------------------
+
+Installing JDK (Java Development Kit) for Mac
+
+1. Search up "Amazon Coretto".
+
+2. Click on the first link: https://aws.amazon.com/corretto/?filtered-posts.sort-by=item.additionalFields.createdDate&filtered-posts.sort-order=desc .
+
+3. Choose the "Download Amazon Coretto 17" with LTS (Long Term Support).
+
+4. Choose the Mac download link, but before this:
+   - Go to the Apple menu.
+   - Choose "About this Mac".
+   - If you see M1 or M2, you have a macBook with Apple Silicon - choose the aarch64 link!!!
+   - If you see Intel, you have the x64-chip architecture - choose the x64 link!!!
+
+5. After the installer has been downloaded, go through every step to install the JDK.
+
+6. After the JDK has been installed, open up a new terminal.
+
+7. To find out the Java version, type: java -version.
+
+---------------------------------------------------------------------------------------------------------------------

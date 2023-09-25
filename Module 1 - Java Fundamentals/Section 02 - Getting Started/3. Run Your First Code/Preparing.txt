@@ -1,0 +1,11 @@
+---------------------------------------------------------------------------------------------------------------------
+
+Preparing for the Next Lesson:
+
+1. An x: icon will automatically appear. Do not write it yourself.
+2. Restart your editor if Run doesn't work.
+3. Did you install the Extension Pack for Java?
+   * Yes: Continue to the next lesson.
+   * No: Return to the previous lesson.
+
+---------------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,13 @@
+---------------------------------------------------------------------------------------------------------------------
+
+Visual Studio Code:
+* Also known as VS code.
+* Fast, lightweight, great support for Java.
+
+Download link for Visual Studio code: https://code.visualstudio.com
+
+Steps:
+* Go to the Extensions tab
+* Search for 'Java Extension Pack" and install it.
+
+---------------------------------------------------------------------------------------------------------------------

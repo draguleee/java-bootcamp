@@ -1,0 +1,14 @@
+---------------------------------------------------------------------------------------------------------------------
+
+Typescript Editing with Visual Studio Code: https://code.visualstudio.com/docs/typescript/typescript-editing
+
+Enable / Disable Inlay Hints:
+- Go to File -> Preferences -> Settings
+- In the search bar, search for 'inlay hints'
+- In Editor > Inlay Hints, in the dropdown, select:
+  + on: to enable inlay hints
+  + onUnlessPressed: showed by default ad hide when pressed Ctrl+Alt
+  + offUnlessPressed: hidden by default and showed when pressed Ctrl+Alt
+  + off: to disable inlay hints
+
+---------------------------------------------------------------------------------------------------------------------
