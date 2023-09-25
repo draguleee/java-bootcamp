@@ -1,0 +1,78 @@
+-------------------------------------------------------------------------------------------------------------------
+Quiz 2.3
+-------------------------------------------------------------------------------------------------------------------
+
+Question 1:
+
+Which line of code presents an error?
+
+int apples = 10;
+int fans = 50000;
+int cellsInHumanBody = 37_200_000_000_000;              // 37 trillion -> error!
+int usaPopulation = 328_200_000;                       	// 328 million
+
+Variable type: 		  	int
+Amount of memory (Bytes): 	4
+Valid Range of Values: 		-2.147.483.648 -> 2.147.483.647
+
+Answer: line 3
+
+Explanation: 37 trillion is a whole number, but it exceeds the maximum capacity that int can store.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 2: 
+
+How do I fix this code?
+
+int apples = 10;
+int fans = 50000;
+int cellsInHumanBody = 37200000000000;               // 37 trillion
+int usaPopulation = 328200000;                       // 328 million
+
+Answer: long cellsInHumanBody = 37200000000000L;
+
+Explanation: long can store numbersup to 9 quintillion!
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 3: 
+
+This code runs, but what's wrong with it?
+
+long apples = 10000;
+
+Answer:
+1. We should use int to store small whole numbers (inside the 2 billion range).
+2. We should use long to store big whole numbers (billions and beyond).
+3. You should use an int variable to store 10000.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 4: 
+
+Which line of code presents an error.
+
+int salary = 4000;
+int age = 32;
+int weight = 75.7;
+
+Answer: line 3
+
+Explanation: int or long cannot store decimals.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 5:
+
+What will this code print?
+
+int dividend = 20;
+int divisor = 6;
+System.out.println(dividend/divisor)
+
+Answer: 3
+
+Explanation: The decimals get cut off because an operation between int values will always return an int.
+
+-------------------------------------------------------------------------------------------------------------------

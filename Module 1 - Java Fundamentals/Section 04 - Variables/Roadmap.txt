@@ -1,0 +1,14 @@
+---------------------------------------------------------------------------------------------------------------------
+
+Roadmap:
+
+* In this section, you will use variables to store data.
+* You will define:
+  - int variables: can store whole numbers (int number = 6;)
+  - long variables: can store large whole numbers (int population = 7800000000L;)
+  - String variables: can store text (String text = "Hello";)
+  - char variables: can store single characters (char letter = 'a';)
+  - double variables: can store decimal values (double decimal = 5.5;)
+* You will develop an ineractive application where the user answers questions andyou will pick each answer and store it in a variable.
+
+---------------------------------------------------------------------------------------------------------------------
