@@ -1,0 +1,142 @@
+-------------------------------------------------------------------------------------------------------------------
+Quiz 3.5
+-------------------------------------------------------------------------------------------------------------------
+
+Question 1:
+
+You learned that the not ! operator reverses the boolean result.
+
+Example 1:
+1. The first boolean is true:			boolean bool1 = true;		// true
+2. The ! operator reverses it to false:		boolean bool2 = !bool;		// false
+
+Example 2:
+String message = "Hello";
+1. The first comparison is true:		boolean bool1 = message.equals("Hello");	// true
+2. The ! operator reverses it to false.		boolean bool2 = !bool1;				// false
+
+Example 3:
+String option = "hit";
+1. The first logical comparison is true:	option.equals("hit") || option.equals("stay");		// true
+2. The ! operator reverses it to false:		!(option.equals("hit") || option.equals("stay");	// false
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 2: 
+
+
+1. value of comparison?
+String option = "cash";										
+boolean comparison = (option.equals("cash") || option.equals("credit"));	// true
+
+2. value of comparison?
+String option = "cash";
+boolean comparison = !(option.equals("cash") || option.equals("credit"));	// false
+
+3. value of comparison?
+String option = "neither";
+boolean comparison = (option.equals("cash") || option.equals("credit"));	// false
+
+4. value of comparison?
+String option = "neither";
+boolean comparison = !(option.equals("cash") || option.equals("credit"));	// true
+
+
+Answer: 
+1. true
+2. false
+3. false
+4. true
+
+
+Example: The trick is to evaluate the comparison by first ignoring the "!" operator. Then, reverse the result if "!" precedes the comparison.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 3: 
+
+Which snippet of code can achieve the following outputs:
+
+
+>>: java Test
+Would you like to hit or stay?
+hit
+
+End Turn.
+
+>>: java Test
+Would you like to hit or stay?
+stay
+
+End Turn.
+
+>>: java Test
+Would you like to hit or stay
+dunno
+
+Invalid Option
+
+
+Answer:
+
+System.out.println("Would you like to hit or stay?");
+String option = scan.nextLine();
+if(!option.equals("hit") && !option.equals("stay")) {		// if option is not hit and the option is not stay
+   System.out.println("\nInvalid Option");
+} else {
+   System.out.println("\nEnd Turn.");
+}
+
+System.out.println("Would you like to hit or stay?");
+String option = scan.nextLine();
+if(!(option.equals("hit") || option.equals("stay"))) {		// if the option is hit or stay (!) -> is NOT
+   System.out.println("\nInvalid Option");
+} else {
+   System.out.println("\nEnd Turn.");
+}
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 4:
+
+double price = 29.99;				
+int quantity = 2;	
+if (price <= 30 && quantity < 5) {		// 29.99 <= 30 (true) AND 2 < 5 (true)
+   System.out.println("If code runs");
+} else {
+   System.out.println("Else code runs");
+}
+
+Answer: >>: If code runs
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 5:
+
+double price = 29.99;				
+int quantity = 2;	
+String item = "shirt"
+if (price <= 30 && quantity < 5 && !item.equals("shirt") {	// 29.99 <= 30 (true) AND 2 < 5 (true) AND false
+   System.out.println("If code runs");
+} else {
+   System.out.println("Else code runs");
+}
+
+Answer: >>: Else code runs
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 6:
+
+double price = 29.99;				
+int quantity = 2;	
+String item = "shirt"
+if (price <= 30 && quantity < 5 && item.equals("shirt") {	// 29.99 <= 30 (true) AND 2 < 5 (true) AND true
+   System.out.println("If code runs");
+} else {
+   System.out.println("Else code runs");
+}
+
+Answer: >>: If code runs
+
+-------------------------------------------------------------------------------------------------------------------

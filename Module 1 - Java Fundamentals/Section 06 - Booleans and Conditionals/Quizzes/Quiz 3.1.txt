@@ -1,0 +1,105 @@
+-------------------------------------------------------------------------------------------------------------------
+Quiz 3.1
+-------------------------------------------------------------------------------------------------------------------
+
+Question 1:
+
+What's wrong here?
+
+String string1 = "foo";
+System.out.println(string1 == "foo");
+
+Answer: Never use == or != on String variables. It's very inconsistent. Only use equals() or !equals() method on Strings.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 2: 
+
+What's the output?
+
+int value = 0;
+System.out.println(value > 3);		// 0 > 3 -> false
+
+Answer: >>: false
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 3: 
+
+What's the output?
+
+int value = 0;
+value++;				// value = 1
+value++;				// value = 2
+value++;				// value = 3
+value++;				// value = 4
+System.out.println(value > 3);		// 4 > 3 -> true
+
+Answer: >>: true
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 4: 
+
+What's the output?
+
+int value = 0;				
+value++;				// value = 1
+value++;				// value = 2
+value++;				// value = 3
+value++;				// value = 4
+System.out.println(value == 3);		// 4 == 3 -> false
+
+Answer: >>: false
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 5: 
+
+What's the output?
+
+int value = 5;
+value--;				// value = 4	
+value--;				// value = 3
+value--;				// value = 2
+System.out.println(value >= 2);
+
+Answer: >>: true
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 6: 
+
+What's the output?
+
+int value = 5;
+value--;				// value = 4	
+value--;				// value = 3
+value--;				// value = 2
+System.out.println(value >= 2);
+
+Answer: >>: true
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 7: 
+
+How do I make this comparison true?
+
+int value = 2;
+System.out.println(value != 2);
+
+Answer: Change the value variable to any other number
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 8:
+
+What's the output?
+
+double value = 3.6;			
+System.out.println((int)value == 3);
+
+Answer: >>: true
+
+-------------------------------------------------------------------------------------------------------------------

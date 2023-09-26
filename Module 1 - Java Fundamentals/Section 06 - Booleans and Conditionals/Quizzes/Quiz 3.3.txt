@@ -1,0 +1,60 @@
+-------------------------------------------------------------------------------------------------------------------
+Quiz 3.3
+-------------------------------------------------------------------------------------------------------------------
+
+Question 1:
+
+What's the output?
+
+int mileage = 20000;   			// 20.000
+if (mileage >= 300000) {                // 300.000
+   System.out.println("Very old");
+} else if (mileage >= 200000) {         // 200.000
+   System.out.println("old");
+} else if (mileage >= 100000) {         // 100.000
+   System.out.println("new");
+} else {                                                  
+   System.out.println("brand new");	// -> here
+} 
+
+Answer: >>: brand new
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 2: 
+
+What's the output?
+
+int mileage = 250000;   		// 250.000
+if (mileage >= 300000) {                // 300.000        
+   System.out.println("Very old");
+} else if (mileage >= 200000) {         // 200.000 -> here     
+   System.out.println("old");
+} else if (mileage >= 100000) {		// 100.000        
+   System.out.println("new");
+} else {                                                  
+   System.out.println("brand new");
+} 
+
+Answer: >>: old
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 3: 
+
+What's the output?
+
+int mileage = 120000;   		// 120.000
+if (mileage >= 300000) {                // 300.000        
+   System.out.println("Very old");
+} else if (mileage >= 200000) {         // 200.000   
+   System.out.println("old");
+} else if (mileage >= 100000) {		// 100.000 -> here
+   System.out.println("new");
+} else {                                                  
+   System.out.println("brand new");
+} 
+
+Answer: >>: new
+
+-------------------------------------------------------------------------------------------------------------------
