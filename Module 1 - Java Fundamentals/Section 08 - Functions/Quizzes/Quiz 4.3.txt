@@ -1,0 +1,174 @@
+-------------------------------------------------------------------------------------------------------------------
+Quiz 4.3
+-------------------------------------------------------------------------------------------------------------------
+
+Question 1:
+
+Why doesn't the code compile?
+
+public static int function() {
+   return 2.3;
+}
+
+Answer: The return type is int, but the function is returning a double value.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 2: 
+
+Why doesn't the code compile?
+
+public static double function() {
+   return "some string"
+}
+
+Answer: The return type is double, but the function is returning a String value
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 3: 
+
+Why doesn't the code compile?
+
+public static String function() {
+   return 2;
+}
+
+Answer: The return type is String, but the function is returning an int value.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 4:
+
+Why doesn't the code compile?
+
+public static void main(String[] args) {
+   String number = function();
+}
+
+public static int function() {
+   return 2;
+}
+
+Answer: The function is returning an int value, which cannot be stored in a String variable.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 5:
+
+What is the output?
+
+public static void main(String[] args) {
+   boolean booleanVariable = returnBoolean();
+   System.out.println(booleanVariable);
+}
+
+public static boolean returnBoolean() {
+   return true;
+}
+
+Answer: >>: true
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 6:
+
+What is the output?
+
+public static void main(String[] args) {
+   boolean booleanVariable = returnBoolean();
+   if(booleanVariable) {
+      System.out.println("The if code runs");
+   else {
+      System.out.println("The else code runs");
+   }
+}
+
+public static boolean returnBoolean() {
+   return true;
+}
+
+Answer: >>: The if code runs
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 7:
+
+What is the output?
+
+public static void main(String[] args) {
+   boolean booleanVariable = returnBoolean();
+   if(booleanVariable) {
+      System.out.println("The if code runs");
+   else {
+      System.out.println("The else code runs");
+   }
+}
+
+public static boolean returnBoolean() {
+   return false;
+}
+
+Answer: >>: The else code runs
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 8:
+
+What is the output?
+
+public static void main(String[] args) {
+   if(returnBoolean()) {
+      System.out.println("The if code runs");
+   else {
+      System.out.println("The else code runs");
+   }
+}
+
+public static boolean returnBoolean() {
+   return false;
+}
+
+Answer: >>: The else code runs
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 9:
+
+What is the output?
+
+public static void main(String[] args) {
+   if(returnBoolean()) {
+      System.out.println("The if code runs");
+   else {
+      System.out.println("The else code runs");
+   }
+}
+
+public static boolean returnBoolean() {
+   return true;
+}
+
+Answer: >>: The if code runs
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 10:
+
+What is the output?
+
+public static void main(String[] args) {
+   if(returnBoolean()) {
+      System.out.println("The if code runs");
+   else {
+      System.out.println("The else code runs");
+   }
+}
+
+public static boolean returnBoolean() {
+   return 5 < 1;
+}
+
+Answer: >>: The else code runs
+
+-------------------------------------------------------------------------------------------------------------------

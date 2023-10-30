@@ -1,0 +1,68 @@
+-------------------------------------------------------------------------------------------------------------------
+Quiz 4.2
+-------------------------------------------------------------------------------------------------------------------
+
+Question 1:
+
+Why is there an error?
+
+public static void main(String[] args) {
+    printValues(1.2);
+}
+
+public static void printValues(int val1) {
+    System.out.println("val1: " + val1);
+}
+
+Answer: The function expects an int parameter. But, a decimal is being passed in.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 2: 
+
+Why is there an error?
+
+public static void main(String[] args) {
+    printValues(1, 1.2);
+}
+
+public static void printValues(double val1, int val2) {
+    // ...
+}
+
+Answer: The arguments are not ordered correctly. The first argument should pass in a double, and the second argument should pass in an int.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 3: 
+
+Match each number with the correct answer:
+
+printValues(1.2, 1);						// 1
+
+public static void printValues(double val1, int val2);		// 2
+
+Answer: 
+1. arguments
+2. parameters
+
+Explanation: 
+1. Arguments are the values being passed in.
+2. Parameters are values the function expects to receive.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 4:
+
+Wha will be the value of each parameter?
+
+printValues(1.2, 1, "John");
+
+public static void printValues(double val1, int val2, String name);
+
+Answer:
+val1 = 1.2
+val2 = 1
+name: John
+
+-------------------------------------------------------------------------------------------------------------------

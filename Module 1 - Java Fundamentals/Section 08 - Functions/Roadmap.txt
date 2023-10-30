@@ -1,0 +1,10 @@
+---------------------------------------------------------------------------------------------------------------------
+
+Roadmap:
+* Organize your code using functions
+* Function: grouping of codes that performs a task:
+  - Some functions will rely on parameters to perform their tasks
+  - Some functions will return a value 
+* Functions are fundamental for every programming language
+
+---------------------------------------------------------------------------------------------------------------------

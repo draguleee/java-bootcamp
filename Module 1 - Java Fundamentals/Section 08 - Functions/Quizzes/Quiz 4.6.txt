@@ -1,0 +1,118 @@
+-------------------------------------------------------------------------------------------------------------------
+Quiz 4.5
+-------------------------------------------------------------------------------------------------------------------
+
+Question 1:
+
+double number = Math.random(); 
+
+Answer: number equals anything between 0 and less than 1.
+
+Explanation: Math.random() returns a decimal between 0 and 0.999999999999.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 2: 
+
+What is the code that will produce a number between 0 and 2.999999999999?
+
+Answer: double number = Math.random() * 3;
+
+Explanation:
+Assuming Math.random() returns the lowest possible value (0), multiplying that by 3 is still 0.
+Assiming Math.random() returns the highest possible decimal (0.9999999999999), multiplying that by 3 is 2.999999999999.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 3: 
+
+double number = Math.random() * 4; (0 - 3.999999999999)
+
+Is it possible for this code to produce a value of 4.4?
+
+Answer: no
+
+Explanation: The maximum possible value that it can return is 3.999999999999.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 4:
+
+double number = Math.random() * 2 + 1; 
+(0 - 0.999999999999 * 2 -> 0 - 1.999999999999)
+(0 - 1.999999999999 + 1 -> 1 - 2.999999999999)
+
+What is the lowest possible value that this code can produce?
+
+Answer: 1
+
+Explanation: 
+Assuming Math.random() returns the minimum (0), multiplying that by 2 is still 0. But, then add 1, and the lowest value that can be poduced is 1.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 5:
+
+int number = (int)(Math.random() * 2 + 1); 
+(0 - 0.999999999999 * 2 -> 0 - 1.999999999999)
+(0 - 1.999999999999 + 1 -> 1 - 2.999999999999)
+(int)(1 - 2.999999999999) -> (1 - 2)
+
+What is the highest possible value that this code can produce?
+
+Answer: 2
+
+Explanation:
+Assuming Math.random() returns the highest possible decimal (0.999999999999), multiplied by 2 is 1.999999999999. Add 1, and it's 2.999999999999. Typecast it and it's 2.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 6:
+
+double number = (int)Math.random() * 6; 
+(int)(0 - 0.999999999999) -> 0
+0 * 6 = 0
+
+What will the result be?
+
+Answer: The result is always 0
+
+Explanation:
+Order matters!
+Whatever Math.random() returns (let's say 0.999999999999), typecasting that to an integer will equal 0. Then, 0 multiplied by 6 is still 0. Whoever wrote this code forgot to add brackets...
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 7:
+
+double number = (int) (Math.random() * 6); 
+(0 - 0.999999999999 * 6 -> 0 - 5.999999999999)
+(int)(0 - 5.999999999999) -> (0 - 5)
+
+What will the result be?
+
+Answer: 0 - 5
+
+Explanation: 
+First, the result from Math.random() is multiplied by 6. LEt's say Math.random() returns 0.999999999999, multiplying it by 6 equals 5.999999999999, and THEN typecasting that returns 5.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 8:
+
+a) (int) (Math.random() * 2 + 1);  // Math.random returned 0   => 0 * 2 + 1 = 0 + 1 = 1       (int) 1 = 1	
+b) (int) (Math.random() * 2 + 1);  // Math.random returned 0.2 => 0.2 * 2 + 1 = 0.4 + 1 = 1.4 (int) 1.4 = 1
+c) (int) (Math.random() * 2 + 1);  // Math.random returned 0.4 => 0.4 * 2 + 1 = 0.8 + 1 = 1.8 (int) 1.8 = 1
+d) (int) (Math.random() * 2 + 1);  // Math.random returned 0.6 => 0.6 * 2 + 1 = 1.2 + 1 = 2.2 (int) 2.2 = 2
+e) (int) (Math.random() * 2 + 1);  // Math.random returned 0.8 => 0.8 * 2 + 1 = 1.6 + 1 = 2.6 (int) 2.6 = 2
+
+Take out your calculator. What will the result be in each scenario?
+
+Answer:
+a) 1
+b) 1
+c) 1
+d) 2
+e) 2
+
+-------------------------------------------------------------------------------------------------------------------

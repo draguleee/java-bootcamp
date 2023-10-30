@@ -1,0 +1,96 @@
+-------------------------------------------------------------------------------------------------------------------
+Quiz 4.4
+-------------------------------------------------------------------------------------------------------------------
+
+Question 1:
+
+What is the output?
+
+System.out.println("1 foot equals " + feetToMeters(1) + " meters");
+ 
+public double feetToMeters(double measurement) {
+   return measurement * 0.3048;
+}
+
+Answer: >>: 1 foot equals 0.3048 meters
+
+Explanation: feetToMeters(1) returns a final result of 0.3048, which is then printed as part of a larger text.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 2: 
+
+What is the output?
+
+if (feetToMeters(6) > 5) {		// 1.8288 > 5 -> false
+   System.out.println("Hello!");
+} else {
+   System.out.println("Goodbye!");
+}
+ 
+public double feetToMeters(double measurement) {
+   return measurement * 0.3048;
+}
+
+Answer: >>: Goodbye!
+
+Explanation: feetToMeters(6) returns a value of 1.8288. 1.8288 is not greater than 5, so else gets executed.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 3: 
+
+What is the output?
+
+function1(4);
+ 
+public void function1(int number) {
+   function2(number);
+}
+ 
+public void function2(int number) {
+   function3(number);
+}
+ 
+public void function3(int number) {
+   function4(number);
+}
+ 
+public void function4(int number) {
+   function5(number);
+}
+ 
+public void function5(int number) {
+   System.out.println(number > 3.14159);
+}
+
+Answer: >>: true
+
+Explanation:
+We're calling function1, passing in a value of 4. function1 calls function2, passing the same value. function2 calls function3, passing the same value. function3 calld function4, passing the same value. function4 calls function5, passing the same value. function5 prints thecomparison of 4 being greater than 3.14159, which is true.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 4:
+
+What is the output?
+
+printMeasurements(10);    
+ 
+public void printMeasurements(double feet) {
+    System.out.println("Feet: " + feet);
+    System.out.println("Meters: " + feetToMeters(feet));
+}
+ 
+public double feetToMeters(double feet) {
+    return feet * 0.3048;
+}
+
+Answer:
+>>: Feet: 10
+>>: Meters: 3.048
+
+Explanation:
+The first time calls the function printMeasurements and passes in a value of 10. printMeasurements stats by printing the feet value that was passed in. The second line in printMeasurements prints the return value of feetToMeters for a value of 10, which ends up being 3.048.
+
+-------------------------------------------------------------------------------------------------------------------
