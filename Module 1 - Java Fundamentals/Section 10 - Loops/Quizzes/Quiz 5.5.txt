@@ -1,0 +1,143 @@
+-------------------------------------------------------------------------------------------------------------------
+Quiz 5.5
+-------------------------------------------------------------------------------------------------------------------
+
+Question 1:
+
+String message = " ";			// message = " "
+while (message.equals("stay")) {	// message == "stay" -> false => never runs
+   message = scan.nextLine();
+}
+
+Will this while loop ever run?
+
+Answer: No
+
+Explanation: The condition is false.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 2: 
+
+String message = " ";			// message = " "
+while (!message.equals("stay")) {	// message != "stay" -> true => runs at least once
+   message = scan.nextLine();
+}
+
+Will this while loop ever run?
+
+Answer: Yes
+
+Explanation: The condition is true, so the while loop will keep running until the user enters "stay".
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 3: 
+
+int number = 5;
+while (number < 10) {							
+    System.out.println(number);		// 5 6 7 8 9
+    number++;				
+}
+
+Output:
+5
+6
+7
+8
+9
+
+Explanation: The loop keeps running while the number is less than 10.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 4:
+
+String greet = greeting();			// greet = " "
+
+public static String greeting() {
+    String greeting = " ";			// greeting = " "
+    while (greeting.equals("Hi")) {		// greeting == "Hi" -> false => never runs
+        greeting = scan.nextLine();		// code skipped
+     }
+     return greeting;      			// greeting = " "
+}         
+
+What is the value of greet?
+
+Answer: A blank String
+
+Explanation: The while loop will never run. So, the function returns a blank String.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 5:
+
+String greet = greeting();			// greet = "Hi"
+ 
+public static String greeting() {
+    String greeting = " ";			// greeting = " "
+    while (!greeting.equals("Hi")) {		// greeting != "Hi" -> true => runs at least once
+        greeting = scan.nextLine();		// greeting = user input => "Hi"
+     }
+     return greeting;   			// greeting = "Hi"
+}        
+ 
+What is the value of greet?
+
+Answer: "Hi"
+
+Explanation: The while loop will not stop running until the user enters "Hi".
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 6:
+
+String greet = greeting();	// greeting = "hi"
+ 
+public static String greeting() {
+    while (true) {		// always true => runs forever
+       return "hi";		// prints "Hi" an indefinite number of times
+    }
+    return " ";                 // unreachable code
+}    
+     
+1. How many times will the while loop run?
+2. Will line 7 ever get reached?
+3. What is the value of greet?
+
+Answer:
+1. Once
+2. No
+3. hi
+
+Explanation:
+1. The return "hi" IMMEDIATELY stops execution of the function.
+2. Line 7 will never get reacheed because return "hi" would have already terminated the function.
+3. The value returned is "hi".
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 7:
+
+Based on this output, which code would be used to produce it?
+
+User Input: Somepassword
+User Input: Python
+User Input: Javascript
+User Input: Java
+>>: Correct
+
+Answer:
+String password = " ";			// password = " "
+while(!password.equals("Java") {	// password != "Java" -> true => runs at least once
+   password = scan.nextLine();		// password = user input => "Java"
+}
+System.out.println("Correct");		
+
+Explanation:
+1. The condition is true, so the while loop runs and prompts the user to keep guessing a password.
+2. Once the user writes "Java", the while loop breaks and println runs.
+
+-------------------------------------------------------------------------------------------------------------------
+

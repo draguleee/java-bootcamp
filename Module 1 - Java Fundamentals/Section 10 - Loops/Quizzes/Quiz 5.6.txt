@@ -1,0 +1,152 @@
+-------------------------------------------------------------------------------------------------------------------
+Quiz 5.6
+-------------------------------------------------------------------------------------------------------------------
+
+Question 1:
+
+int number = 0;			// number = 0
+while (true) {			// runs
+   number++;			// number = 1 ; number = 2 ; number = 3 ; number = 4 ; number = 5 ; number = 6
+   if (number > 5) {		// 1 > 5 ; 2 > 5 ; 3 > 5 ; 4 > 5 ; 5 > 5 ; 6 > 5 (loop breaks!)
+      break;
+   } 
+}
+System.out.println(number);	// 6
+
+Output: >>: 6
+
+Explanation: When number updates to 6, the loop breaks. Aftr the loop breaks, the updated number prints.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 2: 
+
+Which code will keep asking the user to enter a greeting until they say: "Hello":
+
+>>: Hi Timmy, say Hello!
+User Input: yo
+User Input: oi
+User Input: Hello
+>>: Hello to you too, Timmy!
+
+Output:
+System.out.println("Hi Timmy, Say Hello!);	
+String greeting = " ";				// greeting = " "
+while(true) {					// runs
+   greeting = scan.nextLine();			// greeting = "yo" ; greeting = "oi" ; greeting = "Hello
+   if(greeting.equals("Hello")) {		// "yo" != "Hello" ; "oi" != "Hello" ; "Hello" == "Hello"
+      break;
+   }
+}
+System.out.println("Hello to you too, Timmy!");	// displayed if greeting is equal to "Hello"
+
+Explanation: This loop keeps running, and it breaks once the user enters a greeting that equals Hello.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 3: 
+
+for (int i=9; i > 0; i--) {	
+   if (i%2 == 0) {		
+      continue;
+   } 
+   System.out.println(i);	// 9 7 5 3 1
+}
+
+Output:
+9
+7
+5
+3
+1
+
+Explanation: During each run, the if statement checks for even numbers and skips the current run.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 4:
+
+for (int i=9; i > 0; i--) {
+   if (i%2 == 0) {
+      continue;
+   } else if (i == 3) {
+      break;
+   }
+   System.out.println(i);
+}
+
+Output: 
+9
+7
+5
+3
+
+Explanation: The for loop skips every run when the counter is even. Then, it breaks the loop once the counter equals three.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 5:
+
+Which code will achieve the following output:
+
+>>: cash or credit?
+User Input: dunno
+
+>>: cash or credit?
+User Input: hmmm...
+
+>>: cash or credit?
+User Input: cash
+
+>>: Thank you for your business!
+
+Output:
+
+String option = " ";					    // option = " "
+while (true) {						    // runs
+   System.out.println("cash or credit?");
+   option = scan.nextLine();				    // "dunno" ; "hmm..." ; "cash"
+   if (option.equals("cash") || option.equals("credit")) {  // false ; false ; true
+      break;
+   }
+}
+System.out.println("Thank you for your business!");
+
+
+Explanation:
+
+1. The while loop runs indefinitely:
+String option = " ";					    // option = " "
+while (true) {						    // runs
+   System.out.println("cash or credit?");
+   option = scan.nextLine();				    // "dunno" ; "hmm..." ; "cash"
+   if (option.equals("cash") && option.equals("credit")) {  // false ; false ; false
+      break;						    // never going to run!
+   }
+}
+System.out.println("Thank you for your business!");
+
+2. During each run, it asks the user to enter cash or credit:
+String option = " ";					    // option = " "
+while (true) {						    // runs
+   System.out.println("cash or credit?");
+   option = scan.nextLine();				    // "dunno" ; "hmm..." ; "cash"
+   if (option.equals("cash") || option.equals("credit")) {  // false ; false ; true
+      continue;
+   }
+}
+System.out.println("Thank you for your business!");
+
+3. If the user enters one of these values (cash OR credit), the condition is true and the loop breaks:
+String option = " ";					    // option = " "
+while (true) {						    // runs
+   System.out.println("cash or credit?");
+   option = scan.nextLine();				    // "dunno" ; "hmm..." ; "cash"
+   if (option.equals("cash") || option.equals("credit")) {  // false ; false ; true
+      break;						    // gets executed once option is equal to cash OR credit
+   }
+}
+System.out.println("Thank you for your business!");
+
+-------------------------------------------------------------------------------------------------------------------
+
