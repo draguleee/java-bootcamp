@@ -1,0 +1,43 @@
+-------------------------------------------------------------------------------------------------------------------
+Quiz 6.3
+-------------------------------------------------------------------------------------------------------------------
+
+Question 1:
+
+String[] items = {"clock", "table", "ladder", "chair", "oven", "phone"};
+String[] moreItems = items;		// Copies the reference!
+moreItems[2] = "sofa";			
+
+In the end, what is the value of items?
+
+Answer: [clock, table, sofa, chair, oven, phone]
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 2:
+        
+String[] items = {"clock", "table", "ladder", "chair", "oven", "phone"};
+String[] moreItems = new String[items.length];		// Creates a brand new array with the length of the first
+moreItems[2] = "sofa";
+
+In the end, what is the value of items?
+
+Answer: [clock, table, ladder, chair, oven, phone] 
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 3:
+        
+String[] items = {"clock", "table", "ladder", "chair", "oven", "phone"};
+String[] moreItems = Arrays.copyOf(items, items.length);
+items[2] = "sofa";
+
+What is the value of:
+1. items
+2. moreItems
+
+Answer:
+1. items = [clock, table, sofa, chair, oven, phone]
+2. moeItems = [clock, table, ladder, chair, oven, phone]
+
+-------------------------------------------------------------------------------------------------------------------

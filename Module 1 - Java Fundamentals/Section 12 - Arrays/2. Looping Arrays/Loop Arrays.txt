@@ -1,0 +1,15 @@
+---------------------------------------------------------------------------------------------------------------------
+
+Preparing to Loop Arrays
+
+The length of an array indicates the number of items it conains.
+
+String[] items = {"apple", "banana", "cherry"};
+System.out.println(items.length);
+
+OUTPUT
+>>: 3
+
+We can use the length property to loop through the array.
+
+---------------------------------------------------------------------------------------------------------------------

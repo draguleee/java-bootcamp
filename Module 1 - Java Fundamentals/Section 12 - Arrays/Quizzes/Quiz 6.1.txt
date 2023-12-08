@@ -1,0 +1,123 @@
+-------------------------------------------------------------------------------------------------------------------
+Quiz 6.1
+-------------------------------------------------------------------------------------------------------------------
+
+Question 1:
+
+What's wrong with this code?
+int[] numbers = { "how", "are", "you?" };
+
+Answer: Type mismatch between integer and String.
+
+Explanation: To store an array of String values, the variable should have been declared String[].
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 2: 
+
+Is there anything wrong with this code?
+String words = {"how", "are", "you?"};
+
+Answer: Missing square brackets: [].
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 3: 
+
+Is there anything wrong with this code?
+String[] words = { "how", 123 , "you?"};
+
+Answer: Type mismatch.
+
+Explanation: Every value must share the same type.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 4:
+
+How do I grab the value: Jane?
+String[] names = { "Jane", "Joe" , "Jill"};
+
+Answer: names[0]
+
+Explanation: The first index starts at 0.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 5:
+
+How do I grab the value: Jill?
+String[] names = { "Jane", "Joe" , "Jill"};
+
+Answer: names[2]
+
+Explanation: The third index is 2.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 6:
+
+Which value will this index: names[3-1]?	// names[3-1] = names[2]
+String[] names = { "Jane", "Joe" , "Jill"};
+
+Answer: Jill
+
+Explanation: Jill is at index 2, and 3-1 is 2.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 7:
+
+Which value will this index: names[3]?
+String[] names = { "Jane", "Joe" , "Jill"};
+
+Answer: Index out of bounds
+
+Explanation: There is no index 3. The last index is always one smaller than the array's length.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 8:
+
+Which value will this index: names[10%2]? 	// names[10%2] = names[0]
+String[] names = { "Jane", "Joe" , "Jill"};
+
+Answer: Jane
+
+Explanation: Jane is at index 0, and 10%2 is 0.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 9:
+
+The length of a certain array is 5 elements. What is the index of the:
+1. first element
+2. last element
+
+int n = 5;
+int[] array = new int[5];	// indexes: 0 1 2 3 4
+
+Answer:
+1. 0
+2. 4
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 10:
+
+The length of a certain array is n. What is the index of the:
+1. first element
+2. last element
+
+int array = new int[n]		// indexes: 0 1 2 ... n-1
+
+Answer:
+1. 0
+2. n-1
+
+Explanation: 
+1. The first element starts at 0. 
+2. The last element is one less the length.
+
+-------------------------------------------------------------------------------------------------------------------
+

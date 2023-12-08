@@ -1,0 +1,155 @@
+-------------------------------------------------------------------------------------------------------------------
+Quiz 6.4
+-------------------------------------------------------------------------------------------------------------------
+
+Question 1:
+
+[0, 0, 0]
+[0, 0, 0]
+[0, 0, 0]
+
+Match the output with the correct code.
+
+Answer: int[][] table = new int[3][3];
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 2:
+
+[null, null, null]
+[null, null, null]
+[null, null, null]
+
+Match the output with the correct code.
+
+Answer: String[][] table = new String[3][3];
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 3:
+
+String[][] table = new String[3][3]; 
+System.out.println((table[0]));
+
+    0     1     2
+0 [null, null, null]
+1 [null, null, null]
+2 [null, null, null]
+
+Answer: reference
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 4:
+        
+String[][] table = new String[3][3]; 
+System.out.println((Arrays.toString(table[0])));
+
+    0     1     2
+0 [null, null, null]
+1 [null, null, null]
+2 [null, null, null]
+
+Answer: [null, null, null]
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 5:
+
+1. The length of a 2D array is determined by the number of rows.
+2. Each row is a normal array. So, the length of a row is determined by its number of elements.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 6:
+        
+String[][] table = new String[3][2];  
+System.out.println(table.length);
+System.out.println(table[0].length);
+System.out.println(table[1].length);
+
+    0     1    
+0 [null, null]
+1 [null, null]
+2 [null, null]
+
+Answer:
+>>: 3		// the length of a 2D array is given by the number of rows
+>>: 2
+>>: 2
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 7:
+
+String[][] table = new String[3][2]; 
+System.out.println(Arrays.toString(table[3]));		// Out of bounds
+
+    0     1    
+0 [null, null]
+1 [null, null]
+2 [null, null]
+
+Answer: Index out of bounds
+
+Explanation: This 2D array only has 3 rows. An index of 3 implies there are four.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 8:
+
+String[][] table = new String[3][2]; 
+System.out.println(table[2][0]);
+System.out.println(table[2][2]);
+
+    0     1    
+0 [null, null]
+1 [null, null]
+2 [null, null]
+
+Output:
+1. First print
+2. Second print
+
+Answer: 
+1. null
+2. index out of bounds
+
+Explanation: Each row has only 2 elements. An index of 2 implies there are three.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 9:
+
+int[][] numbers = {{1, 2, 3}, {4, 5, 6}}; 
+numbers[1][1] = 7;
+
+   0  1  2
+0 [1, 2, 3]
+1 [4, 7, 6]
+
+The value of numbers is now:
+
+Answer:
+[1, 2, 3]
+[4, 7, 6]
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 10:
+
+int[][] numbers = {{1, 2, 3}, {4, 5, 6}}; 
+numbers[10%2][5%2] = 7;
+
+Think about what 10 % 2 and 5 % 2 evaluate to. Then choose the option that correctly matches the updated array.
+numbers[0][1] = 7
+
+   0  1  2
+0 [1, 2, 3]
+1 [7, 5, 6]
+
+Answer:
+[1, 7, 3]
+[4, 5, 6]
+
+-------------------------------------------------------------------------------------------------------------------

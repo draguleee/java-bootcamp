@@ -1,0 +1,11 @@
+---------------------------------------------------------------------------------------------------------------------
+
+Roadmap:
+* Arrays are used to store many values at once.
+* Elements inside of an array can be looped and updated.
+* Arrays can be used to work with a list of values.
+* 2D arrays can be used to work with a table of values.
+
+=> At the end of this section, you will build an app that mimics a database, JavaPedia
+
+---------------------------------------------------------------------------------------------------------------------

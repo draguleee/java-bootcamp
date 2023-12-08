@@ -1,0 +1,20 @@
+/**
+ * Workbook 6.8 - Apples Receipt
+ */
+
+public class Receipt {
+    public static void main(String[] args) {
+
+        // Create an array that stores three apples you purchased
+        String[] apples = {"Gala", "Granny Smith", "Macintosh"};
+
+        // Create an array that store the price of each apple
+        double[] prices = {1.99, 1.49, 1.29};
+
+        // Use a for loop t print each apple and its price
+        System.out.println("Here's your receipt: ");
+        for (int i = 0; i < apples.length; i++) {
+            System.out.println("\t-" + apples[i] + ": " + prices[i]);
+        }
+    }
+}
