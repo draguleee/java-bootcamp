@@ -1,0 +1,8 @@
+---------------------------------------------------------------------------------------------------------------------
+
+Purpose of Module 1: solve problems with code
+
+Prupose of Module 2: write high-quality code, which implies programming using objects
+=> Object Oriented Programming (OOP)
+
+---------------------------------------------------------------------------------------------------------------------
