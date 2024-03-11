@@ -1,0 +1,88 @@
+-------------------------------------------------------------------------------------------------------------------
+Quiz 7.2
+-------------------------------------------------------------------------------------------------------------------
+
+Question 1:
+
+Which statement is false?
+* int is a primitive type
+* primitive types can call methods
+* primitive types cannot be null
+
+Answer: primitive types can call methods -> false
+
+Explanation:
+A primitive is a value. Nothing more.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 2:
+
+String is not primitive because:
+* String is a class, from which we can create String objects.
+* String variables can be null.
+* String objects can call methods defined in the String class.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 3:
+
+Which of the following is not an object?
+a. String a = "a";
+b. double a = 2;
+c. Scanner scan = new Scanner(System.in);
+d. Dealership dealership = new Dealership(cars);
+
+Answer: b.
+
+Explanation:
+int, long, double, char, booleans are values and nothing more! They cannot be null and they cannot call methods. They are primitive in every sense of the word.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 4:
+
+1. int a = 3;
+2. int[] z = new int[3];
+
+Which statement is true?
+
+Answer:
+1. primitive
+2. object
+
+Explanation:
+The int variable is primitive because it stores a value and nothing more.
+Arrays are mutable objects and they can be null and call methods.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 5:
+
+a. int a = null;
+b. int[] b = null;
+
+Which line is correct?
+
+Answer:
+a. incorrect
+b. correct
+
+Explanation:
+An int variable cannot be null because primitives are single values, there are no references. 
+The variable b can store a reference to an array, and null is a reference that points to nothing. 
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 6:
+        
+String values are prone (vulnerable) to the reference trap.
+
+Answer: false
+
+Explanation:
+* String objects are immutable.
+* You cannot update a String object.
+* You can only set the variable eequal to a brand new String object.
+
+-------------------------------------------------------------------------------------------------------------------
