@@ -1,0 +1,190 @@
+-------------------------------------------------------------------------------------------------------------------
+Quiz 8.3
+-------------------------------------------------------------------------------------------------------------------
+
+Question 1:
+
+Assuming that both lists have 11.000.000 elements, which operation will be slower?
+	linkedList.get(4_500_000);	// slower
+	arrayList.get(4_500_000);	// faster
+
+Answer: The first one
+
+Explanation:
+* 4.500.000 is closer to 0 than 11.000.000 => LinkedList starts from the first node and takes 4.500.000 steps to reach its target.
+* The ArrayList is backed by an underlying array which means everything is indexed, which makes accessing any value from it very fast.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 2:
+
+Assuming that both lists have 11.000.000 elements, which operation will be slower?
+	linkedList.get(2);	
+	arrayList.get(2);	
+
+Answer: The difference is negligible.
+
+Explanation:
+* The LinkedList starts from the first node and only has to take two steps to reach its target.
+* The ArrayList can quickly index the element.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 3:
+
+Assuming that both lists have 11.000.000 elements, which operation will be slower?
+	linkedList.get(10_999_995);	
+	arrayList.get(10_999_995);
+
+Answer: The difference is negligible.
+
+Explanation:
+* The 10.999.995th element is very close to the end of the LinkedList, so it only has to take a few steps to reach its target. 
+* The ArrayList can instantly index any of its elements.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 4:
+
+Assuming that both lists have 11,000,000 String elements, which operation will be slower?
+	linkedList.add("dog");
+	arrayList.add("dog");	
+
+Answer: The difference will b negligible.
+
+Explanation:
+* The LinkedList simply adds another node.
+* The ArrayList, assuming its underlying array has the capacity to store more elements, can simply add the element in the neext empty spot.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 5:
+
+Assuming 11,000,000 String elements, each operation inserts "cat" a few spots away from the end.
+	linkedList.add(10_999_996, "cat");
+	arrayList.add(10_999_996, "cat");
+
+Which operation is slower?
+
+Answer: The difference is negligible.
+
+Explanation:
+* The ArrayList (more likely) has the capacity for another element, and it only needs to shift a few elements to the right in order to insert "cat" at the specified spot.
+* The LinkedList is also very fast because it can start from its tail, move a few steps to its left and insert a new node.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 6:
+
+Assuming 11,000,000 String elements, each operation inserts "cat" in the middle.
+	linkedList.add(5_500_000, "cat");
+	arrayList.add(5_500_000, "cat");
+	// Both in middle?!
+
+Which operation will be slower?
+
+Answer: It's hard to say.
+
+Explanation:
+Think about the mechanisms at play here:
+* LinkedList needs to take 5.500.000 steps until it can insert "cat"
+* ArrayList more than likely has the capacity for another element, bu because we are inserting "cat" right in the middle, it needs to shift over millions of elements to the right.
+=> Both operations will take a long time.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 7:
+
+Assuming 11,000,000 String elements, each operation inserts "cat" close to the beginning.
+	linkedList.add(3, "cat");	// faster
+	arrayList.add(3, "cat");	// slower
+
+Which operation will be slower?
+
+Answer: The second one.
+
+Explanation:
+* LinkedList only has to move 3 steps to insert "cat".
+* ArrayList has to shift over 10.999.997 elements to the right before it can insert "cat".
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 8:
+
+Assuming 11,000,000 elements, each operation removes the element at index 3.
+	linkedList.remove(3);		// faster
+	arrayList.remove(3);		// slower
+
+Which operation will be slower?
+
+Answer: The second one.
+
+Explanation:
+* LinkedList simply travels three steps and removes the node.
+* ArrayList needs to shift over millions of elements to the left after removing the value at that index.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 9:
+
+Assuming 11,000,000 elements, each operation removes the element in the middle.
+	linkedList.remove(5_500_000);
+	arrayList.remove(5_500_000);
+
+Which operation will be slower?
+
+Answer: Hard to say.
+
+Explanation:
+* LinkedList needs to travel 5.500.000 steps before it can remove its node.
+* ArrayList needs to shift over all the elements that come after it to the left after removing the value at that index.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 10:
+
+Assuming 11,000,000 elements, each operation removes an element close to the end.
+	linkedList.remove(10_999_997);
+	arrayList.remove(10_999_997);
+
+Which operation will be slower?
+
+Answer: Negligible speed difference.
+
+Explanation:
+* LinkedList needs to only travel a couple of steps from its tail to remove its node.
+* ArrayList, after removing the value at that index, needs to only shift over a couple of elements to the left.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 11:
+
+Assuming 11,000,000 String elements, each operation updates the 10,999,997th element.
+	linkedList.set(10_999_997, "cat");
+	arrayList.set(10_999_997, "cat");
+
+Which operation will be slower?
+
+Answer: Negligible difference.
+
+Explanation:
+* LinkedList needs to only travel a couple of steps to update its node.
+* ArrayList can quickly access the element at that index and update it.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 12:
+
+Assuming 11,000,000 String elements, each operation updates the 4,500,000th element.
+	linkedList.set(4_500_000, "cat");	// slower
+	arrayList.set(4_500_000, "cat");	// faster
+
+Which operation will be slower?
+
+Answer: The first one.
+
+Explanation:
+* LinkedList will need to take 4.500.000 steps from the beginning until it can update its node.
+* ArrayList can quickly access the element at the specified index.
+
+-------------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,9 @@
+---------------------------------------------------------------------------------------------------------------------
+
+ArrayList vs. LinkedList
+
+Which one is more efficient?
+* ArrayList: retrieving elements
+* LinkedList: adding / removing elements from the middle
+
+---------------------------------------------------------------------------------------------------------------------

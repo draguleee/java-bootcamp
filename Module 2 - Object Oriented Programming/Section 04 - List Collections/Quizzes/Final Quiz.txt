@@ -1,0 +1,398 @@
+-------------------------------------------------------------------------------------------------------------------
+Final Quiz
+-------------------------------------------------------------------------------------------------------------------
+
+Question 1:
+
+Consider this code snippet:
+	City paris = new City("Paris", 2161000);	// Brand new City object
+	City paris2 = paris;				// Same reference as the previous object
+
+The equals() method:
+	@Override
+	public boolean equals(Object o) {
+    	    if (o == this)
+                return true;			// 1
+    	    if (!(o instanceof City)) {
+        	return false;			// 2
+            }
+    	    City city = (City) o;
+            return Objects.equals(name, city.name) && population == city.population;	// 3
+        }
+
+If you performed an equality check, where would the runtime stop?
+
+Answer: 1
+
+Explanation: 
+The references are equal.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 2:
+
+Consider this code snippet:
+	City paris = new City("Paris", 2161000);	// Brand new City object
+	Person person = new Person("John", 26);		// Brand new Person object
+	paris.equals(person);				// This is obviously false
+
+The equals() method:
+	@Override
+	public boolean equals(Object o) {
+    	    if (o == this)
+                return true;			// 1
+    	    if (!(o instanceof City)) {
+        	return false;			// 2
+            }
+    	    City city = (City) o;
+            return Objects.equals(name, city.name) && population == city.population;	// 3
+        }
+
+Where would the equality check end?
+
+Answer: 2
+
+Explanation:
+1. The first condition is not satisfied because the references will not be equal.
+2. The second condition is satisfied because the object being passed is not an instance of City.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 3:
+
+Consider this code snippet:
+	City city = new City("Paris", 2161000);		// Brand new City object
+	City city2 = new City("Oslo", 1234000);		// Brand new City object
+
+The equals() method:
+	@Override
+	public boolean equals(Object o) {
+    	    if (o == this)
+                return true;			// 1
+    	    if (!(o instanceof City)) {
+        	return false;			// 2
+            }
+    	    City city = (City) o;
+            return Objects.equals(name, city.name) && population == city.population;	// 3
+        }
+
+Where would the runtime stop if you perform an equality check?
+
+Answer: 3 and it returns false
+
+Explanation:
+1. The first condition is not satisfied because the references will not be equal.
+2. The second condition is not satisfied because the object being passed is an instance of City class.
+3. The final 'return' keyword returns false because the fields value are not equal.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 4:
+
+Consider this code snippet:
+	City city = new City("Paris", 2161000);		// Brand new City object
+	City city2 = new City(city);			// Brand new COPY of the previous City object
+
+The equals() method:
+	@Override
+	public boolean equals(Object o) {
+    	    if (o == this)
+                return true;			// 1
+    	    if (!(o instanceof City)) {
+        	return false;			// 2
+            }
+    	    City city = (City) o;
+            return Objects.equals(name, city.name) && population == city.population;	// 3
+        }
+
+Where would the runtime stop if you perform an equality check?
+
+Answer: 3 and it returns true
+
+Explanation:
+1. The first condition is not satisfied because the references will not be equal.
+2. The second condition is not satisfied because the object being passed is an instance of City class.
+3. The final return keyword returns true because the field values are identical.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 5:
+
+In the equals() method, what purpose does the Object parameter-type serve?
+
+The equals() method:
+	@Override
+	public boolean equals(Object o) {
+    	    if (o == this)
+                return true;			
+    	    if (!(o instanceof City)) {
+        	return false;			
+            }
+    	    City city = (City) o;
+            return Objects.equals(name, city.name) && population == city.population;	
+        }
+
+Answer:
+* It allows any type of objct to be passed as a parameter to the equals method.
+* It represeents the most basic type in Java, enabling objects of any class to be passed as a parameter.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 6:
+
+
+Consider the City class:
+
+public class City {
+ 
+    // Instance variables (private)
+    private String name;
+    private long population;
+ 
+    // Constructor with parameters
+    public City(String name, long population) {
+        this.name = name;
+        this.population = population;
+    }
+ 
+    // Copy constructor 
+    public City(City source) {
+        this.name = source.name;
+        this.population = source.population;
+    }
+ 
+    // Getters
+    public String getName() { return this.name; }
+    public long getPopulation() { return this.population; } 
+
+    // Setters
+    public void setName(String name) { this.name = name; }
+    public void setPopulation(long population) { this.population = population; }
+ 
+}
+
+
+Will the contains method return true or false?
+
+	// Create a new City object
+        City paris = new City("Paris", 2161000);
+ 
+	// Create an ArrayList with City objects
+        List<City> cities = new ArrayList<>();
+
+	// Create some City objects and add them to the cities ArrayList
+        cities.add(new City("London", 8982000));
+        cities.add(paris);
+        cities.add(new City("Florence", 382258));
+ 
+        System.out.println(cities.contains(paris));
+
+Answer: true
+
+Explanation:
+The contains() method will loop through every object inside the list. It will use the default equals() method to compare each element against the 'paris' target: 
+* The first element will not share the same reference as the 'paris' target, so the defaults equals() method returns false. 
+* The second element shares a reference to the exact same object as the target, so the default equals method returns true, which means the contains() method stops and returns true as well.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 7:
+
+
+Consider the City class:
+
+public class City {
+ 
+    // Instance variables (private)
+    private String name;
+    private long population;
+ 
+    // Constructor with parameters
+    public City(String name, long population) {
+        this.name = name;
+        this.population = population;
+    }
+ 
+    // Copy constructor 
+    public City(City source) {
+        this.name = source.name;
+        this.population = source.population;
+    }
+ 
+    // Getters
+    public String getName() { return this.name; }
+    public long getPopulation() { return this.population; } 
+
+    // Setters
+    public void setName(String name) { this.name = name; }
+    public void setPopulation(long population) { this.population = population; }
+ 
+}
+
+
+Will the contains method return true or false?
+
+	// Create a new City object
+        City paris = new City("Paris", 2161000);
+ 
+	// Create an ArrayList with City objects
+        List<City> cities = new ArrayList<>();
+
+	// Create some City objects and add them to the cities ArrayList
+        cities.add(new City("London", 8982000));
+        cities.add(new City("Paris", 2161000);
+        cities.add(new City("Florence", 382258));
+ 
+        System.out.println(cities.contains(paris));
+
+Answer: false
+
+Explanation:
+The contains() method will loop through every object inside the list. It will use the default equals() method to compare each element against the 'paris' target:
+* The first element will not share the same reference as the 'paris' target, so the defaults equals() method returns false. 
+* The second element will not share the same reference as the 'paris' target, so the defaults equals() method returns false. 
+* The third element will not share the same reference as the 'paris' target, so the defaults equals() method returns false. 
+There are no more elements inside the list, so the contains method returns false.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 8:
+
+
+Consider the City class:
+
+public class City {
+ 
+    // Instance variables (private)
+    private String name;
+    private long population;
+ 
+    // Constructor with parameters
+    public City(String name, long population) {
+        this.name = name;
+        this.population = population;
+    }
+ 
+    // Copy constructor 
+    public City(City source) {
+        this.name = source.name;
+        this.population = source.population;
+    }
+ 
+    // Getters
+    public String getName() { return this.name; }
+    public long getPopulation() { return this.population; } 
+
+    // Setters
+    public void setName(String name) { this.name = name; }
+    public void setPopulation(long population) { this.population = population; }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+ 
+        if (!(obj instanceof City))
+            return false;
+        City city = (City)obj;
+        return Objects.equals(this.name, city.name) && this.getPopulation() == city.population;
+    }
+ 
+}
+
+
+Will the contains method return true or false?
+
+	// Create a new City object
+        City paris = new City("Paris", 2161000);
+ 
+	// Create an ArrayList with City objects
+        List<City> cities = new ArrayList<>();
+
+	// Create some City objects and add them to the cities ArrayList
+        cities.add(new City("London", 8982000));
+        cities.add(new City("Paris", 2161000);
+        cities.add(new City("Florence", 382258));
+ 
+        System.out.println(cities.contains(paris));
+
+Answer: true
+
+Explanation:
+This time we overrode an equals() method for objects of the City class. The contains() method will loop through every object inside the list. Because all of them are City objects, it will perform comparisons using your equals() method:
+* The first element is not equal to the target, so your equals() method will return false. 
+* The second element has identical fields to the target, so your equals() method will return true. 
+The contains method stops here and returns true as well.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 9:
+
+
+Consider the City class:
+
+public class City {
+ 
+    // Instance variables (private)
+    private String name;
+    private long population;
+ 
+    // Constructor with parameters
+    public City(String name, long population) {
+        this.name = name;
+        this.population = population;
+    }
+ 
+    // Copy constructor 
+    public City(City source) {
+        this.name = source.name;
+        this.population = source.population;
+    }
+ 
+    // Getters
+    public String getName() { return this.name; }
+    public long getPopulation() { return this.population; } 
+
+    // Setters
+    public void setName(String name) { this.name = name; }
+    public void setPopulation(long population) { this.population = population; }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+ 
+        if (!(obj instanceof City))
+            return false;
+        City city = (City)obj;
+        return Objects.equals(this.name, city.name) && this.getPopulation() == city.population;
+    }
+ 
+}
+
+
+Will the contains method return true or false?
+
+	// Create a new City object
+        City paris = new City("Paris", 2161000);
+ 
+	// Create an ArrayList with City objects
+        List<City> cities = new ArrayList<>();
+
+	// Create some City objects and add them to the cities ArrayList
+        cities.add(new City("London", 8982000));
+        cities.add(new City("Versailles", 85771);
+        cities.add(new City("Florence", 382258));
+ 
+        System.out.println(cities.contains(paris));
+
+Answer: false
+
+Explanation:
+The contains() method will loop through every object inside the list. Because all of them are City objects, it will perform comparisons using the equals() method that you overrode for objects of the City class:
+* The first element is not equal to the target, so your equals() method returns false. 
+* The second element is not equal to the target, so your equals() method returns false. 
+* The third element is not equal to the target, so your equals() method returns false. 
+There are no more elements inside the list, so the contains method returns false.
+
+-------------------------------------------------------------------------------------------------------------------

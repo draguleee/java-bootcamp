@@ -1,0 +1,38 @@
+-------------------------------------------------------------------------------------------------------------------
+
+Introduction to LinkedList
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+1. The Similarities with ArrayList
+
+The following code createsa LinkedList that can store integers.
+List<Integer> numbersList = new LinkedList<>();
+
+You can use an add method to add elements to the LinkedList:
+numbersList.add(0);
+numbersList.add(1);
+numbersList.add(2);
+
+You can use a remove method to remove elements from the LinkedList:
+numbersList.remove(0);
+numbersList.remove(1);
+numbersList.remove(2);
+
+As you can see, the code for adding and removing elements is identical to that of ArrayList. This amkes it easy to switch between the two data structures as needed. However, the differences between the two lie in their internal implementation.
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+2. The Trend to Look Out For:
+
+** The LinkedList is very slow at retrieving data. **
+
+In the next Udemy lesson, we will use breakpoints to peek behind the curtains of a LinkedList. The code is going to look a bit scary since it was written by the Java developers themselves.
+
+However, during the lesson, try not to get caught up in the details o the code; instead, focus on understanding the big picture and the general mechanisms at play.
+
+
+-------------------------------------------------------------------------------------------------------------------

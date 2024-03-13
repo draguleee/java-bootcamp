@@ -1,0 +1,98 @@
+-------------------------------------------------------------------------------------------------------------------
+Quiz 8.2
+-------------------------------------------------------------------------------------------------------------------
+
+Question 1:
+
+Choose the correct answer:
+a. The LinekdList is fast at retrieving data.
+b. The ArrayList is slow at retrieving data.
+c. The LinkedList is slow at retrieving data.
+
+Answer: c.
+
+Explanation:
+The elements inside of a LinkedListare not indexed. The linkedList needs to travel from one node to another until it reaches an exact number of steps.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 2:
+
+How many steps will it take to gab Kiev (list.get(7))?
+
+String[] elementData;		// ArrayList
+> 0: Paris
+> 1: Rome
+> 2: Oslo
+> 3: York
+> 4: Nice
+> 5: Lyon
+> 6: Giza
+> 7: Kiev -> this
+> 8: Fuji
+> 9: Doha
+
+Answer: zero steps
+
+Explanation:
+The ArrayList is backed by an underlying array, where every element is indexed. So it can just gab the element at that index.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 3:
+
+How many steps will it take to grab York? (list.get(3))?
+
+ 19              29             16             42             10             14             36              24
+Paris 29 <-> 19 Rome 16 <-> 29 Oslo 42 <-> 16 York 10 <-> 42 Nice 14 <-> 10 Lyon 36 <-> 14 Giza 24 <-> 36 Athens
+                                             (THIS)
+
+Answer: three steps
+
+Explanation:
+Unfortunately, the nodes of a LinkedList are not indexed. The LinkedList takes three steps from the beginning.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 4:
+
+How many steps will it take to grab Lyon (list.get(5))?
+
+ 19              29             16             42             10             14             36              24
+Paris 29 <-> 19 Rome 16 <-> 29 Oslo 42 <-> 16 York 10 <-> 42 Nice 14 <-> 10 Lyon 36 <-> 14 Giza 24 <-> 36 Athens
+                                                                           (THIS)
+
+Answer: two steps
+
+Explanation:
+The requested node is closer to the end. The LinkedList takes two steps from Athens.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 5:
+
+How many steps will it take to remove Lyon (list.remove(5))?
+
+ 19              29             16             42             10             14             36              24
+Paris 29 <-> 19 Rome 16 <-> 29 Oslo 42 <-> 16 York 10 <-> 42 Nice 14 <-> 10 Lyon 36 <-> 14 Giza 24 <-> 36 Athens
+                                                                           (THIS)
+
+Answer: two steps
+
+Explanation:
+The requested node is closer to the end. The LinkedList takes two teps from Athens, then it removes the node, reconnecting the previous and next one.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 6:
+
+How many steps will it take to update York (list.set(3, "London"))?
+
+ 19              29             16             42             10             14             36              24
+Paris 29 <-> 19 Rome 16 <-> 29 Oslo 42 <-> 16 York 10 <-> 42 Nice 14 <-> 10 Lyon 36 <-> 14 Giza 24 <-> 36 Athens
+                                              (THIS)
+
+Answer: three steps
+
+Explanation:
+The requested node is closer to the beginning. THe LinkedList takes three steps from Paris until it reaches York, then it updates the value in that node.
