@@ -1,0 +1,12 @@
+---------------------------------------------------------------------------------------------------------------------
+
+Immutable Objects:
+* Immutable objects are considered to be safer because they cannot be modified after creation 
+* The state of an immutable object cannot be changed which can prevent side effects and make code more predictable
+* References can be shared safely across your application
+
+Muta
+* Mutable objects are considered to be less safe because they can be modified after creation
+* Avoid setting two ariables equal to each other because sharing references can lead to unintended side effects
+
+---------------------------------------------------------------------------------------------------------------------

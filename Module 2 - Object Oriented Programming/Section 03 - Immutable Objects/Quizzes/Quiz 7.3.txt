@@ -1,0 +1,76 @@
+-------------------------------------------------------------------------------------------------------------------
+Quiz 7.3
+-------------------------------------------------------------------------------------------------------------------
+
+Question 1:
+
+1. Integer number = new Integer(5);
+2. Integer number2 = 5;
+
+Which statement is false?
+
+Answer: number2 is a primitive.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 2:
+
+1. Integer number = new Integer(5);
+2. int number2 = 5;
+
+Which statement is false?
+
+Answer: number2 equals a new object of the int class with a field that equals 5.
+
+Explanation: 
+int is a primitive. It represents a value and nothing more.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 3:
+
+Reminder: For every primitive, there is an immutable class type (Wrapper).
+====================================
+| Immutable class | Primitive type |
+====================================
+| Integer         | int            |
+| Long            | long 	   |
+| Double          | double 	   |
+| Character       | char	   |
+| String          | N/A		   |
+====================================
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 4:
+
+String a = "hi";
+String b = a;
+
+a and b share a reference to the same String object.
+
+Answer: true
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 5:
+
+String a = "hi";
+String b = a;
+
+Should we worry about the reference trap?
+
+Answer: No. Strings objects are immutable.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 6:
+        
+Integer a = 2;
+Integer b = a;
+
+Should we worry about the reference trap?
+
+No. Integer objects are immutable.
+
+-------------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,153 @@
+-------------------------------------------------------------------------------------------------------------------
+Quiz 7.1
+-------------------------------------------------------------------------------------------------------------------
+
+Question 1:
+
+public class Car {
+
+    // Instance variable (private)
+    private String make;
+ 
+    // Constructor with parameter
+    public Car(String make) {
+        this.make = make;
+    }
+ 
+    // Copy constructor
+    public Car(Car source) {
+        this.make = source.make;
+    }
+ 
+    // Getter for make
+    public String getMake() {
+        return make;
+    }
+ 
+    // Setter for make
+    public void setMake(String make) {
+        this.make = make;
+    }
+ 
+}
+
+
+Would the Car class be mutable or immutable?
+
+Answer: mutable
+
+Explanation:
+The Car class is mutable because it is possible to update the fields of the Car object.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 2:
+
+public class Car {
+
+    // Instance variable (private)
+    private String make;
+ 
+    // Constructor with parameter
+    public Car(String make) {
+        this.make = make;
+    }
+ 
+    // Copy constructor
+    public Car(Car source) {
+        this.make = source.make;
+    }
+ 
+    // Getter for make
+    public String getMake() {
+        return make;
+    }
+ 
+    // Setter for make
+    public void setMake(String make) {
+        this.make = make;
+    }
+ 
+}
+
+
+Is this okay?
+
+public static void main(String[] args) {
+ 
+    // Create a new Car object
+    Car car = new Car("Honda");
+
+    // This will only copy the reference to the exact same object!
+    Car car2 = car;	
+    
+}
+
+
+Answer: no
+
+Explanation: Both variables share a reference to a mutable object. Updating the object through one variable affects the state of the other variable.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 3:
+
+Reminder: the reference trap only applies to mutable objects.
+
+Trap: Setting a mutable object equal to anoher.
+Pitfall: Both variables share a reference to the same object.
+Solution: Create a new copy of the object (copy constructor).
+
+Trap: Getter returns a mutable object directly.
+Pitfall: The outside variable and field share a reference to the same object.
+Solution: Retur a new copy of the object.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 4:
+
+int[] numbers = new int[] {1, 2, 3};
+ 
+long[] bigNumbers = new long[] {100000000000L, 20000000000000L, 30000000000L};
+      
+char[] characters = new char[] {'a', 'b', 'c'};
+      
+boolean[] bools = new boolean[] {true, false, true};
+
+
+1. 'numbers' is an object of the int[] class.
+2. 'bigNumbers' is an object of the long[] class.
+3. 'characters' is an object of the char[] class.
+4. 'bools' is an objct of the boolean[] class.
+
+Answer: 
+1. true
+2. true
+3. true
+4. true
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 5:
+
+Reminder: every array is a mutable object of a type[] class.
+
+Primitive: int, double, long, char
+Array Class: int[], double[], long[], char[]
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 6:
+        
+    int[] numbers = new int[] {1, 2, 3};
+    int[] moreNumbers = numbers;
+
+Is this okay?
+
+
+Answer: No
+
+Explanation:
+Both variables share a reference to a mutable object. Updating the object through one variable affects the state of the other.
+
+-------------------------------------------------------------------------------------------------------------------
