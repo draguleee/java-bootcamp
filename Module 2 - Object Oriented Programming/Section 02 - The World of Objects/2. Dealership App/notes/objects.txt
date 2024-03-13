@@ -1,0 +1,21 @@
+Objects: make your code organized and easier to understand
+
+Object Oriented Programming:
+* Organizing your code around Objects
+* purpose: write high-quality code
+
+Application Requirements:
+* A car is identified by its make, price, year and color
+* Each car must drive to the nearest exit
+
+
+The Process:
+
+1. Identify the objects:
+   * An object is a thing that contains fields
+   * An object is a thing that can perform tasks
+
+2. Create the class for the corresponding object:
+   * A class is a blueprint from which you can create an object
+
+3. From the class created at step 2, you will create instances of that class

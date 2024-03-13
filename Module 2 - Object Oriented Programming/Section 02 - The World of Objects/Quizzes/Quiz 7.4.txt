@@ -1,0 +1,359 @@
+-------------------------------------------------------------------------------------------------------------------
+Quiz 7.4
+-------------------------------------------------------------------------------------------------------------------
+
+Question 1:
+
+The Shirt class overloads four constructors. Based on this information, what is the expected output?
+
+
+Main.java
+
+public class Main {
+    public static void main(String[] args) {
+        
+        // Create a Shirt object with the second constructor (constructor with 2 parameters)
+        Shirt nike = new Shirt(20.99, "Small");
+ 
+        System.out.println("Brand: " + nike.getBrand());
+        System.out.println("Price: " + nike.getPrice());
+        System.out.println("Size: " + nike.getSize());
+ 
+    }
+}
+
+
+Shirt.java
+
+public class Shirt {
+ 
+    // Instance variables (private)
+    private String brand;
+    private double price;
+    private String size;
+ 
+    // Constructor with 3 parameters
+    public Shirt(String brand, double price, String size) {
+        this.brand = brand;
+        this.price = price;
+        this.size = size;
+    }
+ 
+    // Constructor with 2 parameters
+    public Shirt(double price, String size) {
+        this.brand = "No name";
+        this.price = price;
+        this.size = size;
+    }
+
+    // Constructor with 1 parameter
+    public Shirt(double price) {
+        this.brand = "No name";
+        this.price = price;
+        this.size = "One size fits all";
+    }
+ 
+    // Copy Constructor
+    public Shirt(Shirt source) {
+        this.brand = source.brand;
+        this.price = source.price;
+        this.size = source.size;
+    }
+ 
+    // ... getters and setters...
+
+
+Answer:
+>>: Brand: No name
+>>: Price: 20.99
+>>: Size: Small
+
+Explanation:
+By passing in two arguments, Java runs the constructor with two parameters. That constructo sets the first field to name, and sets the other fields equal to a parameter.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 2: 
+
+The Shirt class overloads four constructors. Based on this information, what is the expected output?
+
+
+Main.java
+
+public class Main {
+    public static void main(String[] args) {
+        
+        // Create a Shirt object with the third constructor (constructor with 1 parameter)
+        Shirt nike = new Shirt(20.99);
+ 
+        System.out.println("Brand: " + nike.getBrand());
+        System.out.println("Price: " + nike.getPrice());
+        System.out.println("Size: " + nike.getSize());
+ 
+    }
+}
+
+
+Shirt.java
+
+public class Shirt {
+ 
+    // Instance variables (private)
+    private String brand;
+    private double price;
+    private String size;
+ 
+    // Constructor with 3 parameters
+    public Shirt(String brand, double price, String size) {
+        this.brand = brand;
+        this.price = price;
+        this.size = size;
+    }
+ 
+    // Constructor with 2 parameters
+    public Shirt(double price, String size) {
+        this.brand = "No name";
+        this.price = price;
+        this.size = size;
+    }
+
+    // Constructor with no parameters
+    public Shirt(double price) {
+        this.brand = "No name";
+        this.price = price;
+        this.size = "One size fits all";
+    }
+ 
+    // Copy Constructor
+    public Shirt(Shirt source) {
+        this.brand = source.brand;
+        this.price = source.price;
+        this.size = source.size;
+    }
+ 
+    // ... getters and setters...
+
+
+Answer:
+>>: Brand: No name
+>>: Price: 20.99
+>>: Size: One size fits it all
+
+Explanation:
+By passing in a double, Java runs the constructor with one double parameter. That constructor sets brand and size to fixed values. And, it sets the price equal to a parameter.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 3: 
+
+The Shirt class overloads four constructors. Based on this information, what is the expected output?
+
+
+Main.java
+
+public class Main {
+    public static void main(String[] args) {
+        
+	// This will not compile due to the fact that there is no such constructor with a double parameter! 
+        Shirt nike = new Shirt("Small");
+ 
+        System.out.println("Brand: " + nike.getBrand());
+        System.out.println("Price: " + nike.getPrice());
+        System.out.println("Size: " + nike.getSize());
+ 
+    }
+}
+
+
+Shirt.java
+
+public class Shirt {
+ 
+    // Instance variables (private)
+    private String brand;
+    private double price;
+    private String size;
+ 
+    // Constructor with 3 parameters
+    public Shirt(String brand, double price, String size) {
+        this.brand = brand;
+        this.price = price;
+        this.size = size;
+    }
+ 
+    // Constructor with 2 parameters
+    public Shirt(double price, String size) {
+        this.brand = "No name";
+        this.price = price;
+        this.size = size;
+    }
+
+    // Constructor with 1 parameter
+    public Shirt(double price) {
+        this.brand = "No name";
+        this.price = price;
+        this.size = "One size fits all";
+    }
+ 
+    // Copy Constructor
+    public Shirt(Shirt source) {
+        this.brand = source.brand;
+        this.price = source.price;
+        this.size = source.size;
+    }
+ 
+    // ... getters and setters...
+
+
+Answer:
+This code does not compile
+
+Explanation:
+The Shirt class does not define a constructor with one String parameter.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 4: 
+
+The store decides to sell another nike shirt with a size: Large
+1. What is the expected output?
+2. What's wrong with the code.
+
+
+Main.java
+
+public class Main {
+    public static void main(String[] args) {
+       
+	// Create a Shirt object
+        Shirt nike = new Shirt("Nike", 20.99, "Small");
+        
+	// No Copy Constructor used - only the reference will be copied!
+        Shirt nike2 = nike;
+        nike2.setSize("Large");
+ 
+        System.out.println("Brand: " + nike.getBrand());
+        System.out.println("Price: " + nike.getPrice());
+        System.out.println("Size: " + nike.getSize());
+ 
+    }
+}
+
+Answer:
+>>: Brand: Nike
+>>: Price: 20.99
+>>: Size: Large
+nike and nike2 share a reference to the same object.
+
+Explanation:
+Trap: do not set the object variables equal to each other.
+Pitfall: they will share a reference to the same object.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 5:
+
+The store decides to sell another nike shirt with a size: Large
+1. What is the expected output?
+
+
+Main.java
+
+public class Main {
+    public static void main(String[] args) {
+       
+	// Create a Shirt object 
+        Shirt nike = new Shirt("Nike", 20.99, "Small");
+        
+	// Create a new Shirt object by using the Copy Constructor (different object, different reference)
+        Shirt nike2 = new Shirt(nike);
+        nike2.setSize("Large");		// the "size" for the nike2 object will be set to have the Large value
+ 
+        System.out.println("Brand: " + nike.getBrand());
+        System.out.println("Price: " + nike.getPrice());
+        System.out.println("Size: " + nike.getSize());
+ 
+    }
+}
+
+
+Shirt.java
+
+public class Shirt {
+ 
+    // Instance variables (private)
+    private String brand;
+    private double price;
+    private String size;
+ 
+ 
+    // Copy Constructor 
+ 
+    public Shirt(Shirt source) {
+        this.brand = source.brand;
+        this.price = source.price;
+        this.size = source.size;
+    }
+ 
+    // ...
+
+
+Answer:
+>>: Brand: Nike
+>>: Price: 20.99
+>>: Size: Small
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 6:
+
+1. What would be the value of nike2.getBrand()?
+
+
+Main.java
+
+public class Main {
+    public static void main(String[] args) {
+       
+	// Create a Shirt object with the first constructor
+        Shirt nike = new Shirt(20.99, "Small");
+        
+	// Create a new Shirt object with the copy constructor (different object, different reference)
+        Shirt nike2 = new Shirt(nike);
+    }
+}
+
+
+Shirt.java
+
+public class Shirt {
+ 
+    // Instance variables (private)
+    private String brand;
+    private double price;
+    private String size;
+ 
+ 
+    // Constructor with 2 parameters
+    public Shirt(double price, String size) {
+        this.brand = "no name";
+        this.price = price;
+        this.size = size;
+    }
+ 
+    // Copy Constructor 
+    public Shirt(Shirt source) {
+        this.brand = source.brand;
+        this.price = source.price;
+        this.size = source.size;
+    }
+ 
+    // ...
+
+
+Answer: no name
+
+Explanation:
+The first object has a brand of no name. And, the copy constructor copies every field value from the source (nike) into the current object calling the constructor (nike2).
+
+-------------------------------------------------------------------------------------------------------------------

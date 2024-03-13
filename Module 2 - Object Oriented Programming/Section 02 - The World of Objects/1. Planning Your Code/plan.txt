@@ -1,0 +1,25 @@
+---------------------------------------------------------------------------------------------------------------------
+
+Planning Your Code
+1. Find closely related variables
+2. Combine them into an object
+
+How to plan your code:
+1. Look for objects (things)
+2. Look for fields that describe each object
+3. Look for actions the object can perform
+
+---------------------------------------------------------------------------------------------------------------------
+
+Requirements for building a Dealership app:
+1. The dealership sells many types of cars
+2. A car is identified by its make, price, year and color
+3. The dealership app should be able to search for car based on make and price
+4. After a sale, the car must drive to the narest exit
+
+Steps:
+1. Look for objects (things): , Dealership, Car
+2. Look for fields that describe each object: make, price, year, color (Car), cars (Dealership)
+3. Look for actions the object can perform: search for car based on make and price, sell cars (Dealership), drive to the nearest exit after a sale (Car)
+
+---------------------------------------------------------------------------------------------------------------------

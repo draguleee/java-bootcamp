@@ -1,0 +1,176 @@
+-------------------------------------------------------------------------------------------------------------------
+Quiz 7.2
+-------------------------------------------------------------------------------------------------------------------
+
+Question 1:
+
+What is the expected output?
+
+Main.java
+public class Main {
+    public static void main(String[] args) {
+
+	// Create the Shirt object
+        Shirt nike = new Shirt("Nike", 20.99, "Small");
+ 
+	// Print the object's fields
+        System.out.println("Brand: " + nike.brand);
+        System.out.println("Price: " + nike.price);
+        System.out.println("Size: " + nike.size);
+ 
+    }
+}
+
+Shirt.java
+public class Shirt {
+ 
+    // Instance variables
+    String brand;
+    double price;
+    String size;
+ 
+    // Constructor (the fields have not been initialized)
+    public Shirt(String brand, double price, String size) {
+ 
+    }
+}
+
+Answer:
+>>: Brand: null
+>>: Price: 0.0
+>>: Size: null
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 2: 
+
+What is the expected output?
+
+Main.java
+public class Main {
+    public static void main(String[] args) {
+
+	// Create the Shirt object
+        Shirt nike = new Shirt("Nike", 20.99, "Small");
+ 
+	// Print the object's fields
+        System.out.println("Brand: " + nike.brand);
+        System.out.println("Price: " + nike.price);
+        System.out.println("Size: " + nike.size);
+ 
+    }
+}
+
+Shirt.java
+public class Shirt {
+ 
+    // Instance variables
+    String brand;
+    double price;
+    String size;
+ 
+    // Constructor (the fields have not been initialized)
+    public Shirt(String brand, double price, String size) {
+ 	this.brand = brand;
+        this.price = price;
+    }
+}         
+
+Answer:
+>>: Brand: Nike
+>>: Price: 20.99
+>>: Size: null
+
+Explanation:
+The constructor doesn't update the size field.      
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 3: 
+
+What is the expected output?
+
+Main.java
+public class Main {
+    public static void main(String[] args) {
+
+	// Create the Shirt object
+        Shirt nike = new Shirt("Nike", 20.99, "Small");
+ 
+	// Print the object's fields
+        System.out.println("Brand: " + nike.brand);
+        System.out.println("Price: " + nike.price);
+        System.out.println("Size: " + nike.size);
+ 
+    }
+}
+
+Shirt.java
+public class Shirt {
+ 
+    // Instance variables
+    String brand;
+    double price;
+    String size;
+ 
+    // Constructor (the fields have not been initialized)
+    public Shirt(String brand, double price, String size) {
+ 	brand = this.brand;
+	price = this.price; 
+    }
+}        
+
+Answer:
+>>: Brand: null
+>>: Price: 0.0
+>>: Size: null
+
+Explanation:
+This code is backwards. The constructor updates the parameters instead of the fields.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 4: 
+
+What is the expected output?
+
+Main.java
+public class Main {
+    public static void main(String[] args) {
+
+	// Create the Shirt object
+        Shirt nike = new Shirt("Nike", 20.99, "Small");
+ 
+	// Print the object's fields
+        System.out.println("Brand: " + nike.brand);
+        System.out.println("Price: " + nike.price);
+        System.out.println("Size: " + nike.size);
+ 
+    }
+}
+
+Shirt.java
+public class Shirt {
+ 
+    // Instance variables
+    String brand;
+    double price;
+    String size;
+ 
+    // Constructor (the fields have not been initialized)
+    public Shirt(String brand, double price, String size) {
+ 	this.brand = brand;
+        this.price = price;
+	this.size = size;
+    }
+}     
+
+Answer:
+>>: Brand: Nike
+>>: Price: 20.99
+>>: Size: Small
+
+Explanation:
+The constructor sets each field in the current object equal to the parameter value.
+
+-------------------------------------------------------------------------------------------------------------------

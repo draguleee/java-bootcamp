@@ -1,0 +1,90 @@
+-------------------------------------------------------------------------------------------------------------------
+Quiz 7.1
+-------------------------------------------------------------------------------------------------------------------
+
+Question 1:
+
+Throughout this section, you're going to code a simple airline reservation system. The purpose of this quiz is to plan your code around objects, fields and actions.
+
+Choose the first option when you're ready.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 2: 
+
+Based on the requirements, how many objects can you identify?
+Recall:
+* An object is a thing.
+* An object is something that you can see or describe.
+
+Requirements:
+* The airline (Java Airlines) has enough seats for 11 people.
+* Each person needs to apply for a passport, which bears the name, nationality, and date of birth.
+* Each person has seat number, which they are free to choose.
+* The airline creates the reservation once it validates the person's passport and requested seat.
+* The airline should not create a reservation if the requested seat has already been taken.
+
+Objects: Airline, Person 
+
+Answer: 2
+
+Explanation: 
+There are two types of objects. We can classify them as airline and person.                 
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 3: 
+
+We need to find closely related fields. Which fields work together to describe a person?
+Recall that fields that describe an object.
+
+Fields for Airline object: seatNumber
+Fields for Person object: passport[], name, nationality, dateOfBirth   
+
+Answer:
+String[] passport
+String name
+String nationality
+String dateOfBirth
+int seatNumber
+
+Explanation:
+The person object is identified by their passport, name, nationality, date of birth, and seat number.                   
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 4: 
+
+Which fields wotk together to describe the airline?
+
+Answer: Person[] seats
+
+Explanation:
+The airline object is described by the people it arranges seats for.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 5:
+
+Based on the requirements, look for actions that a person can perform.
+
+Answer:
+applyPassport()
+chooseSeat()
+
+Explanation:
+The person needs to apply for a passport. The person can choose a seat.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 6:
+
+Based on the requirements, look for actions that the airline can perform.
+
+Answer:
+createReservation()
+
+Explanation:
+The airline can create reservations.
+
+-------------------------------------------------------------------------------------------------------------------

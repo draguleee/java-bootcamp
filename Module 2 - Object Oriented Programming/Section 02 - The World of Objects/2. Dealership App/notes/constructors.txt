@@ -1,0 +1,57 @@
+-------------------------------------------------------------------------------------------------------------------
+
+Constructors: allows the user to update the fields of an object at the moment of its creation
+
+-------------------------------------------------------------------------------------------------------------------
+
+1. The Inconvenience of Not Having a Constructor
+
+Consider the following scenario where we want to create an object to represent a car. Without a constructor, we would create the object and then update each of its fields one by one:
+	Car toyota = new Car();
+	toyota.make = "Toyota";
+	toyota.price = 10000;
+	toyota.year = 2020;
+	toyota.color = "Green";
+
+While this approach works, it can quickly become cumbersome as the number of fields in your objects increases. We need a way to create an object and set all of its fields simultaneously.
+
+-------------------------------------------------------------------------------------------------------------------
+
+2. Creating an Object Using a Constructor
+
+To solve the issues mentioned above, we can make use of constructors. A constructor is a special method that allows us to initialize an object at the moment of its creation. Here is an example:
+	Car toyota = new Car("Toyota", 10000, 2020, "Green");
+
+In this line of code, we are calling a constructor that expects four parameters. The object toyota is being created and its fields are being initialized at once, making the code more concise and easier to read. 
+
+-------------------------------------------------------------------------------------------------------------------
+
+3. How a Constructor Works
+
+In the previous example, the constructor we used expects four parameters: make, price, year and color. Here is what the constructor would look like:
+
+	public class Car {
+	    String make;
+	    int price;
+	    int year;
+	    String color;
+
+	    public Car(String make, int price, int year, String color) {
+	   	this.make = make;
+	    	this.price = price;
+	    	this.year = year;
+	    	this.color = color;
+ 	    }
+	}
+
+The constructor has the same name as the class and accepts four parameters. Inside the constructor, the parameters are used to initialize the object's fields.
+
+-------------------------------------------------------------------------------------------------------------------
+
+4. The 'this' keyword
+
+Within the constructor, you will notice the 'this' keyword. This keyword refers to the current object; the object being created and initialized. We use 'this' to distinguish between the object's fields and the constructor's parameters, which have the same names. For example, 'this.make = make' assigns the make fields of the object being created equal to the value of the constructor's make parameter.
+
+-------------------------------------------------------------------------------------------------------------------
+
+	

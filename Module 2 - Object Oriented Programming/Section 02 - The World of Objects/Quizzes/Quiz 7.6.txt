@@ -1,0 +1,493 @@
+-------------------------------------------------------------------------------------------------------------------
+Quiz 7.6
+-------------------------------------------------------------------------------------------------------------------
+
+Question 1:
+
+What is the expected output?
+
+
+Main.java
+
+public class Main {
+    public static void main(String[] args) {
+ 
+   	// Create a new Store object
+        Store store = new Store();
+
+	// Set the dessert
+        store.setDessert(cake, 1);
+ 
+    }
+}
+
+
+Store.java
+
+public class Store {
+ 
+    // Setter for dessert
+    public void setDessert(Dessert dessert, int index) {
+        this.desserts[index] = new Dessert(dessert);		// "Goodbye!" constructor
+    }
+}
+
+
+Dessert.java
+
+public class Dessert {
+ 
+    // Constructor with parameters
+    // Displays "Hello!" upon creation
+    public Dessert(double price, String[] ingredients) {
+        System.out.println("Hello!");
+        ...
+    }
+ 
+    // Copy Constructor
+    // Displays "Goodbye!" upon creation
+    public Dessert(Dessert source) {
+        System.out.println("Goodbye!");
+        ...
+    }
+}
+
+
+Answer: 
+>>: Goodbye!
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 2: 
+
+What is the expected output?
+
+
+Main.java
+
+public class Main {
+    public static void main(String[] args) {
+
+ 	// Create a Store object
+        Store store = new Store();
+	
+	// Set the dessert
+        store.setDessert(cake, 1);
+ 
+    }
+}
+
+
+Store.java
+
+public class Store {
+ 
+    // Setter for dessert
+    public void setDessert(Dessert dessert, int index) {
+        this.desserts[index] = new Dessert(dessert.getPrice(), dessert.getIngredients());   // "Hello!" constructor
+    }
+}
+
+
+Dessert.java
+
+public class Dessert {
+ 
+    // Constructor with parameters
+    // Displays "Hello!" upon creation
+    public Dessert(double price, String[] ingredients) {
+        System.out.println("Hello!");
+        ...
+    }
+ 
+    // Copy Constructor
+    // Displays "Goodbye!" upon creation
+    public Dessert(Dessert source) {
+        System.out.println("Goodbye!");
+        ...
+    }
+ 
+    // Getter for price
+    public double getPrice() {
+        return this.price;
+    }
+ 
+    // Getter for ingredients
+    public String[] getIngredients() {
+        return Arrays.copyOf(this.ingredients, this.ingredients.length);
+    }
+ 
+}
+
+
+Answer:
+>>: Hello!
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 3: 
+
+What is the expected output?
+
+
+Main.java
+
+public class Main {
+    public static void main(String[] args) {
+
+ 	// Create a Store object 
+        Store store = new Store();
+
+ 	// Get the dessert
+        store.getDessert(1);
+ 
+    }
+}
+
+
+Store.java
+
+public class Store {
+ 
+    // Getter for dessert
+    public Dessert getDessert(int index) {
+        return new Dessert(this.desserts[index]);	// "Goodbye!" constructor
+    }
+ 
+}
+
+
+Dessert.java
+
+public class Dessert {
+ 
+    // Constructor with parameters
+    // Displays "Hello!" upon creation
+    public Dessert(double price, String[] ingredients) {
+        System.out.println("Hello!");
+        ...
+    }
+ 
+    // Copy Constructor
+    // Diplays "Goodbye!" upon creation
+    public Dessert(Dessert source) {
+        System.out.println("Goodbye!");
+        ...
+    }
+ 
+    // Getter for price
+    public double getPrice() {
+        return this.price;
+    }
+ 
+    // Getter for ingredients
+    public String[] getIngredients() {
+        return Arrays.copyOf(this.ingredients, this.ingredients.length);
+    }
+ 
+}
+
+
+Answer:
+>>: Goodbye!
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 4: 
+
+What is the expected output?
+
+
+Main.java
+
+public class Main {
+    public static void main(String[] args) {
+
+ 	// Create a Store object
+        Store store = new Store();
+
+	// Get the dessert
+        store.getDessert(1);
+ 
+    }
+}
+
+
+Store.java
+
+public class Store {
+ 
+    // Getter for dessert
+    public Dessert getDessert(int index) {
+        return new Dessert(this.desserts[index].getPrice(), this.desserts[index].getIngredients());	// "Hello!"
+    }
+ 
+}
+
+
+Dessert.java
+
+public class Dessert {
+ 
+    // Constructor with parameters
+    public Dessert(double price, String[] ingredients) {
+        System.out.println("Hello!");
+        ...
+    }
+ 
+    // Copy Constructor
+    public Dessert(Dessert source) {
+        System.out.println("Goodbye!");
+        ...
+    }
+ 
+    // Getter for price
+    public double getPrice() {
+        return this.price;
+    }
+ 
+    // Getter for ingredients
+    public String[] getIngredients() {
+        return Arrays.copyOf(this.ingredients, this.ingredients.length);
+    }
+}
+
+
+Answer:
+>>: Hello!
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 5:
+
+What would print at BREAKPOINT 1
+
+
+Main.java
+
+public class Main {
+    public static void main(String[] args) {
+ 
+ 	// Array of desserts
+        Dessert[] desserts = new Dessert[] {
+            new Dessert("Cake", 4.99),		// desserts[0]
+            new Dessert("Pie", 2.99),		// desserts[1]
+            new Dessert("Brownie", 1.99),	// desserts[2]
+            new Dessert("Sundae", 2.49),	// desserts[3]
+        };
+        
+	// Store object
+        Store store = new Store();
+        
+	// Set the stores with a for loop
+        for (int i = 0; i < desserts.length; i++) {
+            store.setDessert(desserts[i], i);
+        }
+ 
+ 	// Display the second element from the desserts array
+        System.out.println(store.getDessert(1));          ––––-BREAKPOINT 1----- 
+	
+	// Name: Pie. Price: 2.99.
+   
+    }
+}
+
+
+Dessert.java
+
+public class Dessert {
+ 
+    // Instance variables
+    private String name;
+    private double price;
+ 
+    // Constructor for dessert
+    public Dessert(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
+ 
+    // Copy Constructor
+    public Dessert(Dessert source) {
+        this.name = source.name;
+        this.price = source.price;
+    }
+ 
+    // toString() method
+    public String toString() {
+        return "Name: " + this.name + ". Price: " + this.price + ".\n";
+    }
+ 
+}
+
+
+Store.java
+
+public class Store {
+ 
+    // Instance variable
+    Dessert[] desserts;
+ 
+    // Constructor without parameters
+    public Store() {
+        desserts = new Dessert[4];
+    }
+ 
+    // Getter for dessert
+    public Dessert getDessert(int index) {
+          return new Dessert(this.desserts[index]);
+    }
+ 
+    // Setter for dessert
+    public void setDessert(Dessert dessert, int index) {
+          this.desserts[index] = new Dessert(dessert);
+    }
+ 
+}
+
+
+Answer:
+>>: Name: Pie. Price: 2.99.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 6:
+
+Consider the two classes:
+1. What would pie.getIngredients return at BREAKPOINT 1?
+• Hint: Look at the setter.
+
+
+Main.java
+
+public class Main {
+    public static void main(String[] args) {
+        
+	// Create Dessert objects
+        Dessert cake = new Dessert(4.99);	// cake.getIngredients() = [null, null, null]
+        Dessert pie = new Dessert(cake);	// pie.getIngredients() = [null, null, null] 
+ 
+	// Create a brad new array of ingredients
+        String[] ingredients = new String[] {"Eggs", "Flower", "Baking Powder"};
+
+	// Set the pie object's ingredients field (we really set a reference because of the faulty setter)
+        pie.setIngredients(ingredients);	// pie.getIngredients() = ["Eggs", "Flower", "Baking Powder"]
+        
+	// Set the ingredient's third element as "Filling" (will change the pie object third ingredient as filling due to the setter)
+	ingredients[2] = "Filling";		
+       
+	*** BREAKPOINT 1 ***
+	pie.getIngredients() = ["Eggs", "Flower", "Filling"]
+ 
+    }
+}
+
+
+Dessert.java
+
+public class Dessert {
+ 
+    // Instance variables (private)
+    private double price;
+    private String[] ingredients;
+ 
+    // Constructor with 1 parameter
+    public Dessert(double price) {
+        this.price = price;
+        this.ingredients = new String[3];
+    }
+ 
+    // Copy Constructor
+    public Dessert(Dessert source) {
+        this.price = source.price;
+        this.ingredients = Arrays.copyOf(source.ingredients, source.ingredients.length);
+    }
+ 
+    // Getter for ingredients
+    public String[] getIngredients() {
+        return Arrays.copyOf(ingredients, ingredients.length);
+    }
+ 
+    // Setter for ingredients
+    public void setIngredients(String[] ingredients) {
+        this.ingredients = ingredients;		// sets the current object's reference with the parameter's!
+    }
+ 
+}
+
+Answer: 
+1. ["Eggs", "Flower", "Filling"]
+
+Explanation:
+Reference Trap: The setters sets the field equal to the parameter. S, the field and the outside variable being passed in share a reference to the same array.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 7:
+
+Consider the two classes:
+1. What would pie.getIngredients return at BREAKPOINT 1?
+
+
+Main.java
+
+public class Main {
+    public static void main(String[] args) {
+        
+	// Create Dessert objects
+        Dessert cake = new Dessert(4.99);	// cake.getIngredients() = [null, null, null]
+        Dessert pie = new Dessert(cake);	// pie.getIngredients() = [null, null, null]
+ 
+	// Create a brad new array of ingredients
+        String[] ingredients = new String[] {"Eggs", "Flower", "Baking Powder"};
+        pie.setIngredients(ingredients);	// pie.getIngredients() = ["Eggs", "Flower", "Baking Powder"]
+       
+	// Set the ingredient's third element as "Filling" (independent from the pie's ingredient array)
+        ingredients[2] = "Filling";
+
+        *** BREAKPOINT 1 ***
+ 	pie.getIngredients() = ["Eggs", "Flower", "Baking Powder"]
+
+    }
+}
+
+
+Dessert.java
+
+public class Dessert {
+ 
+    // Instance variables (private)
+    private double price;
+    private String[] ingredients;
+ 
+    // Constructor with 1 parameter
+    public Dessert(double price) {
+        this.price = price;
+        this.ingredients = new String[3];
+    }
+ 
+    // Copy Constructor
+    public Dessert(Dessert source) {
+        this.price = source.price;
+        this.ingredients = Arrays.copyOf(source.ingredients, source.ingredients.length);
+    }
+ 
+    // Getter for ingedients
+    public String[] getIngredients() {
+        return Arrays.copyOf(ingredients, ingredients.length);
+    }
+ 
+    // Setter for ingedients
+    public void setIngredients(String[] ingredients) {
+        this.ingredients = Arrays.copyOf(ingredients, ingredients.length);
+    }
+ 
+}
+
+Answer:
+1. ["Eggs", "Flower", "Baking Powder"]
+
+Explanation:
+The setter sets the field equal to a copy of the parameter. So, the field is safe from external updates.
+
+-------------------------------------------------------------------------------------------------------------------
