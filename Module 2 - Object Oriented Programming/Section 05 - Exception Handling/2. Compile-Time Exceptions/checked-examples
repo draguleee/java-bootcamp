@@ -1,0 +1,9 @@
+Checked Exceptions Examples:
+* FileNotFoundException
+* NetworkException
+* SQLException
+* IOException
+
+Compile-Time:
+* The potential failure is predictable, but unpreventable.
+* The compiler forces you to catch the exception and recover.

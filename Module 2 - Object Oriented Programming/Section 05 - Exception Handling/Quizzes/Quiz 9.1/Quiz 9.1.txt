@@ -1,0 +1,154 @@
+-------------------------------------------------------------------------------------------------------------------
+Quiz 9.1
+-------------------------------------------------------------------------------------------------------------------
+
+Question 1:
+
+What is a compile time exception in Java?
+
+Answer: An exception that is checked by the compiler before the code is executed.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 2:
+
+A runtime exception is Java is also known as a checked exception.
+
+Answer: False
+
+Explanation:
+Runtime exceptions in Java are also known as unckecked exceptions. They are not checked at compile-time but at runtime. They typically represent defects in the program (bugs).
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 3:
+
+The FileInputStream constructor in Java is declared as follows:
+	public FileInputStream(String name) throws FileNotFoundException { 
+    	    // A bunch of code... 
+	}
+
+The constructor throws a checked exception, FileNotFoundException. Now, consider the following code snippet:
+	FileInputStream fis = new FileInputStream("example.txt");
+
+Will this code compile without a try-catch block or a throws declaration?
+
+Answer: No
+
+Explanation:
+The FileInputStream constructor throws a checked exception of type FileNotFoundException. In Java, checked exceptions are predictable failures that must be handled, otherwise the code will not compile.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 4:
+
+Given this piece of code, what will be the output if the "importantFile.txt" does not exist?
+
+try {
+    FileInputStream file = new FileInputStream("importantFile.txt");
+    System.out.println("File opened successfully!");
+} catch (FileNotFoundException e) {
+    System.out.println("File not found!");
+} finally {
+    System.out.println("End of process!");
+}
+
+Answer:
+"File not found!"
+"End of process!"
+
+Explanation:
+When the file does not exist, a FileNotFoundException is thrown. This exception is caught and the "File not found!" message is printed. After that, regardless of whether an exception occured or not, the finally block is executed, and the "End of process!" is printed. So, the total putput will be the code from the catch block, along with the code in the finally block.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 5:
+
+When the logic inside a function may throw a compile time exception, what can be done to handle this?
+
+Answer: 
+* Use a try-catch block inside the function.
+* Propagate the exception by declaring that the function may throw the exception.
+
+Explanation:
+When a method could potentially throw a checked exception, you can either handle it immediately with a try-catch block (first option), or you can declare the method to throw that exception, passing the responsibility of exception handling to the method's caller (second option).
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 6:
+
+The URL constructor in Java is declared as follows:
+	public URL(String spec) throws MalformedURLException {
+ 	    // A bunch of code...
+ 	}
+
+This constructor throws a checked exception, MalformedURLException. Now, consider the following code snippet:
+	URL url = new URL("http://example.com");
+
+Will this code compile without a try-catch block or a throws declaration?
+
+Answer: No
+
+Explanation:
+The URL constructor can throw a MalformedURLException, which is a checked exception. Checked exceptions are predictable failures that must be handled, otherwise the code will not compile.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 7:
+
+Given this piece of code, what will be the output if the URL is malformed?
+
+try {
+    URL url = new URL("htp://example.com");
+    System.out.println("URL formed successfully!");
+} 
+catch (MalformedURLException e) {
+    System.out.println("Malformed URL!");
+} 
+finally {
+    System.out.println("End of process!");
+}
+
+Answer:
+"Malformed URL!"
+"End of process!"
+
+Explanation:
+If the URL is malformed, a MalformedURLException will be thrown, and the "Malformed URL!" message will be printed in the catch block. Regardless of whether the exception was thrown or not, the finally block will be executed, printing "End of process!". So, the total output will be the code from the catch block, along with the code from the finally block.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 8:
+
+In the event of a compile time exception, the finally block will not get executed.
+
+Answer: False
+
+Explanation:
+The finally block in Java is used to put important code that must be executed whether an exception is thrown or not. So, even if a compile-time exception occurs, the finally block will still get executed.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 9:
+
+Which messages will be outputted if "nonExistentFile.txt" doesn't exist?
+
+try {
+    FileInputStream file = new FileInputStream("nonExistentFile.txt");
+    System.out.println("File opened successfully!");
+} 
+catch (FileNotFoundException e) {
+    System.out.println(e.getMessage());
+} 
+finally {
+    System.out.println("End of process!");
+}
+
+Answer:
+* The error message related to the file not being found.
+* "End of process!"
+
+Explanation:
+If the "nonExistentFile.txt" does not exist, a FileNotFoundException will be thrown, and the catch block will print the error message associated with the exception. Regardless of whether the exception is thrown or not, the code within the finally block ("End of process!") will be executed.
+
+-------------------------------------------------------------------------------------------------------------------

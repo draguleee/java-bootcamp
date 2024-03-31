@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------------------------------------------
+
+Argument Validation
+
+--------------------------------------------------------------------------------------------------------------------
+
+1. What is Argument Validation?
+   * Ensures that methods only receive the correct arguments.
+   * Quality Control: throwing an IllegalArgumentException.
+   * Handling User Input: prevent exceptions from being thrown.
+
+--------------------------------------------------------------------------------------------------------------------

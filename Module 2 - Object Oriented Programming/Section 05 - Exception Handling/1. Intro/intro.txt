@@ -1,0 +1,162 @@
+------------------------------------------------------------------------------------------------------------------
+
+Introduction to Compile-TIme Exceptions
+
+------------------------------------------------------------------------------------------------------------------
+
+
+1. Introduction to Compile Time Exceptions
+
+As a programmer, you will inevitably come across situations where things go wrong. When errors occur during the execution of a program, they often lead to exceptions. In Java, these exceptions are classified into two types:
+* Compile-Time exceptions (known as Checked exceptions)
+* Runtime exceptions (known as Unchecked exceptions).
+Understanding these concepts is crucial when writing robust, fault-tolerant programs.
+
+a. Compile-time exceptions:
+* Predictable failures that your compiler checks before executing your code. 
+* They are called 'checked' because the compiler checks at compile time to see if these exceptions have been properly handled with a try-catch block or if they have been declared to be thrown.
+* If not, the code will fail to compile.
+
+b. Runtime exceptions:
+* THe result of logic error in your code
+* Usually avoidable
+* Occur during the execution of the program
+* The compiler does not check for their presence.
+
+c. Comparison:
+==================================================================================================================
+|		      |            Compile-Time Exception    		 |  Runtime Exception 			 |
+|=====================|==================================================|=======================================|            
+|        What?	      | Predictable, must be caught or declared		 | Unpredictable, due to code errors	 |
+|=====================|==================================================|=======================================|
+|       Examples      | FileNotFoundException, IOException, SQLException | ArrayIndexOutOfBoundsException	 |
+|=====================|==================================================|=======================================|
+|   Compiler Check?   | Yes, the compiler enforces handling		 | No, compiler doesn't enforce handling |
+|=====================|==================================================|=======================================|
+| When does it occur? | Before the execution of the program		 | During the execution of the program   |
+|=====================|==========================================================================================|
+
+Consider this example, which attempts to open a file name greetings.txt using FileInputStream:
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
+public class Main {
+    public static void main(String[] args) {
+
+        // This code will not compile! 
+        FileInputStream fis = new FileInputStream("greetings.txt");
+    }
+}
+
+When you try to compile this code, you will receive a compile-time error because the cod is vulnerable to a checked FileNotFoundException. Because it's a checked exception, Java forces you to handle this exception using a try-catch block.
+
+
+------------------------------------------------------------------------------------------------------------------
+
+
+2. Handling Compile-Time Exceptions
+
+Jaa allows hadlign these unavoidable exceptions using try-catch blocks. For instance, let's modify thefile opening example to handle the potential FileNotFoundException:
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            FileInputStream fis = new FileInputStream("greetings.txt");
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found!");
+        }
+    }
+}
+
+In the example above, the try block contains the code that's vulnerable to a checked exception, while the catch block handles it. If a FileNotFoundException occurs within the try block, execution immediately transfers to the corresponding catch block, preventing the application from crashing.
+
+
+------------------------------------------------------------------------------------------------------------------
+
+
+3. Using 'throws' in Function Declaration
+
+In certain situations, you might want to handle an exception outside the function where the error-prone code resides, rather than within the function itself. This is where the 'throws' keyword becomes particularly useful.
+
+For example, consider a function that attempts to open a file:
+	public static void readFile() {
+            // This will not compile!!
+    	    FileInputStream fis = new FileInputStream("greetings.txt");
+	}
+
+The code above is prone to a checked FileNotFoundException. However, instead of using a try-catch block within the readFile() function itself, you can use the 'throws' keyword in the function declaration to indicate that this function might throw an exception:
+	public static void readFile() throws FileNotFoundException {
+    	    FileInputStream fis = new FileInputStream("greetings.txt"); 
+	}
+
+This tells any callers of readFile() that they are responsible for handling a potential FileNotFoundException. The function is efectively communicating, "I might encounter this particular problem when you run me. If it happens, I'm not going to deal with it - you will have to.".
+
+This allows us to shift the handling of exceptions to the appropriate context within the larger system, improving code readability and maintanability. For instance, in the main method where readFile() is being called, we can now use a try-catch block to handle the exception:
+	public static void main(String[] args) {
+            try {
+        	readFile();
+    	    } catch (FileNotFoundException e) {
+            	System.out.println("File not found!");
+    	    }
+	}
+
+In this approach, the responsibility of handling the FileNotFoundException is passed onto the main method. The main method now has the flexibility to handle the exception as it sees fit based on its specific context.
+
+
+This results in the following final code:
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            readFile();
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found!");
+        }
+    }
+
+    public static void readFile() throws FileNotFoundException {
+        FileInputStream fis = new FileInputStream("greetings.txt");
+    }
+}
+
+
+This approach keeps the readFile() function uncluttered and makes the handling of exceptions more flexible and context-appropriate.
+
+
+------------------------------------------------------------------------------------------------------------------
+
+
+4. The finally Block
+
+The 'finally' block is a segment of code that can eb used along with 'try-catch'. This block is executed regardless of whether exception was thrown or not, making it an ideal place for cleanup code.
+
+try {
+    // Code that might throw an exception
+} catch (ExceptionType e) {
+    // Handle the exception
+} finally {
+    // Code to be executed regardless of an exception
+}
+
+
+------------------------------------------------------------------------------------------------------------------
+
+
+5. Preparing for the Next Lesson
+
+In your upcoming Udemy lesson, you will visualize the runtime of a program that tries to run a piece of code, and catches errors if that code happens to fail. Remember, the goal of handling compile-time exceptions isn't to avoid them but to dictate how your application should behave when these inevitable occurrences take place. As you become more comfortable with compile-time exceptions, you'll realize they're invaluable tools that aid in creating more robust and reliable applications.
+
+
+------------------------------------------------------------------------------------------------------------------
+
+
+
+
+

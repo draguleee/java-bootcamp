@@ -1,0 +1,6 @@
+Unchecked Exceptions Examples:
+* ArrayIndexOutOFBoundsException
+* NullPointerException
+* InputMismatchException
+* IllegalArgumentException
+
