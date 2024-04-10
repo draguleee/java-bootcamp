@@ -1,0 +1,69 @@
+-------------------------------------------------------------------------------------------------------------------
+Quiz 10.1
+-------------------------------------------------------------------------------------------------------------------
+
+Question 1:
+
+The HashMap stores an ordered collection of key-value pairs.
+
+Answer: False
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 2:
+
+Map<Integer, Double> inventory = new HashMap<>();
+
+Answer: inventory stores Integer keys and Double values.
+
+Explanation:
+Each integer key will map to a double value.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 3:
+
+The following code populates a HashMap with entries:
+
+    inventory.put("Peach", 1.99);
+    inventory.put("Lemon", 1.99);
+    inventory.put("Melon", 2.99);
+    inventory.put("Mango", 0.99);
+
+At a high level, we see an unordered table of data:
+    Peach - 1.99
+    Mango - 0.99
+    Lemon - 1.99
+    Melon - 2.99
+
+Behind the scenes, what actually happens when you add an entry?
+
+Answer:
+* The key gets converted to a hash.
+* The hash determines an index where the entry will get stored.
+* The HashMap's underlying array stores the entry at that index.
+* Peach likely had the lowest index witgin the array, and melon had the highest.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 4:
+
+Based on the following entries:
+    Peach - 1.99
+    Mango - 0.99
+    Lemon - 1.99
+    Melon - 2.99
+
+inventory.get("Peach") would retrieve a value of 1.99. But what actually happens behind the scenes?
+
+Answer:
+* The key "Peach" gets converted into a hash.
+* The hash determines the index where the entry is located.
+* At that index, the HashMap scans for an entry with a key of "Peach".
+* It returns that entry's value.
+
+Explanation:
+It's petty crazy that even if the HashMap had thousands of entries, it can quickly find the correct index by hashing the key. That's why we commonly say that HashMaps provid fast look-up access.
+
+
+-------------------------------------------------------------------------------------------------------------------

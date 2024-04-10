@@ -1,0 +1,158 @@
+-------------------------------------------------------------------------------------------------------------------
+Quiz 10.2
+-------------------------------------------------------------------------------------------------------------------
+
+Question 1:
+
+HashMap is generally faster at retrieving data than TreeMap.
+
+Answer: True
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 2:
+
+Choose the correct answer:
+a. The HashMap is fast at retrieving data because it maintains data in sorted order (false).
+b. The HashMap is fast at retrieving data because it compresses data for quick access (false).
+c. The HashMap is fast at retrieving data because it uses a hashing mechanism for keys (true).
+d. The HashMap is fast at retrieving data because it saves data in a circular list (false).
+
+Answer: c.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 3:
+
+Choose the correct answer:
+a. The TreeMap is slower at retrieving data because it uses a circular buffer for storage (false).
+b. Tre TreeMap is slower at retrieving data because it compresses data which slows retrieval (false).
+c. Tre TreeMap is slower at retrieving data because it implements a hash function (false).
+d. The TreeMap is slower at retrieving data because retrieval depends on the depth of the tree (true).
+
+Answer: d.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 4:
+
+At a high level, this code inserts the entry at a random spot in the HashMap:
+	hashmap.put("bananas", 3.99);
+
+But what happens behind the scenes?
+
+Answer:
+* A hash is produced from the key "bananas".
+* An operation on the hash determines the index where the entry will be stored.
+* The entry will get stored as a node at that index.
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 5:
+
+At a high level, the TreeMap inserts the entry and keeps everything sorted:
+	treemap.put("bananas", 3.99);
+
+But what happens behind the scenes?
+
+Answer: It uses the "red-black-tree" algorithm to keep the entries sorted.
+
+Explanation:
+The red-black-tree algorithm was not discussed (because this is not a data structure course), but just know that it's used behind the scenes to keep the entries sorted.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 6:
+
+At a high level, map.get(10) will simply retrieve the value 50.
+	1 - 5
+	2 - 10
+	3 - 15
+	4 - 20
+	5 - 25
+	6 - 30
+	7 - 35
+	8 - 40
+	9 - 45
+	10 - 50
+
+But behind the scenes, the red-black-tree algorithm produces the following tree (see tree.png).
+
+With this information, how many steps does it actually take to retrieve the value?
+
+Answer: 4
+
+Explanation:
+The root node happens to be 4:
+* 10 is higher than 4 so we go to the right.
+* 10 is higher than 6 so we go to the right.
+* 10 is higher than 8 so we go to the right.
+* 10 is higher than 9 so we go to the right.
+=> 10 == 10.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 7:
+
+At a high level, map.get(4) will simply retrieve the value 20.
+	1 - 5
+	2 - 10
+	3 - 15
+	4 - 20
+	5 - 25
+	6 - 30
+	7 - 35
+	8 - 40
+	9 - 45
+	10 - 50
+
+But behind the scenes, the red-black-tree algorithm produces the following tree (see tree.png).
+
+With this information, how many steps does it actually take to retrieve the value?
+
+Answer: 1
+
+Explanation:
+The entry with the key of 4 happens to occupy the root node.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 8:
+
+At a high level, map.get(5) will simply retrieve the value 25.
+	1 - 5
+	2 - 10
+	3 - 15
+	4 - 20
+	5 - 25
+	6 - 30
+	7 - 35
+	8 - 40
+	9 - 45
+	10 - 50
+
+But behind the scenes, the red-black-tree algorithm produces the following tree (see tree.png).
+
+With this information, how many steps does it actually take to retrieve the value?
+
+Answer: 2
+
+Explanation:
+Starting from the root node:
+* 5 is higher than 4 so we go to the right.
+* 5 is lower than 6 so we go to the left.
+=> 5 == 5.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 9:
+
+Regardless of how many entries there are in a HashMap, how many steps does it take to locate the index of an entry?
+
+Answer: 1
+
+Explanation:
+We can use the hash from a key to quickly locate the index.
+
+-------------------------------------------------------------------------------------------------------------------

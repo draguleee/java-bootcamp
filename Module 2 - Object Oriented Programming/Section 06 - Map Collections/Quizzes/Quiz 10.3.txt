@@ -1,0 +1,461 @@
+-------------------------------------------------------------------------------------------------------------------
+Quiz 10.3
+-------------------------------------------------------------------------------------------------------------------
+
+Question 1:
+
+This quiz will review equals and hashCode. It will also explain why overriding them is necessary to retrieve data from a HashMap whose keys are custom objects. For example:
+
+	HashMap<Car, Double> 
+	HashMap<Person, String>
+	HashMap<Truck, Integer>
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 2:
+
+Consider the following class:
+
+	class Student {
+
+	    // Instance variables (private)
+    	    private String name;
+    	    private int age;
+    
+	    // Constructor with parameters
+    	    public Student(String name, int age) {
+        	this.name = name;
+        	this.age = age;
+    	    }
+ 
+	}
+
+	public static void main(String[] args) {
+    
+	    // Create objects of type Student
+	    Student student1 = new Student("Alice", 20);	// Brand new object
+    	    Student student2 = student1;			// Copy of the previous object (same reference)
+        
+	    // Print the two objects' hash code
+    	    System.out.println(student1.hashCode());		
+    	    System.out.println(student2.hashCode());
+	}
+
+What is the expected output?
+
+Answer: The two hash codes will be the same
+
+Explanation:
+The two hash codes will always be the same. This is because student1 and student2 are referring to the exact same object, so their hash codes will be identical.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 3:
+
+Consider the following class:
+
+	class Student {
+
+	    // Instance variables (private)
+    	    private String name;
+    	    private int age;
+    
+	    // Constructor with parameters
+    	    public Student(String name, int age) {
+        	this.name = name;
+        	this.age = age;
+    	    }
+ 
+	}
+
+	public static void main(String[] args) {
+    
+	    // Create objects of type Student
+	    Student student1 = new Student("Alice", 20);	// Brand new object
+    	    Student student2 = student1;			// Copy of the previous object (same reference)
+        
+	    // Are the two objects equal?
+	    System.out.println(student1.equals(student2));
+	}
+
+What is the expected output?
+
+Answer: true
+
+Explanation:
+This is because student1 and student2 are referring to the exact same object, so the default equals() metho, which checks for reference equality, will return true.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 4:
+
+Consider the following class:
+
+	class Student {
+
+	    // Instance variables (private)
+    	    private String name;
+    	    private int age;
+    
+	    // Constructor with parameters
+    	    public Student(String name, int age) {
+        	this.name = name;
+        	this.age = age;
+    	    }
+
+ 	    // Equals method
+    	    public boolean equals(Object o) {
+        	if (o == this)
+            	    return true;
+        	if (!(o instanceof Student)) {
+            	    return false;
+        	}
+        	Student student = (Student) o;
+        	return age == student.age && Objects.equals(name, student.name);
+    	    }
+ 
+	}
+
+	public static void main(String[] args) {
+    
+	    // Create objects of type Student
+	    Student student1 = new Student("Alice", 20);	// Brand new object
+    	    Student student2 = new Student("Alice", 20);	// Brand new object
+        
+	    // Are the objects equal?
+	    System.out.println(student1.equals(student2));	// true
+    	    System.out.println(student1.hashCode());		// Different hash code
+    	    System.out.println(student2.hashCode());		// Different hash code
+	}
+
+What is the expected output?
+
+Answer: equals() returns true, and the hash codes are different.
+
+Explanation:
+This is because, whil student1 and student2 have the same name and age, the hashCode() method hasn't been overridden, so it still uses the default implementation, which generates an unique hash code based on the reference (object's memory address).
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 5:
+
+Consider the following class:
+
+	class Student {
+
+	    // Instance variables (private)
+    	    private String name;
+    	    private int age;
+    
+	    // Constructor with parameters
+    	    public Student(String name, int age) {
+        	this.name = name;
+        	this.age = age;
+    	    }
+
+	    // HashCode method
+	    public int hashCode() {
+        	return Objects.hash(name, age);
+    	    }
+	}
+
+	public static void main(String[] args) {
+    
+	    // Create objects of type Student
+	    Student student1 = new Student("Alice", 20);	// Brand new object
+    	    Student student2 = new Student("Alice", 20);	// Brand new object
+        
+	    // Are the objects equal?
+	    System.out.println(student1.equals(student2));	// false
+    	    System.out.println(student1.hashCode());		// Same hash code
+    	    System.out.println(student2.hashCode());		// Same hash code
+	}
+
+What is the expected output?
+
+Answer: equals() returns false, and the hash codes are the same.
+
+Explanation:
+This is because the equals() method hasn't been overriden, so it uses the default implementation, which checks for reference equality. Since student1 and student2 are different objects, equals() will return false. However, the hashCode() method has been overriden to compute the hashCode() based on the name and age fields, so for student1 and student2, which have the same name and age, the hash codes will be the same.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 6:
+
+Consider the following class:
+
+	class Student {
+
+	    // Instance variables (private)
+    	    private String name;
+    	    private int age;
+    
+	    // Constructor with parameters
+    	    public Student(String name, int age) {
+        	this.name = name;
+        	this.age = age;
+    	    }
+
+ 	    // Equals method
+    	    public boolean equals(Object o) {
+        	if (o == this)
+            	    return true;
+        	if (!(o instanceof Student)) {
+            	    return false;
+        	}
+        	Student student = (Student) o;
+        	return age == student.age && Objects.equals(name, student.name);
+    	    }
+
+	    // HashCode method
+	    public int hashCode() {
+        	return Objects.hash(name, age);
+    	    }
+	}
+
+	public static void main(String[] args) {
+    
+	    // Create objects of type Student
+	    Student student1 = new Student("Alice", 20);	// Brand new object
+    	    Student student2 = new Student("Alice", 20);	// Brand new object
+        
+	    // Are the objects equal?
+	    System.out.println(student1.equals(student2));	// true
+    	    System.out.println(student1.hashCode());		// Same hash code
+    	    System.out.println(student2.hashCode());		// Same hash code
+	}
+
+What is the expected output?
+
+Answer: equals() returns true, and the hash codes are the same.
+
+Explanation:
+This is because both equals() and hashCode() have been overridden to check name and age. Since student1 and student2 have the same name and age, they are considered equal by the equals() method, and their hashcodes, computed based on name and age, are also the same.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 7:
+
+hashCode() and equals() play an important role in retrieving data from a HashMap:
+* The hashCode() method is relied upon to produce a hash from your key.
+* The resulting hash value determines the index where the entry is stored.
+* The equals() method is used to compare the target key against the node key at that index.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 8:
+
+Consider the following class:
+
+	class Student {
+
+	    // Instance variables (private)
+    	    private String name;
+    	    private int age;
+    
+	    // Constructor with parameters
+    	    public Student(String name, int age) {
+        	this.name = name;
+        	this.age = age;
+    	    }
+
+ 	    // Equals method
+    	    public boolean equals(Object o) {
+        	if (o == this)
+            	    return true;
+        	if (!(o instanceof Student)) {
+            	    return false;
+        	}
+        	Student student = (Student) o;
+        	return age == student.age && Objects.equals(name, student.name);
+    	    }
+	}
+
+	public static void main(String[] args) {
+    
+	    // Create objects of type Student
+	    Student alice = new Student("Alice", 20);		// Brand new object
+    	    Student bob = new Student("Bob", 18);		// Brand new object	
+	    Student charlie = new Student("Charlie", 22);	// Brand new object
+        
+	    // Create a HashMap containing Student (key) - Integer (value) pairs
+	    HashMap<Student, Integer> map = new HashMap<>();
+
+	    // Add the Students key along with the Integer values in the HashMap
+	    map.put(alice, 1);
+	    map.put(bob, 2);
+	    map.put(charlie, 3);
+
+	    // 
+	    Student aliceQuery = new Student("Alice", 20);	// Not added to the HashMap!
+	    System.out.println(map.get(aliceQuery));
+	}
+
+What is the expected output of the above program?
+
+Answer: null
+
+Explanation:
+Despite aliceQuery and alice being according to the overriden equals method, the default hashCode() method, which operates on references, produces unique hash values for each object. Consequently, the get() method will not be able to locate the correct index where the aliceQuery entry is located.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 9:
+
+Consider the following class:
+
+	class Student {
+
+	    // Instance variables (private)
+    	    private String name;
+    	    private int age;
+    
+	    // Constructor with parameters
+    	    public Student(String name, int age) {
+        	this.name = name;
+        	this.age = age;
+    	    }
+
+ 	    // HashCode method
+	    public int hashCode() {
+        	return Objects.hash(name, age);
+    	    }
+	}
+
+	public static void main(String[] args) {
+    
+	    // Create objects of type Student
+	    Student alice = new Student("Alice", 20);		// Brand new object
+    	    Student bob = new Student("Bob", 18);		// Brand new object	
+	    Student charlie = new Student("Charlie", 22);	// Brand new object
+        
+	    // Create a HashMap containing Student (key) - Integer (value) pairs
+	    HashMap<Student, Integer> map = new HashMap<>();
+
+	    // Add the Students key along with the Integer values in the HashMap
+	    map.put(alice, 1);
+	    map.put(bob, 2);
+	    map.put(charlie, 3);
+
+	    // 
+	    Student aliceQuery = new Student("Alice", 20);	// Not added to the HashMap!
+	    System.out.println(map.get(aliceQuery));
+	}
+
+What is the expected output of the above program?
+
+Answer: null
+
+Explanation:
+aliceQuery and alice have the same name and age values, producing the same hash value due to the overridden hashCode method. So the get method will successfully determine the index where the entry is located, however aliceQuery and alice are not considered equal according to the default equals method, which checks for reference equality. Since aliceQuery and alice are different objects, equals will return false when comparing the target key against the existing node key at the same index. So null is returned because a match wasn't found at that index.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 10:
+
+Consider the following class:
+
+	class Student {
+
+	    // Instance variables (private)
+    	    private String name;
+    	    private int age;
+    
+	    // Constructor with parameters
+    	    public Student(String name, int age) {
+        	this.name = name;
+        	this.age = age;
+    	    }
+
+ 	    // Equals method
+    	    public boolean equals(Object o) {
+        	if (o == this)
+            	    return true;
+        	if (!(o instanceof Student)) {
+            	    return false;
+        	}
+        	Student student = (Student) o;
+        	return age == student.age && Objects.equals(name, student.name);
+    	    }
+
+ 	    // HashCode method
+	    public int hashCode() {
+        	return Objects.hash(name, age);
+    	    }
+	}
+
+	public static void main(String[] args) {
+    
+	    // Create objects of type Student
+	    Student alice = new Student("Alice", 20);		// Brand new object
+    	    Student bob = new Student("Bob", 18);		// Brand new object	
+	    Student charlie = new Student("Charlie", 22);	// Brand new object
+        
+	    // Create a HashMap containing Student (key) - Integer (value) pairs
+	    HashMap<Student, Integer> map = new HashMap<>();
+
+	    // Add the Students key along with the Integer values in the HashMap
+	    map.put(alice, 1);
+	    map.put(bob, 2);
+	    map.put(charlie, 3);
+
+	    // 
+	    Student aliceQuery = new Student("Alice", 20);	// Not added to the HashMap!
+	    System.out.println(map.get(aliceQuery));
+	}
+
+What is the expected output of the above program?
+
+Answer: 1
+
+Explanation:
+Both hashCode and equals methods have been overridden in this case. The hashCode method is relied upon to produce a hash from the key. As aliceQuery and alice have the same name and age values, they generate the same hash, determining the same index where the entry is stored in the HashMap. The equals method is then used to compare the aliceQuery key against the alice key at that index, and as they have the same name and age, equals returns true. Therefore, the HashMap can correctly retrieve the value associated with aliceQuery, leading to 1 being returned.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Question 11:
+
+Consider the following class:
+
+	class Student {
+
+	    // Instance variables (private)
+    	    private String name;
+    	    private int age;
+    
+	    // Constructor with parameters
+    	    public Student(String name, int age) {
+        	this.name = name;
+        	this.age = age;
+    	    }
+	}
+
+	public static void main(String[] args) {
+    
+	    // Create objects of type Student
+	    Student alice = new Student("Alice", 20);		// Brand new object
+    	    Student bob = new Student("Bob", 18);		// Brand new object	
+	    Student charlie = new Student("Charlie", 22);	// Brand new object
+        
+	    // Create a HashMap containing Student (key) - Integer (value) pairs
+	    HashMap<Student, Integer> map = new HashMap<>();
+
+	    // Add the Students key along with the Integer values in the HashMap
+	    map.put(alice, 1);
+	    map.put(bob, 2);
+	    map.put(charlie, 3);
+
+	    // 
+	    Student aliceQuery = alice;
+	    System.out.println(map.get(aliceQuery));
+	}
+
+What is the expected output of the above program?
+
+Answer: 1
+
+Explanation:
+In this case, neither hashCode nor equals methods are overridden. The hashCode method produces a unique hash from the memory address of the key. Since aliceQuery and alice refer to the same object, they generate the same hash, determining the same index where the entry is stored in the HashMap. The equals method, which checks for reference equality, is then used to compare aliceQuery against alice at that index. As they refer to the same object, equals returns true. Therefore, the HashMap can correctly retrieve the value associated with aliceQuery, leading to 1 being returned.
+
+-------------------------------------------------------------------------------------------------------------------

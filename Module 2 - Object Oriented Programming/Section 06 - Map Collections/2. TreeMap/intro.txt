@@ -1,0 +1,91 @@
+-------------------------------------------------------------------------------------------------------------------
+
+Introduction to TreeMap
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+1. TreeMap
+
+HashMap and TreeMap are both implementations of Map, so the code for adding data is identical:
+Map<String, Double> treeMap = new TreeMap<>();
+treeMap.put("Melon", 1.99);
+treeMap.put("Mango", 3.99);
+treeMap.put("Peach", 1.99);
+treeMap.put("Lemon", 2.99);
+
+But, unlike HashMap, TreeMap is an ordered collection of key-value pairs, and it sorts the entries in ascending order of the keys; in this case, alphabetically:
+Lemon - 2.99
+Mango - 3.99
+Melon - 1.99
+Peach - 1.99
+
+It uses a get method to retrieve a value based on its key:
+System.out.println("The price of Melon is: " + treeMap.get("Melon"));
+System.out.println("The price of Mango is: " + treeMap.get("Mango"));
+System.out.println("The price of Peach is: " + treeMap.get("Peach"));
+System.out.println("The price of Lemon is: " + treeMap.get("Lemon"));
+
+• OUTPUT
+»: The price of Melon is: 1.99
+»: The price of Mango is: 3.99
+»: The price of Peach is: 1.99
+»: The price of Lemon is: 2.99
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+2. Wait a second?
+
+HashMap can use the same code to accomplish the same output:
+System.out.println("The price of Melon is: " + hashMap.get("Melon"));
+System.out.println("The price of Mango is: " + hashMap.get("Mango"));
+System.out.println("The price of Peach is: " + hashMap.get("Peach"));
+System.out.println("The price of Lemon is: " + hashMap.get("Lemon"));
+
+• OUTPUT
+»: The price of Melon is: 1.99
+»: The price of Mango is: 3.99
+»: The price of Peach is: 1.99
+»: The price of Lemon is: 2.99
+
+The key difference lies in the retrieval speed: HashMap generally outperforms TreeMap.
+* HashMap employs a hashing technique to quickly locate a node's index using its key.
+* TreeMap needs to traverse the depth of a tree in order to find the desired node.
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+3. How TreeMap objects work
+
+Adding an entry (put() method):
+* When you add entries to the tree map, it stores them in a tree like data structure.
+* It uses the red black tree algorith to continuously sort entries as they are being added.
+* It ensures that the entries are sorted by the ascending order of the keys.
+* Every node in the left subtree is going to be smaller than the root node
+* Every node in the right subtree is going to be higher than the root node.
+
+Finding an entry (get() method):
+* The further a node is from the root node, the longer it takes to be retrieved. 
+* The time to retrieve data depends on the tree's depth.
+
+Check if there is an entry with a specified key (containsKey() method):
+* Returns true if the entry with the specified key exists.
+* Otherwise return false.
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+3. What to choose?
+
+The choice between HashMap and TreeMap typically comes down to whether or not you need the keys to be sorted. If you don't need sorted keys, a HashMap is 9/10 times a better choice due to its performance characteristics. If on the rarest of occasions, you do need sorted keys, a TreeMap is a good option.
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+
+

@@ -1,0 +1,51 @@
+--------------------------------------------------------------------------------------------------------------------
+
+Hash Tables
+
+YouTube tutorial: https://www.youtube.com/watch?v=jt8mjox6vaU
+Workbook: https://github.com/rslim087a/Hash-Table/blob/main
+
+--------------------------------------------------------------------------------------------------------------------
+
+
+1. Storage of entries in the HashTable
+
+   * You can store entries in a HashTable:
+     - Entry: key-value pair
+     - Key: used to locate a specific piece of data
+     - Value: the actual data of interest
+     - Capacity: number of available buckets
+
+   * Produce a hash from your key
+    
+   * The hash determines where the entry will be stored:
+     - We need to extract an index that ranges from 0 to 15 from the hash value => bitwise AND operation
+     - Bitwise AND operation = 15 & hash value converted into binary (zeros and ones)
+     - Since 15 in binary has 4 bits, only the first 4 bits from the hash value will be used to extract the index
+     - AND: if both numbers are 1, the result will be 1; if one of the numbers is 0, the result will be 0
+     - Convert the binary index into decimal and you obtain the index
+
+   * Insert the node at the calculated index
+
+   * In case of a collision, place your node next to the previous node:
+     - Collision: happens when the hash of a key produces an index that already contains a node
+     - Solution: place the node next to the previous one
+     - What you need to do: traverse the list one by one until you reach a node that does not have a successor
+     => LinkedList
+
+
+   * Resize the array when the threshold is reached:
+     - Threshold = Load Factor * Capacity of the Array 
+     - Typical Load Factor: 0.75
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+
+2. Retrieval of data from the HashTable
+
+   * You need to know the key that maps to the value that you are interested in
+   * The hash of the key determines where the entry is stored
+
+
+--------------------------------------------------------------------------------------------------------------------

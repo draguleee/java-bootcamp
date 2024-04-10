@@ -1,0 +1,18 @@
+-------------------------------------------------------------------------------------------------------------------
+
+Final Verdict
+
+-------------------------------------------------------------------------------------------------------------------
+
+1. HashMap:
+   * Use HashMap if you don't need the entries to be sorted
+   * Provide fast-lookup access because hashing the key quickly locates the index where the entry is stored
+
+-------------------------------------------------------------------------------------------------------------------
+
+2. TreeMap:
+   * Use TreeMap if you need the entries to be sorted
+   * Sorts entries in ascending key order
+   * The time to retrieve data depends on the tree depth
+
+-------------------------------------------------------------------------------------------------------------------

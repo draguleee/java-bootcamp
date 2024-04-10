@@ -1,0 +1,98 @@
+-------------------------------------------------------------------------------------------------------------------
+
+Introduction to HashMap
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+1. List vs. Map
+
+There are many types of collections in Java:
+
+Collections of type List can store a sequence of elements, and each element can be accessed based on its index:
+{
+         0           1        2         3
+    "Clementine", "Mango", "Banana", "Apple"
+}
+
+
+Collections of type Map are designed to store pairs of data, specifically key-value entries, and you can access each value based on its key.
+{
+      Key    Value
+    "Melon": 10.99,
+    "Mango": 0.99,
+    "Peach": 1.99,
+    "Apple": 2.99
+}
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+2. HashMap
+
+The HashMap is an implementation of Map that stores an unordered collection of key-value entries.
+
+The following HashMap will store String - Double pairs:
+Map<String, Double> fruitPrices = new HashMap<>();
+
+You can use the put method to add entries to the HashMap.
+fruitPrices.put("Melon", 1.99);
+fruitPrices.put("Mango", 0.99);
+fruitPrices.put("Peach", 1.99);
+fruitPrices.put("Lemon", 2.99);
+
+The entries were added in a specific order (Melon - Mango - Peach - Lemon), but HashMap doesn't actually preserve that order.
+Peach - 1.99
+Mango - 0.99
+Lemon - 2.99
+Melon - 1.99
+
+You can use the get method to retrieve a value based on its key:
+System.out.println("The price of Melon is: " + fruitPrices.get("Melon"));
+System.out.println("The price of Mango is: " + fruitPrices.get("Mango"));
+System.out.println("The price of Peach is: " + fruitPrices.get("Peach"));
+System.out.println("The price of Lemon is: " + fruitPrices.get("Lemon"));
+
+• OUTPUT
+»: The price of Melon is: 1.99
+»: The price of Mango is: 3.99
+»: The price of Peach is: 1.99
+»: The price of Lemon is: 2.99
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+3. How HashMap objects work
+
+Adding an entry (put() mthod):
+* The moment you add the first entry (key - value pair), an array that contains 16 elements will be created.
+* The hash() function processes the key and returns an integer known as hash.
+* A bitwise operation on the hash determines the index where the key - value pair is going to be stored.
+* The element at that index stores a reference to a node, which will store your key - value entry.
+
+Finding an entry (get() method):
+* The key is going to get hashed into a numerical value.
+* A bitwise operation on the hash determines where the key - value pair is stored.
+* The HashMap an find the node at the index.
+
+Check if there is an entry with a specified key (containsKey() method):
+* Returns true if the entry with the specified key exists.
+* Otherwise return false.
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+4. Looking Behind the Curtain
+
+You might perceive HashMap as a simple table holding key-value pairs, but it's actually a very sophisticated data structure. The simple table analogy is enough to work with HashMap and use it in your code, but it's not enough to answer interview questions.
+
+In the upcoming video, we will use breakpoints to peek behind the curtains of a HashMap. The code is going to look a bit scary since it was written by the Java developers themselves. As always, try not to get caught up in the details of the code; instead, focus on the general mechanisms that make HashMap the fastest data structure for storing and retrieving data.
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+
+

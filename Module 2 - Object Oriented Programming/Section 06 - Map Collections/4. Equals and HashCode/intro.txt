@@ -1,0 +1,149 @@
+-------------------------------------------------------------------------------------------------------------------
+
+Introduction to Equals and HashCode
+
+The equality contract states that, if two objects are equal according to their equals() method, they must return the same hashCode. If you violate the equality contract, you may experience bugs with hash-based collection (like HashMap).
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+1. Default Equals and HashCode
+
+In Java, every object inherits a default hashCode() and equals() method. By default, both of them operate on the reference (memory address) of an object. When the references are identical, the default hashCode method will produce the same hash value (integer) twice. Similarly, the default equals method will return true when both references are equal.
+
+	Fruit apple1 = new Fruit("Apple");
+	Fruit apple1Ref = apple1;
+
+	System.out.println(apple1.hashCode());		// Output: 1829164700
+	System.out.println(apple1Ref.hashCode());	// Output: 1829164700
+
+	System.out.println(apple1.equals(apple1Ref));	// Output: true
+
+
+When there are two completely different objects in memory, their hashCode values will be different. Similarly, the default equals() method will return false because the references will not be equal.
+
+	Fruit apple1 = new Fruit("Apple");
+	Fruit apple2 = new Fruit("Apple");
+
+	System.out.println(apple1.hashCode());		// Output: 1829164700
+	System.out.println(apple2.hashCode());		// Output: 2018699554
+
+	System.out.println(apple1.equals(apple2));	// Output: false
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+2. Violating the Equality Contract
+
+You can violate the equality contract by providing a custom implementation of equals without doing the same for hashCode.
+
+	class Fruit {
+	
+	    // Instance variable (private)
+    	    private String name;
+    
+	    // Constructor with parameter
+    	    Fruit(String name) {
+        	this.name = name;
+    	    }
+        
+    	    // getters and setters ... 
+	
+	    // Equals method
+	    @Override
+    	    public boolean equals(Object o) {
+                if (o == this)
+                    return true;
+                if (!(o instanceof Fruit)) {
+                    return false;
+                }
+                Fruit fruit = (Fruit) o;
+                return Objects.equals(name, fruit.name);
+            }
+    	}
+
+
+The new equals() method uses fields to compare each object. But we are still relying on the default hashCode() method to produce hash values based on a reference.
+
+	Fruit apple1 = new Fruit("Apple");
+	Fruit apple2 = new Fruit("Apple");
+
+	System.out.println(apple1.hashCode());		// Output: 1829164700
+	System.out.println(apple2.hashCode());		// Output: 2018699554
+
+	System.out.println(apple1.equals(apple2));	// Output: true
+
+
+Despite the objects being equal according to the equals() method, they do not return the same hashValue. The default hashCode() method is still producing hash values based on a reference, and these are two completely different objects in memory.
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+3. Preserving the Equality Contract
+
+We need to override equals() as well as hashCode(). Both methods must rely on field values to produce a final result.
+
+	class Fruit {
+
+	    // Instance variable (private)
+	    private String name;
+    
+	    // Constructor with parameter
+    	    Fruit(String name) {
+        	this.name = name;
+    	    }
+        
+    	    // getters and setters ... 
+
+	    // Equals method
+	    @Override
+    	    public boolean equals(Object o) {
+        	if (o == this)
+                    return true;
+       		if (!(o instanceof Fruit)) {
+            	    return false;
+                }
+                Fruit fruit = (Fruit) o;
+                return Objects.equals(name, fruit.name);
+    	    }
+        
+    	    // HashCode method
+	    @Override
+    	    public int hashCode() {
+                return Objects.hash(name);
+    	    }
+	}
+
+
+The new hashCode() method will produce the same hash value because the fields are identical:
+
+	Fruit apple1 = new Fruit("Apple");
+	Fruit apple2 = new Fruit("Apple");
+
+	System.out.println(apple1.hashCode());		// Output: 1829164700
+	System.out.println(apple2.hashCode());		// Output: 1829164700
+
+
+The equals() method, as before, will return true, because the fields are identical:
+
+	Fruit apple1 = new Fruit("Apple");
+	Fruit apple2 = new Fruit("Apple");
+
+	System.out.println(apple1.equals(apple2));	// Output: true
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+4. Importance of the Equality Contract
+
+Maintaining the equality contract is critical because it guarantees the correct behaviour of hash-based collections like HashMap. These collections use the hashCode() method for quick lookups. If two equal objects di not produce the same hash code, it would break the contract and could lead to bizarre and hard-to-trace bugs in your code.
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+
+
