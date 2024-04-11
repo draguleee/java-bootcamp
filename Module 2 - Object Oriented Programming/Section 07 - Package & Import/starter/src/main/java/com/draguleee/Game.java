@@ -5,16 +5,23 @@ import java.time.format.DateTimeFormatter;
 
 public class Game {
 
+    // Instance variables
     private String arena;
     private LocalDate date;
 
+    // Constructor with parameters
     public Game(String arena) {
         this.arena = arena;
         this.date = LocalDate.now();
     }
 
+    /**
+     * begin() - sets up the game
+     * @param home
+     * @param away
+     */
     public void begin(Team home, Team away) {
-//         String formattedDate = this.date.getDayOfMonth() + "/" + this.date.getMonthValue() + "/" + this.date.getYear();
+        // String formattedDate = this.date.getDayOfMonth() + "/" + this.date.getMonthValue() + "/" + this.date.getYear();
         String formattedDate = this.date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         System.out.println
         (

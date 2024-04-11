@@ -5,6 +5,7 @@ public class Main {
 
     public static void main(String[] args) {
         
+        // Create bulls Team object
         Team bulls = new Team("Chicago Bulls");
         bulls.setPlayer("SHOOTING_GUARD", "Michael Jordan");
         bulls.setPlayer("SMALL_FORWARD", "Scottie Pippen");
@@ -12,6 +13,7 @@ public class Main {
         bulls.setPlayer("CENTER", "Bill Wennington");
         bulls.setPlayer("POINT_GUARD", "Randy Brown");
 
+        // Create pistons Team object
         Team pistons = new Team("Detroit Pistons");
         pistons.setPlayer("SHOOTING_GUARD", "Joe Dumars");
         pistons.setPlayer("SMALL_FORWARD", "Grant Hill");
