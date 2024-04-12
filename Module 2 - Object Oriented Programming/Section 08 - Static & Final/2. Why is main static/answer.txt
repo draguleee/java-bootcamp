@@ -1,0 +1,17 @@
+-------------------------------------------------------------------------------------------------------------------
+
+Why is main() static?
+
+-------------------------------------------------------------------------------------------------------------------
+
+static means: belonging to the class.
+
+When the Java Virtual Machine (JVM) starts your application, it searches for the entry point, which is the main method. To execute the entry point without creating an object of the class it resides in, the main method is made static. This way, the JVM can directly call the main method from the class.
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}
+
+-------------------------------------------------------------------------------------------------------------------

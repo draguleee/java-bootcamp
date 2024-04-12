@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------------------------------------------
+
+static final CONSTANT
+
+-------------------------------------------------------------------------------------------------------------------
+
+* A constant is static because it belongs to the class.
+* A constant is final because it cannot be assigned a new value.
+* A constant is declared with UPPERCASE_AND_UNDERSCORES.
+* FAVOUR USING CONSTANTS OVER LOOSEVARIABLES!
+
+-------------------------------------------------------------------------------------------------------------------
