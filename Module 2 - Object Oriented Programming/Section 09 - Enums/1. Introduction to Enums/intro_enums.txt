@@ -1,0 +1,21 @@
+-------------------------------------------------------------------------------------------------------------------
+
+Introduction to Enums
+
+-------------------------------------------------------------------------------------------------------------------
+
+Enums: contain a finite number of constants.
+
+Example: 
+* We need to store a specific day of the week using a String.
+* There are limited number o days in a week (7), and any value outside of this range is deemed incorrect.
+* Using a String can lead to errors (ex. misspell it).
+
+The enum:
+public enum DayOfWeek {
+	MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
+}
+a
+DayOfWeek day = FRIDAY;a
+
+-------------------------------------------------------------------------------------------------------------------
