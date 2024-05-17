@@ -1,0 +1,9 @@
+-------------------------------------------------------------------------------------------------------------------
+
+The Object class:
+* The root parent of every other class in Java => every other class automatically inherits the below methods.
+* The object class defines methods like toString(), equals(), getClass() and hashCode()
+
+-------------------------------------------------------------------------------------------------------------------
+
+

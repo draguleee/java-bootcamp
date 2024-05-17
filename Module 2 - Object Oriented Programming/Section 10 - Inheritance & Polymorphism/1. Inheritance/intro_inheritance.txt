@@ -1,0 +1,16 @@
+a-------------------------------------------------------------------------------------------------------------------
+
+Inheritance
+
+-------------------------------------------------------------------------------------------------------------------
+
+* Consists in defining a parent class that serves a foundation for child classes.
+* Every child class inherits fields / methods from his parent.
+
+-------------------------------------------------------------------------------------------------------------------
+
+The Process:
+1. Create a Parent class that contains the shared fields and methods.
+2. Child classes must inherit fields and methods from the Parent.
+
+-------------------------------------------------------------------------------------------------------------------

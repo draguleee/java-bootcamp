@@ -1,0 +1,13 @@
+-------------------------------------------------------------------------------------------------------------------
+
+Override
+* A defined method in the Superclass can be overridden by its Subclasses.
+* Override means that the Subclass replaces the Superclass' existing implementation.
+* The Subclass provides its own implementation for an inherited method from the Superclass.
+
+-------------------------------------------------------------------------------------------------------------------
+
+@Override annotation
+* Ensures that you are actually overriding a method belonging to the Superclass.
+
+-------------------------------------------------------------------------------------------------------------------

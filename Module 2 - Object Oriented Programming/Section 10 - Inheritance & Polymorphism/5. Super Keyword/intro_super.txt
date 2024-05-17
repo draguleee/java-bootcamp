@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------------------------------------------
+
+Super Keyword
+* Refers to the parent class of the child class.
+* super(): invokes the constructor of a parent class.
+* super.member: accesses a member of the parent class.
+
+-------------------------------------------------------------------------------------------------------------------

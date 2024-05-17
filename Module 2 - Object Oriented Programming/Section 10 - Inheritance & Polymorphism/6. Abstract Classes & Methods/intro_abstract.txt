@@ -1,0 +1,15 @@
+-------------------------------------------------------------------------------------------------------------------
+
+Abstract Keyword: used to create abstract classes and methods.
+
+Abstract Class: a class you cannot create objects from (a class that cannot be instantiated).
+
+Abstract Method: 
+* Exposes behavior that a child class must override.
+* You can only define abstract methods inside of an abstract class.
+* Specifies what should be returned and what parameters to accept.
+* Does not hav a body because its implementation depends on the child itself.
+
+-------------------------------------------------------------------------------------------------------------------
+
+
