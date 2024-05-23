@@ -1,0 +1,112 @@
+-------------------------------------------------------------------------------------------------------------------
+
+Lambda Expressions: Comparator
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+1. Lambda Expression
+
+   While dealing with a wide range of data in programming, a common task is to organize this data. Specifically, sorting can become quite intricate and often requires repetitive steps.
+   => Higher-order functions exist in Java to abstract away these complexities, allowing us to merely dictate our sorting criteria.
+
+   One such function is the sort method, which leverages a Comparator to steer its sorting logic.
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+2. Higher-order functions
+
+   * Functions that accept other functions as arguments, making your code significantly more concise.
+   * They do a lot of work behind the scenes, but all you need to do is provide them with a lambda expression to guide them.
+
+   ================================================================================================
+   | Functional Interface |      Lambda Expression     |                  Example		  |
+   |==============================================================================================|
+   |                      |			       |					  |
+   |       Consumer       |   (argument) -> { code }   |    (n) -> { System.out.println(n); }	  |
+   |                      |			       |				          |
+   |==============================================================================================|
+   |			  |			       |					  |
+   |       Predicate      |  (argument) -> expression  |               (n) -> n > 0		  |
+   |			  |			       |				          |
+   |==============================================================================================|
+   |			  |			       |					  |
+   |       Function       |  (argument) -> expression  |               (n) -> n * 2		  |
+   |			  |			       |					  |
+   |==============================================================================================|
+   |                      |  			       |					  |
+   |      BiConsumer      |  (arg1, arg2) -> { code }  | (a, b) -> { System.out.println(a + b); } |
+   |                      |		  	       |					  |
+   |==============================================================================================|
+   |                      |                            |					  |
+   |      Comparator      | (arg1, arg2) -> expression |  	(a, b) -> a.compareTo(b)	  |
+   |                      |			       |				          |
+   |==============================================================================================|
+   |                      |			       |					  |
+   |    BinaryOperator    | (arg1, arg2) -> expression |   	      (a, b) -> a * b		  |
+   |                      |			       |					  |
+   ================================================================================================
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+3. Comparator
+
+Consider a simple list of numbers:
+   ArrayList<Integer> numbers = new ArrayList<>(Arrays.asList(5, 1, 9, 3, 7));
+
+Sorting this list using the traditional bubble sort approach would look like this:
+
+for (int i = 0; i < numbers.size() - 1; i++) {
+    for (int j = 0; j < numbers.size() - i - 1; j++) {
+        if (numbers.get(j) > numbers.get(j + 1)) {
+            // Swap numbers.get(j) and numbers.get(j+1)
+            int temp = numbers.get(j);
+            numbers.set(j, numbers.get(j + 1));
+            numbers.set(j + 1, temp);
+        }
+    }
+}
+
+YIKES!!! Imagine having to write that every time you want to sort a list. And this is just a simple bubble sort, a binary sort would be even more complicated.
+
+
+Java provides a higher-order function that has sorting logic already embedded in it. Meet sort.
+
+   void sort(Comparator<? super E> c) {
+      // Ugly sorting logic buried inside the function
+   }
+
+The sort method requires a Comparator, a functional interface that guides the sorting process. You express your sorting criteria using a lambda expression. 
+
+
+Here's how to sort the list in ascending order using the sort method:
+
+   numbers.sort((a, b) -> a.compareTo(b));
+
+In this example, the lambda expression (a, b) -> a.compareTo(b) is our Comparator. This expression indicates our intent: for any two numbers a and b in the list:
+* a < b => return negative value
+* a = b => return 0
+* a > b => return positive value
+
+
+Here's how to sort the list in descending order using the sort method:
+
+   numbers.sort((a, b) -> b.compareTo(a));
+
+
+------------------------------------------------------------------------------------------------------------------
+
+
+6. Preparing for the Next Lesson
+
+Expressing code in a declarative style with lambda expressions and the Comparator interface can result in more concise, readable and efficient programs. These tools allow us to describe what we want to do (our intent) without needing to outline how to do it.
+
+In our next lesson, we'll visualize the runtime and step inside the sort method, understanding how it utilizes our lambda expression to perform sorting operations. We'll also experiment with altering our Comparator lambda expression to see how it affects the sort order of the list.
+
+
+------------------------------------------------------------------------------------------------------------------
+

@@ -1,0 +1,107 @@
+-------------------------------------------------------------------------------------------------------------------
+
+Lambda Expressions: Consumer
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+1. Lambda Expressions
+
+   In the world of programming, you often come across repetitive tasks that need to be performed on a set of data (for instance, iterating through a list to execute an operation on each item).
+   => This process can become more streamlined with the use of higher-order functions.
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+2. Higher-order functions
+
+   * Functions that accept other functions as arguments, making your code significantly more concise.
+   * They do a lot of work behind the scenes, but all you need to do is provide them with a lambda expression to guide them.
+
+   ================================================================================================
+   | Functional Interface |      Lambda Expression     |                  Example		  |
+   |==============================================================================================|
+   |                      |			       |					  |
+   |       Consumer       |   (argument) -> { code }   |    (n) -> { System.out.println(n); }	  |
+   |                      |			       |				          |
+   |==============================================================================================|
+   |			  |			       |					  |
+   |       Predicate      |  (argument) -> expression  |               (n) -> n > 0		  |
+   |			  |			       |				          |
+   |==============================================================================================|
+   |			  |			       |					  |
+   |       Function       |  (argument) -> expression  |               (n) -> n * 2		  |
+   |			  |			       |					  |
+   |==============================================================================================|
+   |                      |  			       |					  |
+   |      BiConsumer      |  (arg1, arg2) -> { code }  | (a, b) -> { System.out.println(a + b); } |
+   |                      |		  	       |					  |
+   |==============================================================================================|
+   |                      |                            |					  |
+   |      Comparator      | (arg1, arg2) -> expression |  	(a, b) -> a.compareTo(b)	  |
+   |                      |			       |				          |
+   |==============================================================================================|
+   |                      |			       |					  |
+   |    BinaryOperator    | (arg1, arg2) -> expression |   	      (a, b) -> a * b		  |
+   |                      |			       |					  |
+   ================================================================================================
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+3. Consumer
+
+Here's a typical loop through an ArrayList:
+
+   ArrayList<String> list = Arrays.asList("item1", "item2", "item3");
+   for (String item : list) {
+      System.out.println(item);
+   }
+
+This is an example of imperative coding, where you explicitly state every single step. It is functional, but quite verbose. But, did you know that Java already provides a higher-order function that has this looping logic already embedded in it? Meet the forEach method.
+
+   void forEach(Consumer<? super T> action) {
+      // Ugly looping logic buried inside the function
+   }
+
+The forEach method asks for a Consumer. The Consumer is an action that declares your intent for each item in the list.
+
+
+------------------------------------------------------------------------------------------------------------------
+
+
+4. Lambda Expression - foreach
+
+We express this intent using a lambda expression when we call forEach:
+
+   ArrayList<String> list = Arrays.asList("item1", "item2", "item3");
+   list.forEach((String item) -> { System.out.println(item); });
+
+In this example, the lambda expression plays the role of our Consumer, directing the forEach method about the action to take for each item.
+
+
+------------------------------------------------------------------------------------------------------------------
+
+
+5. Lambda Expressions & Conciseness
+
+If a lambda expression contains just one line of code, it can often be shortened, making your code look cleaner. Let's remove the brackets from our previous example:
+
+   ArrayList<String> list = Arrays.asList("item1", "item2", "item3");
+   list.forEach(item -> System.out.println(item));
+
+
+------------------------------------------------------------------------------------------------------------------
+
+
+6. Preparing for the Next Lesson
+
+Declarative coding, as demonstrated in the higher-order function example, is much cleaner and more concise than imperative coding. By mastering higher-order functions, your code becomes more efficient and easier to read.
+
+In the next lesson, we'll dive deeper into this concept. We'll use breakpoints to visualize the runtime and step inside the forEach method to show you how it harnesses the lambda expression.
+
+
+------------------------------------------------------------------------------------------------------------------
+

@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------------------------------------------
+
+Terminal Operations
+
+--------------------------------------------------------------------------------------------------------------------
+
+1. forEach() - receives a stream and produces an output
+2. toList() - returns every element in the stream as a list
+3. reduce() - reduces the entire stream to a single value
+4. findFirst() - finds a value from a filtered stream
+5. count() - counts the number of values in the stream
+
+--------------------------------------------------------------------------------------------------------------------

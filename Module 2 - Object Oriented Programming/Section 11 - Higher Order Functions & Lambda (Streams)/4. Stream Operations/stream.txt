@@ -1,0 +1,13 @@
+--------------------------------------------------------------------------------------------------------------------
+
+Stream Operations
+
+--------------------------------------------------------------------------------------------------------------------
+
+1. stream() - converts the data source into a stream of elements
+2. filter() - receives a stream of elements and returns a filtered stream
+3. map () - transforms every element in the stream
+4. sorted() - receives a stream and returns a sorted stream
+5. forEach() - receives a stream and produces an output
+
+--------------------------------------------------------------------------------------------------------------------
