@@ -1,0 +1,11 @@
+--------------------------------------------------------------------------------------------------------------------
+
+BigDecimal
+
+--------------------------------------------------------------------------------------------------------------------
+
+1. When precision is really important, you should favour using the BigDecimal immutable object over the Double type.
+2. double - binary floating type => not all decimals can be represented using double accurately.
+3. When you are dealing with financial and engineering data, use BigDecimal instead.
+
+--------------------------------------------------------------------------------------------------------------------
