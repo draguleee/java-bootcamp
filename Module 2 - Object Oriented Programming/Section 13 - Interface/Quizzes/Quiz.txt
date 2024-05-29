@@ -1,0 +1,349 @@
+------------------------------------------------------------------------------------------------------------------
+
+Quiz
+
+------------------------------------------------------------------------------------------------------------------
+
+
+Question 1:
+
+
+Given the following code snippet:
+
+// BankPayment class - does not implement any interface
+class BankPayment {
+    public void process(double amount) {
+        System.out.println("Processed bank payment of: " + amount);
+    }
+}
+ 
+// Main class - tightly coupled to the BankPayment class
+class Main {
+    public static void main(String[] args) {
+        BankPayment bankPayment = new BankPayment();
+        bankPayment.process(100.0);
+    }
+}
+
+What's wrong with the code above?
+
+
+Answer:
+* The BankPayment class doesn't implement any interface.
+* The Main class is tightly coupled to the BankPayment class.
+
+
+Explanation:
+* As mentioned in the lesson, an interface is a contract that dictates a specific set of methods that a class must implement. The BankPayment class (containing business logic), doesn't implement any such interface, which would be beneficial for promoting loose coupling.
+* The Main class directly depends on the BankPayment class. If we decide to switch to a different payment method, the Main class would need modifications. This shows that the Main class is tightly coupled to the BankPayment class.
+
+
+------------------------------------------------------------------------------------------------------------------
+
+
+Question 2:
+
+
+Given the following code snippet:
+
+// PaymentProcessor interface
+public interface PaymentProcessor {
+    void process(double amount);
+}
+ 
+// BankPayment class - implements PaymentProcessor interface
+class BankPayment implements PaymentProcessor {
+    @Override
+    public void process(double amount) {
+        System.out.println("Processed bank payment of: " + amount);
+    }
+}
+ 
+// Main class - tightly coupled to the BankPayment class
+class Main {
+    public static void main(String[] args) {
+        BankPayment bankPayment = new BankPayment();
+        bankPayment.process(100.0);
+    }
+}
+
+What is the primary issue with the code above, even though the BankPayment class implements an interface?
+
+
+Answer:
+The Main class is still tightly coupled with the BankPayment class.
+
+
+Explanation:
+Even though the BankPayment class implements the PaymentProcessor interface, the Main class is directly initializing and using the BankPayment class. Thus, if we were to introduce another payment method and wanted to use it in the Main class, we would still have to modify the Main class. This indicated that the Main class remains tightly coupled to the BankPayment class.
+
+
+------------------------------------------------------------------------------------------------------------------
+
+
+Question 3:
+
+
+The application decided to replace Bank for Crypto payments:
+
+// PaymentProcessor interface
+public interface PaymentProcessor {
+    void process(double amount);
+}
+ 
+// BankPayment class - implements PaymentProcessor interface
+class BankPayment implements PaymentProcessor {
+    @Override
+    public void process(double amount) {
+        System.out.println("Processed bank payment of: " + amount);
+    }
+}
+ 
+// CryptoPayment class - implements PaymentProcessor interface
+class CryptoPayment implements PaymentProcessor {
+    @Override
+    public void process(double amount) {
+        System.out.println("Processed crypto payment of: " + amount);
+    }
+}
+ 
+// Main class - loosely coupled, utilizes PaymentProcessor interface
+class Main {                                         
+    
+    // Now using Crypto to pay
+    private static PaymentProcessor paymentProcessor = new CryptoPayment();
+ 
+    public static void main(String[] args) {
+        paymentProcessor.process(100.0);
+    }
+ 
+    public static void setPaymentProcessor(PaymentProcessor processor) {
+        paymentProcessor = processor;
+    }
+}
+
+How does the code above make good use of interfaces to promote loose coupling?
+
+
+Answer:
+The Main class utilizes the PaymentProcessor interface, making it easier to switch between different payment methods without modifying much of its internal code.
+
+
+Explanation:
+The Main class uses the PaymentProcessor interface for its payment processing, and thanks to the setPaymentProcessor method, it can easily switch between BankPayment and CryptoPayment or any other class implementing the PaymentProcessor interface, without having to modify the core logic of the Main class. This demonstrates loose coupling.
+
+
+------------------------------------------------------------------------------------------------------------------
+
+
+Question 4:
+
+
+Both HashMap and TreeMap in Java implement the Map interface. What does this imply?
+
+
+Answer:
+* It's easy to transition between HashMap and TreeMap in code due to the shared Map interface methods.
+* Both HashMap and TreeMap are guaranteed to have methods like put(), get() and remove().
+
+
+Explanation:
+* Given that both HashMap and TreeMap implement the Map interface, they provide the same public interface methods. This means that, if you're using a Map reference in your code, transitioning between HashMap and TreeMap implementation can be quite seamless.
+* Since both HashMap and TreeMap implement the Map interface they must provide concrete implementations for its methods. Methods like put(), get() and remove() are some of the common methods they are bound to implement.
+
+
+------------------------------------------------------------------------------------------------------------------
+
+
+Question 5:
+
+
+Given that HashMap implements the Map interface:
+
+// Map interface
+public interface Map {
+    void put(String key, int value);
+    int get(String key);
+}
+ 
+// HashMap class - implements Map interface
+class HashMap implements Map {
+    @Override
+    public void put(String key, int value) {
+        // Implementation details
+    }
+ 
+    @Override
+    public int get(String key) {
+        // Implementation details
+        return 0;
+    }
+}
+ 
+// Main class - tightly coupled to the HashMap class
+class Main {
+    public static void main(String[] args) {
+        HashMap map = new HashMap();
+        map.put("one", 1);
+        System.out.println(map.get("one"));
+    }
+}
+
+Considering the code above, which of the following statements is true regarding the use of interfaces and loose coupling?
+
+
+Answer:
+The Main class is tightly coupled to the HashMap class.
+
+
+Explanation:
+The Main class directly uses the HashMap class without any reference to the Map interface, indicating a tight coupling between them.
+
+
+------------------------------------------------------------------------------------------------------------------
+
+
+Question 6:
+
+
+Considering the following code snippet:
+
+// Map interface
+public interface Map {
+    void put(String key, int value);
+    int get(String key);
+}
+ 
+// HashMap class - implements Map interface
+class HashMap implements Map {
+    @Override
+    public void put(String key, int value) {
+        // Implementation specific to HashMap
+    }
+ 
+    @Override
+    public int get(String key) {
+        // Implementation specific to HashMap
+        return 0;
+    }
+}
+ 
+// TreeMap class - implements Map interface
+class TreeMap implements Map {
+    @Override
+    public void put(String key, int value) {
+        // Implementation specific to TreeMap
+    }
+ 
+    @Override
+    public int get(String key) {
+        // Implementation specific to TreeMap
+        return 0;
+    }
+}
+ 
+// Main class
+class Main {
+
+    public static void processMap(Map map) {
+        map.put("one", 1);
+        System.out.println(map.get("one"));
+    }
+ 
+    public static void main(String[] args) {
+        Map hashMap = new HashMap();
+        Map treeMap = new TreeMap();
+ 
+        processMap(hashMap);
+        processMap(treeMap);
+    }
+}
+
+Given that both HashMap and TreeMap implement the Map interface, how does this code benefit?
+
+
+Answer:
+The processMap method can be reused for different Map implementations without any modification.
+
+
+Explanation:
+The processMap method is designed to operate on any object that implements the Map interface. As both HashMap and TreeMap implement this interface, they can be passed as arguments to this method, enabling its reuse.
+
+
+------------------------------------------------------------------------------------------------------------------
+
+
+Question 7:
+
+
+Consider the following code snippet:
+
+// List interface
+public interface List {
+    void add(String element);
+    String get(int index);
+}
+ 
+// ArrayList class - implements the List interface
+class ArrayList implements List {
+    @Override
+    public void add(String element) {
+        // Implementation specific to ArrayList
+    }
+ 
+    @Override
+    public String get(int index) {
+        // Implementation specific to ArrayList
+        return null;
+    }
+}
+ 
+// LinkedList class - implements the List interface
+class LinkedList implements List {
+    @Override
+    public void add(String element) {
+        // Implementation specific to LinkedList
+    }
+ 
+    @Override
+    public String get(int index) {
+        // Implementation specific to LinkedList
+        return null;
+    }
+}
+
+// Main class -  
+class Main {
+
+    public static void processList(List list) {
+        list.add("element");
+        System.out.println(list.get(0));
+    }
+ 
+    public static void main(String[] args) {
+        List arrayList = new ArrayList();
+        List linkedList = new LinkedList();
+ 
+        processList(arrayList);
+        processList(linkedList);
+    }
+}
+
+Given this code, what benefits are achieved by having both ArrayList and LinkedList implement the List interface?
+
+
+Answer:
+The processList method can be reused for different list implementations without any modification.
+
+
+Explanation:
+As both ArrayList and LinkedList implement the List interface, they can be passed as arguments to the processList method, highlighting code reusability.
+
+
+------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+

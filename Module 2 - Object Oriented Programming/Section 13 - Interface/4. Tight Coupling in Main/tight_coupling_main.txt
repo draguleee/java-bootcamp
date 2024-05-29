@@ -1,0 +1,36 @@
+-------------------------------------------------------------------------------------------------------------------
+
+Next Video: Tight Coupling in Main
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+The Main class will exhibit tight coupling with both CheckingService and CreditService.
+
+static CheckingService checkingService = new CheckingService(repository);
+static CreditService creditService = new CreditService(repository);
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+Why Tight Coupling in This Context?
+
+
+Why is this form of tight coupling employed, especially when design principles often advocate for loose coupling?
+
+Unlike scenarios where you might switch out one service for another (ex. swapping a database provider, swapping a logging service), in the banking context, CheckingService and CreditService are not replacements for each other. They are meant to coexist and be used concurrently, so there is no need for abstraction or flexibility in swapping out implementations. The customers in our application will require a checking and a credit account. It follows that we need one CheckingService and one CreditService.
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+Should we still have an Interface?
+
+
+Answer: Yes.
+
+Coincidentally, CheckingService and CreditService happen to have very similar behavior, so it is still advantageous for them to share a contract of behavior. Signing the same contract allows us to leverage polymorphism whenever we need to.
+
+
+-------------------------------------------------------------------------------------------------------------------
