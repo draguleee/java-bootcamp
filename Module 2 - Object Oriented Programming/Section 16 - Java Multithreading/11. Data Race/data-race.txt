@@ -1,0 +1,158 @@
+-------------------------------------------------------------------------------------------------------------------
+
+Data Race
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+1. Scenario
+
+   Suppose we have two threads and a boolan value stored in memory:
+
+   ---------------------------------------------------------------
+   ---------------------------------------------------------------
+                                                    boolean: false
+
+
+   Assuming that this boolean is being accessed by both threads, the CPU does something remarkable: it keeps a copy of this value in a cache so that, during the execution, both threads can quickly access it there, instead of having to retrieve it from memory.
+
+             false
+   |-------|-------|
+   |       |       |
+   |       |       |
+   |-------|-------|
+   |       |       |
+   |       |       |
+   |-------|-------| 
+             false
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+2. Stale data
+
+
+   However, this efficient approach also has a significant downside: 
+
+   Imagine Thread A updates the boolean value to true, intending to signal Thread B to perform a specific action. Thread A's update is made to its local cache, and it might take some time before this updated value is written back to the main memory.
+
+   ---------------------------------------------------------
+   ---------------------------------------------------------
+                                                     boolean: true
+
+             true
+   |-------|-------|
+   |       |       |======
+   |       |       |======
+   |-------|-------|
+   |       |       |======
+   |       |       |======
+   |-------|-------| 
+             false
+
+   In the meantime, Thread B continues to access the boolean value from its local cache, which still holds the old value of false. This discrepancy between the actual value of the boolean in memory (true) and the value seen by Thread B (false) is what we call 'stale data'.
+
+   ---------------------------------------------------------
+   ---------------------------------------------------------
+                                                     boolean: true
+
+             true
+   |-------|-------|
+   |       |       |
+   |       |       |
+   |-------|-------|
+   |       |       |======
+   |       |       |======
+   |-------|-------| 
+             false
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+3. Data Race
+
+
+   As a result, Thread B might miss the signal from Thread A and continue operating under the outdated assumption that the boolean is still false. It follows that, when each thread has its own cached copy of the variable, there is a risk that they might not be seeing the most up-to-date value. This scenario is called a 'data race'.
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+4. Data Race Example
+
+   
+   The writer thread updates a flag to true, and the reader thread keeps running so long as the flag is false.
+
+   public class DataRaceExample {
+
+      // Flag
+      public static boolean flag;
+
+      public static void main(String[] args) throws InterruptedException {
+
+         // Create a writer thread (updates the flag to true)
+         Thread writerThread = new Thread(() -> {
+            flag = true;
+            System.out.println("Flag set to true");
+         });
+
+	 // Create a reader thread (keeps running as long as the flag is false)
+         Thread readerThread = new Thread(() -> {
+            while (!flag) {
+                // Waiting for flag to become true - might never see the change
+            }
+            System.out.println("Flag is true");
+         });
+
+	 // Start the reader thread
+         readerThread.start();
+
+	 // Simulating some delay
+         Thread.sleep(100); 	
+
+	 // Start the writer thread
+         writerThread.start();
+
+      }
+   }
+
+
+   The output will be as follows:
+   >>: Flag set to true
+   >>: 
+
+
+   If you execute this code, it will run forever because flag is a shared boolean variable accessed by both writerThread and readerThread. The writerThread sets the flag to true and prints the message. However, this update is only visible in the writer thread's local cache. This update is not visible to the reader thread, which thinks that the value is still false.
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+5. The Volatile Keyword
+
+
+   If you declare the variable as volatile, it ensures that any changes made to the flag by one thread are immediately visible to other threads.
+
+   public class DataRaceFixedExample {
+
+      // Flag (declared volatile because multiple threads are operating upon it)
+      public static volatile boolean flag;
+
+      public static void main(String[] args) throws InterruptedException {
+         // Code inside remains the same
+      }
+
+   }
+
+
+   The output will be as follows:
+   >>: Flag set to true
+   >>: Flag is true
+
+
+   With the flag now declared as volatile, any write to i by the writer thread is immediately written to the main memory, and any read of it by the reader thread is done directly from the main memory. This ensures that both threads always see the most recent value of flag. It follows that, when multithreading, volatile increases the visibility of a resource.
+
+
+-------------------------------------------------------------------------------------------------------------------

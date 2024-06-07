@@ -1,0 +1,314 @@
+-------------------------------------------------------------------------------------------------------------------
+
+Thread Inheritance
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+1. How Inheritance works in Threads
+
+
+   In Java, the Thread class captures all of the properties and methods needed to create and manage threads. You can easily define threads by creating a new object of the Thread class and passing a Runnable task into it. The Runnable task defines the work that the thread will execute.
+
+   Thread thread = new Thread(/* Runnable Task */);
+
+
+   Let's consider a scenario where the main method has five different threads, each performing an unique task:
+
+   public class Main {
+      public static void main(String[] args) {
+
+         // Thread for handling file reading
+	 Thread fileReaderThread = new Thread(() -> {
+	    // Logic for reading files
+	 });
+
+         // Thread for data processing
+	 Thread dataProcessingThread = new Thread(() -> {
+	    // Logic for processing data
+	 });
+
+	 // Thread for network operations
+	 Thread networkOperationThread = new Thread(() -> {
+	    // Logic for handling network operations
+	 });
+
+	 // Thread for database updates
+	 Thread databaseUpdateThread = new Thread(() -> {
+	    // Logic for updating the database
+	 });
+
+	 // Thread for user interface updates
+	 Thread uiUpdateThread = new Thread(() -> {
+	    // Logic for updating the user interface
+	 });
+      }
+   }
+
+
+   When you overload the main method with logic from many different tasks, the code becomes super cluttered and confusing. So, instead of creating many Thread objects, and defining all of their logic in a single class, we can leverage the organizational benefits of object-oriented programming:
+
+   public class Main {
+      public static void main(String[] args) {
+         FileReaderThread fileReaderThread = new FileReaderThread();
+         DataProcessingThread dataProcessingThread = new DataProcessingThread();
+         NetworkOperationThread networkOperationThread = new NetworkOperationThread();
+         DatabaseUpdateThread databaseUpdateThread = new DatabaseUpdateThread();
+         UiUpdateThread uiUpdateThread = new UiUpdateThread();
+      }
+   }
+
+
+   These custom thread objects were created from custom thread classes. Each custom thread inherits the behavior of a Java thread.
+  
+   class FileReaderThread extends Thread {
+      @Override
+      public void run() {
+         // Logic for reading files
+      }
+   }
+
+   class DataProcessingThread extends Thread {
+      @Override
+      public void run() {
+         // Logic for processing data
+      }
+   }
+
+   class NetworkOperationThread extends Thread {
+      @Override
+      public void run() {
+         // Logic for handling network operations
+      }
+   }
+
+   class DatabaseUpdateThread extends Thread {
+      @Override
+      public void run() {
+         // Logic for updating the database
+      }
+   }
+
+   class UiUpdateThread extends Thread {
+      @Override
+      public void run() {
+         // Logic for updating the user interface
+      }
+   }
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+2. Starter Project
+
+   
+   The starter project contains two "athletes" running concurrently:
+
+   public class Main {
+      public static void main(String[] args) {
+      
+         // Creating the first athlete thread
+         Thread firstAthlete = new Thread(() -> {
+     	    int bibNumber = 84921;
+	    runRace(bibNumber);
+	 });
+
+	 // Creating the second athlete thread
+	 Thread secondAthlete = new Thread(() -> {
+	    int bibNumber = 43114;
+	    runRace(bibNumber);
+	 });
+
+  	 // Start the threads
+	 firstAthlete.start();
+	 secondAthlete.start();
+
+	 private static void runRace(int bibNumber) {
+	    double distanceKm = 10;
+	    double steps = 0.00000001;
+	    for (double i=0 ; i<=distanceKm ; i+= steps) {
+	       if (Math.abs(i - distanceKm) < steps) {
+ 		  System.out.println("\nAthlete number " + bibNumber + " has finished the race.\n");
+	          break;
+	       }
+	    }
+	 }
+      }
+   }
+
+
+   The code only contains two threads, and it is already cluttered.
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+3. Creating Custom Threads
+
+
+   Create an AthleteThread class that inherits from Thread. As with any class blueprint, you can give it a field, constructor, getters and setters:
+
+   public class AthleteThread extends Thread {
+
+      // Instance variable (private)
+      private int bibNumber;
+
+      // Constructor for AthleteThread class
+      public AthleteThread(int bibNumber) {
+         this.bibNumber = bibNumber;
+      }
+
+      // Getter for BIB number
+      public int getBibNumber() { return this.bibNumber; }
+
+      // Setter for BIB number
+      public void setBibNumber(int bibNumber) { this.bibNumber = bibNumber; }
+
+   }
+
+
+   When you invoke Thread.start(), it internally calls a run() method that executes your lambda expression. The AthleteThread will inherit this method so we can override it.
+
+   @Override 
+   public void run() {
+      double distanceKm = 10;
+      double steps = 0.00000001;
+      for (double i=0 ; i<=distanceKm; i+=steps) {
+         if (Math.abs(i - distanceKm) < steps) {
+	    System.out.println("\nAthlete number " + this.bibNumber + " has finished the race.\n");
+	 }
+      }
+   }
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+4. Amending the Main Class
+
+
+   This looks a lot more maintainable:
+
+   public class Main {
+      public static void main(String[] args) {
+
+         // Create two AthleteThread objects
+         AthleteThread firstAthete = new AthleteThread(84921);
+	 AthleteThread secondAthlete = new AthleteThread(43114);
+
+         // Start the two threads
+	 firstAthlete.start();
+	 secondAthlete.start();
+
+      }
+   }
+
+
+   The output will be as follows:
+   >>: Athlete number 84921 has finished the race.
+   >>: Athlete number 43114 has finished the race.
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+5. Thread Name
+
+
+   Recall that every Thread has a name that can be accessed through a public getter and modified through a public setter:
+
+   public class Thread implements Runnable {
+   
+      // Instance variable (private)
+      private String name;
+
+      // Getter for name
+      public String getName() { return this.name; }
+
+      // Setter for name
+      public void setName(int name) { this.name = name; }
+
+   }
+
+
+   Our custom thread inherits the getter and setter. We can modify the constructor to update the thread's name:
+
+   public AthleteThread(int bibNumber, String name) {
+      this.bibNumber = bibNumber;
+      this.setName(name);
+   }
+
+
+   Now, we can define AthleteThread threads as follows:
+   
+   AthleteThread firstAthlete = new AthleteThread(84921, "Marcus Eldridge");
+   AthleteThread secondAthlete = new AthleteThread(43114, "Hiroshi Nakamura");
+
+
+   We can modify the task to include the updated name:
+
+   for (double i = 0; i <= distanceKM; i += steps) {
+      if (Math.abs(i - distanceKM) < steps) {
+         System.out.println("\nAthlete number " + this.bibNumber + " named " + this.getName() + " has finished the race.\n");
+         break; 
+      }
+   }
+
+
+   The output will be as follows:
+   >>: Athlete number 84921 named Marcus Eldridge has finished the race.
+   >>: Athlete number 43114 named Hiroshi Nakamura has finished the race.
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+6. Thread Priority
+
+
+   Recall that every Thread has a priority that can be accessed through a public getter, and modified through a public setter:
+
+   public class Thread implements Runnable {
+
+      // Instance variables (private)
+      private int priority;
+
+      // Getter for priority
+      public int getPriority() { return this.priority; }
+
+      // Setter for priority
+      public void setPriority(int priority) { this.priority = priority; }
+
+      // Other methods and fields of the Thread class..
+
+   }
+
+
+   Our custom thread inherits the getter and setter. We can modify the constructor to update the thread's priority:
+
+   public AthleteThread(int bibNumber, String name, int priority) {
+      this.bibNumber = bibNumber;
+      this.setName(name);
+      this.setPriority(priority);
+   }
+
+
+   Back inside Main, rename the first variable favorite and the second variable underdog. Give the first thread higher priority, so that the "favorite" is more likely to win the race.
+
+   public static void main(String[] args) {
+
+      // Create two AthleteThread threads
+      AthleteThread favorite = new AthleteThread(84921, "Marcus Eldridge", Thread.MAX_PRIORITY);
+      AthleteThread underdog = new AthleteThread(43114, "Hiroshi Nakamura", Thread.MIN_PRIORITY);
+
+      // Start the Threads
+      favorite.start();
+      underdog.start();
+   }
+
+
+   If you execute this code numerous times, the favorite will likely finish the race faster than the underdog.
+
+
+-------------------------------------------------------------------------------------------------------------------	  

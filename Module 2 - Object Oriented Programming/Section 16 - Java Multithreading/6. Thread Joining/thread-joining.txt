@@ -1,0 +1,67 @@
+-------------------------------------------------------------------------------------------------------------------
+
+Thread Joining
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+1. Thread Joining
+  
+   Imagine a scenario where a single thread is executing five tasks. The first four tasks are heavy computations and the final task displays the result of each computation. Running each computation in serial takes a very long time.
+
+   We can run them in the background on separate threads. Now, the CPU can make progress on more than one task at a time. After finishing its computations, the last thread was waiting to synchronize and display the final results. This synchronization was achieved using Thread.join().
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+2. Starter Project
+
+
+   The starter project contains four "player" child threads executing heavy computations:
+
+   // Create a PlayerThread[] array containing 4 PlayerThread objects
+   PlayerThread[] threads = new PlayerThread[4];
+
+   // Populate the PlayerThread[] array
+   for (int i=0 ; i<threads.length ; i++) {
+      threads[i] = new PlayerThread(i + 1);
+      threads[i].start();
+   }
+
+
+   Alongside a main thread responsible for displaying the final outcome.
+
+   System.out.println("Player " + winner + " wins with a score of " + winningScore);
+
+
+   When you run this code, the main thread completes before the child threads. That is because the CPU is executing all 5 threads concurrently. This leads to premature and inaccurate result announcement, as shown in the output:
+
+   >>: Player 1 wins with a score of 2958
+   >>: Player 1 wins with a score of 2958
+   >>: Player 4 final score: 1349900196
+   >>: Player 2 final score: 1349983374
+   >>: Player 3 final score: 1350012345
+   >>: Player 1 final score: 1349936708
+
+
+   It makes sense for the four child threads to run concurrently because they are all performing heavy computations. However, the main thread needs to wait for the child threads to finish before it can display the results. Here is how you can use join() to synchronize the threads:
+
+   for (PlayerThread playerThread : threads) {
+      playerThread.join();
+   }
+
+
+   By caling join() from the main thread, on every player thread, the main thread pauses until every child thread is finished executing its task. With join() implemented, the output is orderly and accurate:
+
+   >>: Player 4 final score: 1349996759
+   >>: Player 2 final score: 1349986976
+   >>: Player 3 final score: 1349995313
+   >>: Player 1 final score: 1350032130
+   >>: Player 1 wins with a score of 1350032130
+
+
+   That's it! By calling join() on every thread, we ensure that the main thread waits for each player thread to finish completing its task.
+
+
+-------------------------------------------------------------------------------------------------------------------

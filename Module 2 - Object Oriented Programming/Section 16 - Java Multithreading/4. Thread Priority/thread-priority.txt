@@ -1,0 +1,145 @@
+------------------------------------------------------------------------------------------------------------------
+
+Thread Priority
+
+------------------------------------------------------------------------------------------------------------------
+
+
+1. Thread Priority:
+   * The priority of a thread is influenced by Length + Order + Age + Urgency.
+   * Length, Order: give higher priority to threads with shorter tasks that came first.
+   * Age: gives higher priority to threads that have been waiting for far too long.
+   * Urgency: developer manipulates the urgency
+   * Dynamic priorities (computed by system): Length, Order, Age
+   * Static priorities (computed by developer): Urgency
+
+
+------------------------------------------------------------------------------------------------------------------
+
+
+2. Starter Project
+
+
+   The ThreadPriority.java code includes three threads that execute the same task:
+
+   public static void main(String[] args) {
+
+      // Create three Threads that perform the same task
+      Thread t1 = new Thread(() -> count(), "Thread-1");
+      Thread t2 = new Thread(() -> count(), "Thread-2");
+      Thread t3 = new Thread(() -> count(), "Thread-3");
+
+      // Start the Threads
+      t1.start();
+      t2.start();
+      t3.start();
+   }
+
+
+   Will any of these threads inherently have priority over the others? Probably not. It's possible for each thread to run concurrently with thread 1 getting priority. Or, on multiple cores with threads 2 and 3 getting priority, but who exactly knows?
+
+
+   Since the main thread initiates t1, t2 and t3 almost simultaneously, and each thread performs the identical task of counting, factors like age, order and length become negligible. But, using code, we can still manipulate the urgency factor to influence the priority of each thread.
+
+   public static void main(String[] args) {
+
+      // Create three Threads that perform the same task
+      Thread t1 = new Thread(() -> count(), "Thread-1");
+      Thread t2 = new Thread(() -> count(), "Thread-2");
+      Thread t3 = new Thread(() -> count(), "Thread-3");
+
+      // Set the priority of each Thread
+      t1.setPriority(Thread.MAX_PRIORITY);
+      t2.setPriority(Thread.NORM_PRIORITY);
+      t3.setPriority(Thread.MIN_PRIORITY);
+
+      // Start the Threads
+      t1.start();
+      t2.start();
+      t3.start();
+   }
+
+
+   If you execute this code multiple times, you will find that t1 typically finishes first, but not always. Keep in mind that urgency is just one component of the priority equation; setting it merely influences the priority of t1. It doesn't always guarantee that t1 is always going to be the first to execute. There remains the unpredictable nature of the scheduler, but we can generally expect the priority to shift often in favour of t1.
+
+
+------------------------------------------------------------------------------------------------------------------
+
+
+3. Yield
+
+   
+   We can further influence the priority of t1 by making t2 and t3 yield to it.
+
+   public static void count() {
+      for (int i=0 ; i<100 ; i++) {
+         System.out.println(Thread.currentThread().getName() + " count: " + i);
+         if (!Thread.currentThread().getName.equals("Thread-1")) {
+            Thread.yield();
+         }
+      }
+   }
+
+
+   If you execute this code multiple times, you will find that t1 typically finishes first, but not always. While t2 and t3 are consistently requesting to surrender their CPU time, the scheduler is free to ignore this request. Nonetheless, we can still generally expect the priority to shift even more in favor of t1.
+
+
+------------------------------------------------------------------------------------------------------------------
+
+
+4. Sleep
+
+
+   The ThreadSleepEffect.java contains a high-priority thread and a low-priority thread.
+
+   public static void main(String[] args) {
+
+      // Create High-Priority and a Low-Priority Threads
+      Thread highPriorityThread = new Thread(() -> countWithSleep(0), "High-Priority-Thread");
+      Thread lowPriorityThread = new Thread(() -> countWithSleep(0), "Low-Priority-Thread");
+
+      // Set the priorities for both Threads
+      highPriorityThread.setPriority(Thread.MAX_PRIORITY);
+      lowPriorityThread.setPriority(Thread.MIN_PRIORITY);
+
+      // Start the Threads
+      lowPriorityThread.start();
+      highPriorityThread.start();
+
+   }
+
+   public static void countWithSleep(in sleepTime) { ... }
+
+
+   If you execute this code multiple times, the high-priority thread typically finishes first. But notice that the counWithSleep() function expects a sleepTime parameter that determines how long a thread will pause. We can implement the sleeping logic as follows:
+
+   public static void countWithSleep(int sleepTime) {
+      String threadName = Thread.currentThread().getName();
+      System.out.println(threadName + " started counting.");
+        
+      for (int i = 0; i < 20; i++) {
+         System.out.println(threadName + " count: " + i);
+         try {
+            Thread.sleep(sleepTime); // pauses the thread for sleepTime milliseconds
+         } catch (InterruptedException e) {
+            e.printStackTrace();
+         }
+      }        
+   }
+
+
+   If you set the sleep time of highPriorityThread to 10 miliseconds, the lowPriorityThread will always finish first.
+
+   public static void main(String[] args) {
+      Thread highPriorityThread = new Thread(() -> countWithSleep(10), "High-Priority-Thread");
+      Thread lowPriorityThread = new Thread(() -> countWithSleep(0), "Low-Priority-Thread");
+      ...
+   }
+
+
+   After the first iteration, the highPriorityThread pauses for 10 miliseconds, which gives the lowPriorityThread plenty of time to swoop in and complete its task. Upon doing so, the highPriorityThread continues to sleep every 10 miliseconds.
+
+   The same results would be observed if each thread was executing on a different core. You can never truly predict how your threads will be scheduled, but we can generally expect that, regardless of how they get processed, the active thread will finish before the sleeping thread.
+
+
+------------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,14 @@
+-------------------------------------------------------------------------------------------------------------------
+
+Java Multithreading Course
+
+-------------------------------------------------------------------------------------------------------------------
+
+Applications may suffer from:
+* Poor latency: tasks taking too long
+* Slow throughput: low rate of processing tasks
+=> The answer of these problems is Multithreading.
+
+Understanding how your code is processed at the CPU level is important to your growth as a software developer.
+
+-------------------------------------------------------------------------------------------------------------------

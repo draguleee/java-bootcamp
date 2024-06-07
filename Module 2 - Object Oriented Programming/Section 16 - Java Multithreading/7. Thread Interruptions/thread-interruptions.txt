@@ -1,0 +1,77 @@
+-------------------------------------------------------------------------------------------------------------------
+
+Thread Interruption
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+1. Introduction
+
+   Oftentimes, you will have threads with tasks that never end. Each thread will run forever until a certain condition is reached or a time frame has expired. Once that happens, a separate thread swoops in and interrupts all of them. The calling thread waits for the other threads to stop before it displays all of their results. The calling thread can interrupt other threads using Thread.interrupt(), then it can synchronize with them using Thread.join().
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+2. Thread Interruption
+
+
+   The project contains four threads that are running concurrently. Each thread executes a task that runs forever, so it only makes sense to employ multithreading, whereby the CPU makes progress on more than one task at a time.
+
+   // Create an array containing four PlayerThread objects
+   final int numberOfPlayers = 4;
+   PlayerThread[] threads = new PlayerThread[numberOfPlayers];
+
+   // Populate the array and start each thread
+   for (int i=0 ; i<numberOfPlayers ; i++) {
+      threads[i] = new PlayerThread(i + 1);
+      threads[i].start();
+   }
+
+
+   While the four threads are executing their tasks, the main thread is sleeping for 2 seconds.
+
+   Thread.sleep(2000);
+
+
+   After 2 seconds, the competition is over and we need to interrupt every player.
+
+   for (Thread thread : threads) {
+      thread.interrupt();
+   }
+
+
+   By calling Thread.interrupt() on all four threads, it doesn't actually top every thread. It merely sets the isInterrupted field of each thread equal to True. The logic for stopping each thread is implemented within the task itself.
+
+   @Override
+   public void run() {
+      while (!this.isInterrupted()) {
+         this.stScore(this.getScore() + random.nextInt(10));
+      }
+      System.out.println("Player " + this.getName() + " final score: " + this.getScore());
+   }
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+3. Thread Joining
+
+
+   The calling thread needs to wait for the other threads to stop before it displays all of their results. We can use the familiar join() method:
+
+   for (Thread thread : threads) {
+      thread.join();
+   }
+
+  
+   By calling join() from the main thread, on every player thread, the main thread pauses until every child thread is finished executing its task. With join() implemented, the output is orderly and accurate:
+
+   »: Player 1 final score: 465494571
+   »: Player 2 final score: 462553477
+   »: Player 3 final score: 463197195
+   »: Player 4 final score: 464524200
+   »: Player 1 wins with a score of 465494571
+
+
+-------------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,75 @@
+-------------------------------------------------------------------------------------------------------------------
+
+Daemon Threads
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+1. Difference between Daemon Threads and Core Threads:
+   * Daemon Threads: perform background task (activity logging, resource monitoring, autosaving)
+   * Core Threads: perform operations that are essential to the application's primary objectives
+   * Because background tasks should stop when the primary tasks are finished, it follows that a daemon thread automatically shuts down when the core threads have executed.
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+2. Daemon Threads
+
+   * memoryMonitorThread: monitors memory usage.
+   * memoryIntensiveTaskThread: performs an intensive task but does not really output anything expect for "Finished generating random numbers" after it is done.
+
+   public class Main {
+      public static void main(String[] args) throws Exception {
+
+         // Create MemoryMonitorDaemon and start it
+         Thread memoryMonitorThread = new Thread(new MemoryMonitorDaemon());
+	 memoryMonitorThread.start();
+
+	 // Create MemoryIntensiveTask and start it
+	 Thread memoryIntensiveTaskThread = new Thread(new MemoryIntensiveTask());
+	 memoryIntensiveTaskThread.start();
+
+      }
+   }
+
+
+   As the memoryIntensiveTaskThread executes, you can see that memory usage steadily increases. But after it finishes, memory usage remains constant.
+
+   »: Memory Usage: 2064384 bytes
+   »: Memory Usage: 4269464 bytes
+   »: Memory Usage: 5212160 bytes
+   »: Memory Usage: 6121376 bytes
+   »: Finished generating random numbers
+   »: Memory Usage: 6121376 bytes
+   »: Memory Usage: 6121376 bytes
+   »: ...
+
+
+   Memory monitoring is a background task that should automatically shut down when the primary tasks are finished. One solution could be to use Thread.interrupt() and incorporate the necessary interrupting logic. Or we could simply set memoryMonitorThread as a daemon thread. 
+
+   public static void main(String[] args) throws Exception {
+ 
+      // Create MemoryMonitorDaemon, set it as a daemon thread and start it
+      Thread memoryMonitorThread = new Thread(new MemoryMonitorThread());
+      memoryMonitorThread.setDaemon(true);
+      memoryMonitorThread.start();
+
+      // Create a MemoryIntensiveTask and start it
+      Thread memoryIntensiveTaskThread = new Thread(new MemoryIntensiveTask());
+      memoryIntensiveTaskThread.start();
+
+   }
+
+
+   If you execute the code now, the daemon thread automatically shuts down when the core thread is finished.
+
+   >>: Memory Usage: 2064384 bytes
+   >>: Memory Usage: 4269464 bytes
+   >>: Memory Usage: 5212160 bytes
+   >>: Memory Usage: 6121376 bytes
+   >>: Finished generating random numbers
+
+
+-------------------------------------------------------------------------------------------------------------------
+

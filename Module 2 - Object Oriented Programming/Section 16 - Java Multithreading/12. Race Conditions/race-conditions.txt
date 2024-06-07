@@ -1,0 +1,158 @@
+-------------------------------------------------------------------------------------------------------------------
+
+Race Conditions
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+1. Data Race & Race Conditions Bugs
+   * Happen when multiple threads are sharing the same resource
+   * Data Race bugs: can be solved by increasing the visibility of a resource (using the volatile keyword)
+   * Race Conditions bugs: stem from multiple threads interfering with each other when operating on a shared resource
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+2. Starter Code
+
+
+   After running this code with two threads incrementing the shared count variable, you will likely notice that the final count is inconsistent and often less than the expected 2000.
+
+   >>: Final count (might be incorrect): 1556
+   >>: Final count (might be incorrect): 1988
+   >>: Final count (might be incorrect): 2000
+   >>: Final count (might be incorrect): 1445
+
+
+   Why is the result inconsistent? 
+   The inconsistency arises because count++ is not a single-step (atomic) operation. It is actually a multi-step (non-atomic) process:
+   * Read: the current value of count is read (int temp = count);
+   * Increment: the value is incremented (temp = temp + 1);
+   * Write: the new value is written back to count (count = temp);
+
+   When non-atomic operations are performed on a share resource, threads are much more likely to interfere with each other and produce race conditions. In this case, let's assume the count is 250. Both threads might read the same value (250), so thread 1 writes back 251, and thread 2, going off the old value, also writes back 251.
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+3. Atomic Classes
+
+
+   AtomicInteger:
+   * An atomic data type that solves the problem of race conditions that might occur on a shared resource
+   * Ensures visibility (when one thread modifies count, the new value is immediately visible to other threads)
+   * Problem: threads can interfere with each other when they perform non-atomic operations on a shared resource
+   * Solution: incrementAndGet() as an atomic operation, being indivisible and executing as a single step, preventing other threads from intervening between the read, increment and write steps.
+
+
+   import java.util.concurrent.atomic.AtomicInteger;
+
+   public class RaceConditionExample {
+   
+      // Instance variable of AtomicInteger type (solves the race condition)
+      public static AtomicInteger count = new AtomicInteger(0);
+
+      // Function that increments and gets the count variable
+      public static void increment() {
+         count.incrementAndGet();        // Atomic increment
+      }
+        
+      // Function that returns the count
+      public static int getCount() {
+         return count.get();
+      }
+
+      // ... rest of the main method remains the same
+   }
+
+
+   Race conditions are not limited to just integers. Java provides a package of classes that provide a way to perform atomic operations on different variable types (AtomicLong, AtomicBoolean etc).
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+4. Synchronizing with Locks
+
+
+   We can also solve race conditions using locks.
+
+
+   public class RaceConditionExample {
+
+     // Instance variable (private) - count variable
+     public static int count = 0;
+
+     // Getter for count
+     public static int getCount() {
+        return count;
+     }
+
+     // Function that increments the count variable
+     public static void increment() {
+        count++;    // Non-atomic increment can cause race condition
+     }
+
+    
+     public static void main(String[] args) throws InterruptedException {
+
+        // Create an incrementTask runnable that counts up to 999
+        Runnable incrementTask = () -> {
+            for (int i = 0; i < 1000; i++) {
+                increment();
+            }
+        };
+
+        // Create two Threads with the specified incrementTask Runnable
+        Thread t1 = new Thread(incrementTask);
+        Thread t2 = new Thread(incrementTask);
+
+        // Start the threads
+        t1.start();
+        t2.start();
+
+        // Make the main thread wait for the two child threads
+        t1.join();
+        t2.join();
+
+        // Print the final count
+        System.out.println("Final count (might be incorrect): " + getCount());
+    
+      }
+   }
+
+
+   Another way to fix race conditions is through explicit synchronization using locks. This approach involves locking the critical section (the part of the code where multi-step shared resources).
+
+   public class RaceConditionExample {
+
+      // Instance variables (private) - count and lock
+      private static int count = 0;
+      private static final Object lock = new Object();
+
+      // Function that increments the count variable
+      public static void increment() {
+         synchronized (lock) {
+            count++;
+         }
+      }
+
+      // ... rest of the main method remains the same
+   }
+
+
+   With this approach, when a thread enters the synchronized block, it acquires a lock on the lock object. No other thread can enter any synchronized block on the same lock until the lock is released. This ensures that only one thread can execute increment() at a time, preventing race conditions.
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+5. Favor Atomic Operations
+
+
+   When possible, you should favor atomizing operations as opposed to locking them. Atomic operations are much faster than acquiring and releasing locks. They are usually implemented at a low level, making them highly efficient. However, there are scenarios where multi-step operations on a shared resource are too complex for atomization. In such cases, utilizing locks becomes a necessary and viable alternative.
+
+
+-------------------------------------------------------------------------------------------------------------------

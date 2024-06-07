@@ -1,0 +1,173 @@
+------------------------------------------------------------------------------------------------------------------
+
+Thread Creation
+
+------------------------------------------------------------------------------------------------------------------
+
+
+1. Thread Creation
+   * When you run a Java application, it starts a process on your computer's memory.
+   * This process contains at least one thread called the "main thread", which invokes the application's main method, namely the entry point of your program.
+   * From the main thread, you can spawn additional threads, often referred to as "child" threads, which can run concurrently with your main thread because the CPU rapidly switches between them.
+
+
+------------------------------------------------------------------------------------------------------------------
+
+
+2. Concurrency in Action
+
+
+   The project contains a main method that counts up from 0 to 99.
+
+   public static void main(String[] args) {
+      count();
+   }
+
+   public static void count() {
+      for (int i=0 ; i<100 ; i++) {
+         System.out.println(i);
+      }
+   }
+
+
+   If you execute this application, the output is very predictable. The main thread performs the task of counting from 0 to 99:
+   >>: 0
+   >>: 1
+   >>: 2
+   >>:
+   >>: 99
+
+
+   Inside the main method, you can retrieve the current thread that's executing i and print its name.
+
+   public static void main(String[] args) {
+      System.out.println(Thread.currentThread().getName() + " thread");
+      count();
+   }
+
+   public static void count() {
+      for (int i=0 ; i<100 ; i++) {
+         System.out.println(i);
+      }
+   }
+
+   The output will be the following:
+   >>: main thread
+   >>: 0
+   >>: 1
+   >>: 
+   >>: 99
+
+   As expected, the main thread is responsible for running the main method, but what happens if we introduce Concurrency?
+   
+
+   From the main thread, we can spin up a child thread that will perform a task.
+
+   public static void main(String[] args) {
+      Thread childThread = new Thread(/*TASK*/);
+      count();
+   }
+
+
+   You can define this task by implementing the Runnable interface, that stipulates that any class claiming to be Runnable must implement a run() method, which is where you can define the instructions that you want your thread to perform.
+
+
+   The child thread, like the main thread, will perform the task of counting from 1 to 100. Append this task to your child thread, and call start() to activate the child thread. Now, the main thread and the child thread will execute the same task concurrently.
+
+   public class Main {
+
+      public class ChildThreadTask implements Runnable {
+         @Override
+         public void run() {
+	    count();		// 1. Define the task that you want your child thread to perform
+	 }
+      }
+
+      public static void main(String[] args) {
+         Thread childThread = new Thread(new ChildThreadTask());	// 2. Append task inside of child thread
+	 childThread.start();
+	 count();
+      }
+
+      public static void count() {
+         for (int i=0 ; i<100 ; i++) {
+	    System.out.println(i);
+	 }
+      }
+
+
+   If you execute this application, the output is very unpredictable.
+   >>: 0
+   >>: 1
+   >>: 0
+   >>: 2
+   >>: 3
+   >>: 4
+   >>: ... 
+   >>: 97
+   >>: 99
+   >>: 98
+   >>: 99
+
+
+   This makes sense if you consider the nature of concurrent execution. The CPU is making progress on more than one task at a time. As the main thread starts counting, it gets interrupted and the child thread begins counting. The child thread gets interrupted, and the main thread begins counting where it left off. The scheduler rapidly switches between each thread until they both run to completion, and it follows that the result will be completely distorted. Unpredictability is a fundamental aspect of concurrency because nobody can predict the sequence in which the CPU will execute each thread.
+
+
+------------------------------------------------------------------------------------------------------------------
+
+
+3. Lambda
+
+
+   The constructor of a Thread expects a Runnable, which is a single method interface, so we can use a lambda expression to provide its implementation, as opposed to defining an entire object that implements the interface.
+
+   public static void main(String[] args) {
+      Thread childThread = new Thread(() -> count());
+      childThread.start();
+      count();
+   }
+
+   public static void count() {
+      for (int i=0 ; i<100 ; i++) {
+         System.out.println(i);
+      }
+   }
+
+
+------------------------------------------------------------------------------------------------------------------
+
+
+4. Naming Threads in Java
+
+
+   You can name the child thread "child" by adding another parameter in its constructor. The main thread is already called "main", so we can leave it. We can modify count to display the name of the thread that's currently executing it.
+
+   public static void main(String[] args) {
+      Thread childThread = new Thread(() -> count(), "child");
+      childThread.start();
+      count();
+   }
+
+   public static void count() {
+      for (int i=0 ; i<100 ; i++) {
+         System.out.println(Thread.currentThread().getName() + ": " + i);
+      }
+   }
+
+
+   Once again, the output is unpredictable. But, by including the name of the thread that is executing each count, we can see which count was printed by the main thread or the child thread. Thishelps us pinpoint exactly where the CPU was switching between tasks.
+
+   main: 0
+   child: 0
+   main: 1
+   child: 1
+   ... 
+   child: 98
+   main: 99
+   child: 99
+
+
+------------------------------------------------------------------------------------------------------------------
+   
+
+

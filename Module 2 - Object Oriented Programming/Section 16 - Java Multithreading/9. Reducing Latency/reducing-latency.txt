@@ -1,0 +1,193 @@
+-------------------------------------------------------------------------------------------------------------------
+
+Reducing Latency
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+1. Latency & How to Reduce it
+
+
+   We tend to employ multithreading in order to optimize two key factors:
+   * Latency: measures how long it takes to complete a task
+   * Throughput: measures how many tasks can be completed per unit time
+
+   
+-------------------------------------------------------------------------------------------------------------------
+
+
+2. Starter Project
+
+
+   We will multithread an application that suffers from poor latency. The project will use a single thread to convert a large image into a grayscale image. This process will take a very long time.
+
+
+   We can reduce the latency by splitting the image into vertical parts, then we can use multithreading to process different parts of the image in parallel.
+
+
+   We can write code tha measure how long it takes to process te image:
+ 
+   // Define the start time
+   long startTime = System.currentTimeMillis();
+
+   // Convert the image to grayscale
+   convertToGrayscale(image);
+	
+   // Define the end time
+   long endTime = System.currentTimeMillis();
+
+   // Calculate the time taken to convert the image to grayscale and print it
+   long timeTaken = endTime - startTime;
+   System.out.println("Time taken: " + timeTaken + " millis.");
+
+
+   Output:
+   >>: Time taken: 760 miliseconds
+
+
+   The process took 760 milliseconds because the image is 5000x5000 pixels, so the main thread is processing 25.000.000 pixels at once. Instead of a single thread processing the entire image, we can split the image up in N parts, where each thread is converting one part of the image to grayscale. This approach should significantly reduce the latency because different prts of the image are being processed in parallel.
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+3. Multithreading
+
+
+   Create a new class called GrayscaleConverterThread that inherits the threading functionality of a Java Thread:
+ 
+   public class GrayscaleConverterThread extends Thread { }
+
+
+   Each thread will contain three fields:
+   * The image
+   * An integer that indicates where to start converting from
+   * An integer that indicates where to stop converting
+
+   import java.awt.image.BufferedImage;
+
+   public class GrayscaleConverterThread extends Thread {
+   
+      // Instance variables (private)
+      private BufferedImage image;
+      private int startY;
+      private int endY;
+
+      // Constructor for GrayscaleConverterThread class
+      public GrayscaleConverterThread(BufferedImage image, int startY, int endY) {
+         this.image = image;
+         this.startY = startY;
+	 this.endY = endY;
+      }
+
+
+   Override the run() method, wherein the thread only processes the part of the image it's responsible for. Note that only one simple change was made to the outer loop.
+
+   public void run() {
+      convertPartToGrayscale(image, startY, endY);
+   }
+
+   private void convertPartToGrayscale(BufferedImage image, int startY, int endY) {
+      for (int y = startY; y < endY; y++) {
+         for (int x = 0; x < image.getWidth(); x++) {
+	    int rgb = image.getRGB(x, y);
+	    Color color = new Color(rgb, true);
+
+	    int red = color.getRed();
+	    int green = color.getGreen();
+	    int blue = color.getBlue();
+
+	    // Compute the average of red, green and blue (simple grayscale)
+   	    int gray = (red + green + blue) / 3;
+
+	    // Create new grayscale color
+	    Color grayColor = new Color(gray, gray, gray, color.getAlpha());
+	    image.setRGB(x, y, grayColor.getRGB());
+         }
+      }
+   }
+
+
+   Delete the processing logic from the main thread, and uncomment convertToGrayscaleConcurrently.
+
+   private static void convertToGrayscaleConcurrently(BufferedImage image, int numberOfThreads) throws InterruptedException { }
+
+
+   The image height that each thread is responsible for depends on the number of threads being used to process the image:
+
+   private static void convertToGrayscaleConcurrently(BufferedImage image, int numberOfThreads) throws InterruptedException { 
+      int heightPerThread = image.getHeight( / numberOfThreads;
+      GrayscaleConverterThread[] threads = new GrayscaleConverterThreads[numberOfThreads];
+   }
+
+
+   Next, create a loop that runs through each thread. Here, we can set the starting index of each thread equal to that thread's index multiplied by the height per thread:
+
+   private static void convertToGrayscaleConcurrently(BufferedImage image, int numberOfThreads) throws InterruptedException { 
+      int heightPerThread = image.getHeight( / numberOfThreads;
+      GrayscaleConverterThread[] threads = new GrayscaleConverterThreads[numberOfThreads];
+      for (int i=0 ; i<numberOfThreads ; i++) {
+         int startY = i * heightPerThread;
+      }   
+   }
+
+
+   Considering that the image is 5000 pixels high and assuming 5 threads, then the heightPerThread will be 100 pixels:
+   * Thread at index 0: starts processing at pixel 0
+   * Thread at index 1: starts processing at pixel 1000
+   * Thread at index 2: starts processing at pixel 2000
+   * Thread at index 3: starts processing at pixel 3000
+   * Thread at index 4: starts processing at pixel 4000
+
+   The end index is determined where the thread started, plus the amount of height it needs to process:
+
+   private static void convertToGrayscaleConcurrently(BufferedImage image, int numberOfThreads) throws InterruptedException { 
+      int heightPerThread = image.getHeight( / numberOfThreads;
+      GrayscaleConverterThread[] threads = new GrayscaleConverterThreads[numberOfThreads];
+      for (int i=0 ; i<numberOfThreads ; i++) {
+         int startY = i * heightPerThread;
+	 int endY = startY + heightPerThread;
+      }   
+   }
+
+
+   We can finalize this loop by creating every thread object and executing it. While the worker threads are busy processing different parts of the image, the main thread will wait for all of them to finish by calling Thread.join():
+
+   private static void convertToGrayscaleConcurrently(BufferedImage image, int numberOfThreads) throws InterruptedException { 
+      int heightPerThread = image.getHeight( / numberOfThreads;
+      GrayscaleConverterThread[] threads = new GrayscaleConverterThreads[numberOfThreads];
+      for (int i=0 ; i<numberOfThreads ; i++) {
+         int startY = i * heightPerThread;
+	 int endY = startY + heightPerThread;
+      }   
+      for (GrayscaleConverterThread thread : threads) {
+         thread.join();
+      }
+   }
+
+
+   Back in the main() method, we will process theimage using two threads:
+
+   long startTime = System.currentTimeMillis();
+   convertToGrayscaleConcurrently(image, 2);
+   long endTime = System.currentTimeMillis();
+   long timeTaken = endTime - startTime;
+
+
+   * Two threads: latency decreases.
+   * Three threads: latency decreases significantly.
+   * Four threads: latency decreases by a small amount.
+   * Five threads: latency increases! 
+   => At some point, adding more threads hinders the performance.
+
+
+   The results depend on different CPUs.
+
+   When the number of threads is equal to or slightly less than the number of performance cores, the threads are likely to run concurrently on these high-power cores with minimal context switching. This is why you observed a decrease in latency with up to four threads.
+
+   But, as you increase the number of threads beyond the count of performance cores, the system starts assigning some threads to the efficiency cores. These cores, by power saving, are not designed for high-performance tasks. As a result, any thread running on these cores takes longer to complete and, with more threads in the mix, there is an increased likelihood of context switching, where the CPU spends more time switching between threads as opposed to executing the tasks themselves.
+
+   When you want to reduce the latency of a labor-intensive task, the general rule is to match the number of threads with the number of performance cores.
+
+
+-------------------------------------------------------------------------------------------------------------------

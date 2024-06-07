@@ -1,0 +1,99 @@
+-------------------------------------------------------------------------------------------------------------------
+
+Increasing Throughput
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+1. Throughput - measures the number of tasks that can be performed per unit time
+
+   
+   Below we have a web server that can perfectly handle one request at a time:
+
+   ----------     request      ----------
+   = CLIENT = ---------------> = SERVER =
+   ----------                  ----------
+
+   ----------     response     ----------
+   = CLIENT = <--------------- = SERVER =
+   ----------                  ----------
+
+
+   When it receives a bust of traffic, it starts slowing down. The website's server is single-threaded, so it can only respond to one request at a time.
+
+   We can provide the server with a thread pool, which contains idle threads that are ready to fire up as soon as work is given to them. Now, the application can respond to many requests in parallel.
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+2. Starter Project
+
+
+   This code creates a server that listens for requests on port 8080/factorial. Upon doing so, the application sleeps for 5 milliseconds and returns "Hello World!". You can feel free to test this out by running the app and typing "localhost:8080/factorial" on your preferred browser.
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+3. Client Application
+
+   The code simply makes 100 requests to our HTTP server and measures the throughput. The single-threaded HTTP server can handle 130.718954284366 requests/second.
+
+   >>: Throughput: 130.718954284366 requests/second
+
+
+   Instead of the server executing 100 requests in a single thread, we can set its executor to handle them in a fixed thread pool:
+
+   server.setExecutor(xecutors.newFixedTheadPool(/* Thread Count */));
+
+
+   We will set the number of threads in the thread pool equal to the number of cores (processors) on my machine. Your numbers of cores / processors will vary so feel free to print it.
+
+   server.setExecutor(Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors()));
+
+
+   If you re-run the server and test the throughput, the first result should be much faster:
+
+   >>: Throughput: 501.24429385 requests/second
+
+
+   If you test the server a second time, it performs a lot better. Since you are using a fixed thread pool, the first request involves initializing these threads. After the initial setup, the threads sit idle and are ready to fire up as soon as work is given to them. That's why the throughput is much higher the second time around.
+
+   >>: Throughput: 769.2307692307692 requests/second
+
+
+   The threads are always on standby, and the server keeps reusing them to quickly handle any new tasks. Constantly destroying and creating threads is very expensive, but a thread pool reuses a set of existing threads, which reduces the overhead associated with creating new threads for each task.
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+3. Hyperthreading
+
+
+   In the very first video of this series, we talked about a phenomenon called thrashing, whereby the CPU spends more time switching between threads as opposed to actually executing them. CPU cores can only process one thread at a time, and they can get overwhelmed by switching between too many threads. So, one might assume that, if we increase the number of threads beyond the number of cores I have available, then the server will become slower.
+
+   int numThreads = Runtime.getRuntime().availableProcessors() * 2;
+   server.setExecutor(Executors.newFixedThreadPool(numThreads));
+
+   The output will be as follows:
+   >>: Throughput: 1030.9278350515463 requests/second
+
+
+   It's actually much faster. Remember, "CPU cores can only process one thread at a time", but this was until hyperthreading was introduced by Intel, where certain sections of the CPU core are duplicated. If each core can execute more than one task, then my CPU should easily execute double the number of threads.
+
+   That's why increasing the number of threads in our web server's thread pool beyond the number of cores significantly improved its performance. Hyperthreading can really improve throughput, because it is well-suited for tasks that require less CPU computation. It is not effective if the task is havy on CPU resources or involves complex computations. That's why, in the previous lesson, where we needed to reduce the latemcy of a very heaving computation, we were unable to go beyond 4 threads.
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+4. Ideal Number of Threads
+
+   There is no magic formula. 
+
+   Most web servers already implement a thread pool with a dynamic number of threads, which are scaled based on the amount of workload that can be handled by the web server. For instance, if you decide to spin up a web server with the Spring Boot framework, the thread pool is already set up for you out of the box, so it's not something you typically need to worry about as a web developer. However, it's good to have a general understanding of how these things work.
+
+
+-------------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,120 @@
+-------------------------------------------------------------------------------------------------------------------
+
+Multithreading
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+1. What is Multithreading?
+   * User experience: Features, Aesthetics, Responsiveness (improved by multithreading).
+   * Multithreading: improves the responsiveness of an application.
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+2. Single and Multiple Threads
+   * Single-Threaded Application: one-lane road where you can only execute one task at a time.
+   * Multi-Threaded Application: multi-lane highway where there's possible to multitask.
+
+   Example: Google Docs
+   * Defining feature for Google Docs: the user can type and save the work atthe same time.
+   * One thread displays the text the user's typing and a separate thread saves the data to the cloud.
+   => A typing thread and a saving thread allows the application to multitask.
+
+   What if Google Docs was Single-Threaded?
+   * Every time the user types, they have to wait for the saving process to finish before resuming the typing.
+   => The app would become laggy and slow.
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+4. Hardware
+
+   The following application uploads a photo, optimizes it, and sends an upload notification on a single thread.
+
+   public class SingleThreadedExample {
+      public static void main(String[] args) {
+         uploadPhoto();				// User uploads the photo
+	 optimizeImageForWeb();			// App optimizes the im
+ 	 sendPhotoLiveNotification();		// User receives a notification
+      }
+   }
+
+   4.1. Process
+        * When you execute this app, it starts running in the computer's memory as a process.
+        * The process contains a thread that carries out instructions for three tasks:
+          - The user uploads a photo
+          - The application optimizes the image
+          - The user receives a notification that their photo is live
+
+   4.2. Scheduler
+	* Your computer's OS also runs in memory and it has a scheduler that decides when your thread will execute
+ 	* When the time of the thread comes, the scheduler places your thread onto a CPU core.
+        * The CPU core first completes the task of uploading the image, then optimizes the image for the web (which might take a very long time), and, until then, the third task is blocked.
+        * As a solution, we can place image optimization on a separate thread and we will have:
+  	  - uploadPhoto() and sendPhotoLiveNotifications() on a thread
+     	  - optimizeImageForWeb() on another thread
+
+   4.3. Concurrency
+	* The scheduler will rapidly switch between each thread.
+        * A CPU core can only process one task at a time, but concurrency gives the illusion that it is handling many tasks in parallel, but in fact it's rapidly switching back and forth between them.
+        * By separating the long-running tasks, the CPU prioritizes running the smaller tasks first.
+
+   4.4. Parallelism
+        * Modern CPUs can make use of multiple cores:
+          - One core could be dedicated to executing the first thread
+          - The other one could be dedicated to optimizing the image
+        * The CPU is executing more than one task at the same time, as opposed to concurrency, where the CPU is making progress on more than one task at a time.
+
+   4.5. Concurrency & Parallelism: multiple cores are rapidly switching between multiple threads
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+5. Priority
+
+   5.1. Key Factors for Priority
+        * Order & Length & Age & Urgency
+
+   5.2. Thread Starvation
+        Threads that arrive first and threads with shorter tasks are given higher priority, but if the CPU execution was purely reliant on order and length, the CPU would discriminately run threads with shorter tasks that came first and continuously ignore threads with longer tasks that came in later.
+
+   5.3. Age of a Thread
+        * Modern CPUs can mitigate starvation by also considering the age of the thread.
+        * This factor gives higher priority to threads that have been waiting for too long.
+        * This factor also ensures that every thread gets its fair share of CPU time.
+
+   5.4. Dynamic & Static Priorities
+        * Order, Length and Age: dynamic priorities computed by the OS.
+        * Urgency: static priority computed by the developer inside of the code.
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+6. The Downside of Multithreading
+
+   6.1. Context Switching
+        * Computers can face the problem where switching between tasks takes a long time.
+        * When a CPU switches from one thread to another, it doesn't jump from one task to another seamlessly; instead, it has to save the state of the current task, then load the state of the new one.
+
+   6.2. Thrashing
+        * If you have too many threads, the CPU spends more time switching between them than actually executing the tasks themselves.
+        * More threads don't always mean better performance
+        * If every operation is relatively fast, it's better to run all of them in a single thread.
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+7. Final Thoughts
+   * Premature optimization is the root of all evil!
+   * Multithreading is very hard to get right and if you don't actually need it, you expose yourself to unnecessary complexities like thrashing, starvation, deadlocks and race conditions.
+   * Before you start creating multithreaded code, ask yourself if it will genuinely benefit your specific use case; if not, it's better to stick with a single-threaded application.
+
+
+-------------------------------------------------------------------------------------------------------------------
+        
